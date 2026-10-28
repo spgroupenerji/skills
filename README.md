@@ -16,6 +16,7 @@ SP GROUP projelerinde kullanılan ajan yeteneklerinin (skill) tek deposu. Her ye
 
 | Yetenek | Sürüm | Kapsam |
 | --- | --- | --- |
+| [`kural-hatirlatici`](kural-hatirlatici/SKILL.md) | v202610282010 | Kullanıcının kalıcı çalışma direktiflerini ve tek kuyruk iş akışını her görevde hatırlatan başlangıç skili; araç disiplini, kanıt ve kapanış senkronu |
 | [`zen-mimari-anayasa`](zen-mimari-anayasa/SKILL.md) | v202610281847 | Kıdemli yazılım mimarı anayasası; zero-build Tailwind/Iconify arayüzleri, Zen Katmanı ilkeleri, MCP yetenek mühendisliği ve 10 maddelik QA matrisi |
 
 Yeni yetenek eklendiğinde bu tabloya satır eklenir. Tablo, depodaki yeteneklerin tek doğruluk kaynağıdır.
@@ -46,6 +47,7 @@ Get-ChildItem -Directory |
 
 Yetenekler `description` alanındaki tetikleyicilere göre otomatik yüklenir; ayrıca bir komut gerekmez. Örnek:
 
+- `kural-hatirlatici`: görev başında, kodlama/refaktör/hata ayıklama öncesinde ve "kuralları hatırlat" dendiğinde devreye girer; kullanıcının kalıcı direktiflerini ve araç kuyruğunu hatırlatır. Ayrıntı [SKILL.md](kural-hatirlatici/SKILL.md) dosyasındadır.
 - `zen-mimari-anayasa`: SCADA paneli, zero-build Tailwind arayüzü, MCP yeteneği veya refaktör isteğinde devreye girer. Ayrıntılı anayasa [SKILL.md](zen-mimari-anayasa/SKILL.md) dosyasındadır.
 
 ## Yeni Yetenek Ekleme
