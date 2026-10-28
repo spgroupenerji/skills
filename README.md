@@ -16,7 +16,7 @@ SP GROUP projelerinde kullanılan ajan yeteneklerinin (skill) tek deposu. Her ye
 
 | Yetenek | Sürüm | Kapsam |
 | --- | --- | --- |
-| [`kural-hatirlatici`](kural-hatirlatici/SKILL.md) | v202610282010 | Kullanıcının kalıcı çalışma direktiflerini ve tek kuyruk iş akışını her görevde hatırlatan başlangıç skili; araç disiplini, kanıt ve kapanış senkronu |
+| [`kural-hatirlatici`](kural-hatirlatici/SKILL.md) | v202610282031 | Kullanıcının kalıcı çalışma direktiflerini ve tek kuyruk iş akışını her görevde hatırlatan başlangıç skili; araç disiplini, kanıt, Chrome DevTools doğrulaması, push/deploy/webhook ve kapanış senkronu |
 | [`zen-mimari-anayasa`](zen-mimari-anayasa/SKILL.md) | v202610281847 | Kıdemli yazılım mimarı anayasası; zero-build Tailwind/Iconify arayüzleri, Zen Katmanı ilkeleri, MCP yetenek mühendisliği ve 10 maddelik QA matrisi |
 
 Yeni yetenek eklendiğinde bu tabloya satır eklenir. Tablo, depodaki yeteneklerin tek doğruluk kaynağıdır.

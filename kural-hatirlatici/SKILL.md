@@ -1,7 +1,7 @@
 ---
 name: kural-hatirlatici
-description: "Kullanıcının kalıcı çalışma sözleşmesini hatırlatır: kök neden, sıfır teknik borç, tek kuyruk düzeni, araç disiplini, bağlam hijyeni ve kanıt zorunluluğu. Şu durumlarda yükle: kullanıcı kural, hatırlat, anayasa, başla veya çalışma kuralları dediğinde; kod yazma, düzeltme, refaktör, hata ayıklama, mimari analiz, kod inceleme ve çok adımlı görevlerin başında. Also for any coding, review or multi-step task. Sohbet, çeviri veya genel bilgi sorularında yüklenmez."
-version: "v202610282010"
+description: "Kullanıcının kalıcı çalışma sözleşmesini hatırlatır: kök neden, sıfır teknik borç, tek kuyruk düzeni, araç disiplini, bağlam hijyeni ve kanıt zorunluluğu. Şu durumlarda yükle: kullanıcı kural, hatırlat, anayasa, başla, push veya deploy dediğinde; kod yazma, düzeltme, refaktör, hata ayıklama, mimari analiz, kod inceleme, webhook/deploy kurulumu ve çok adımlı görevlerin başında. Sohbet, çeviri veya genel bilgi sorularında yüklenmez."
+version: "v202610282031"
 alwaysApply: false
 platforms:
   - CLAUDE_CODE
@@ -47,6 +47,10 @@ Kullanıcının her görevde tekrarladığı direktifleri etkin tutar. Yeni ilke
 - "Kod revizyonunda asla kaçma; geçmiş borç asla bırakma; kök nedenle çöz; yapılacağı en mantıklı şekilde yap."
 - "Kurulan yapılarda birbirini yarışan yapı olmaz; kuyrukta düzenli mekanizması olan kod yapısı kurulur."
 - "Bağlamı şişirmeden çalış; uygunsa kontrollü subagent devri yap; en mükemmelde ödün verilmez."
+- "Push et."
+- "Controlleri Chrome DevTools ile gerçekten kontrol et."
+- "Deploy ve webhook yapısı kodu çekmeli; bu yapıda sorun olmamalı."
+- **Kapsam:** Push, Chrome DevTools doğrulaması, deploy ve webhook maddeleri web uygulaması ve web sitesi projeleri içindir; Rust ile masaüstü uygulamaları kapsam dışıdır.
 
 ## 2. Tek kuyruk (anayasa §2 sırasına hizalı)
 
@@ -59,8 +63,8 @@ Seremoni dozu anayasa §3'ü izler: basit işte 0 → 1 → 3 (hızlı) → 6 �
 4. **Doğrula:** API, sürüm, parametre ve sözdizimi belirsizliğini context7 veya resmî dokümanla gider; doğrulanmamış bilgiyi üretime koyma.
 5. **Strateji Seç:** Etkileşimli/semantik işte diyaloğu, veri ve doğrulama işinde sandbox'ta tek script çalıştırıp yalnız özet almayı seç.
 6. **Uygula:** En küçük uçtan uca dilim; minimal diff; kök neden; geçici yama, TODO veya yer tutucu yok.
-7. **Kanıtla:** Build, test veya lint kanıtı; uç durumlar (boş/null, sınır, eşzamanlılık, ağ kesintisi, kötü niyetli girdi, ölçek); arayüzde chrome-devtools.
-8. **Kapat:** Değişen indeksleri ve araç durumunu senkronize et; kalıcı kararı claude-mem'e yaz; varsa README ve sürüm damgasını eşitle; ölü kod ve artık import bırakma.
+7. **Kanıtla:** Build, test veya lint kanıtı; uç durumlar (boş/null, sınır, eşzamanlılık, ağ kesintisi, kötü niyetli girdi, ölçek); arayüzü ve controller'ı chrome-devtools ile gerçekten kontrol et.
+8. **Kapat:** Değişen indeksleri ve araç durumunu senkronize et; kalıcı kararı claude-mem'e yaz; varsa README ve sürüm damgasını eşitle; web projesinde push, deploy ve webhook'un kodu çektiğini doğrula; ölü kod ve artık import bırakma.
 
 Paralellik yalnızca bağımsız işlerde fan-out/fan-in; bağımlı adımlar sıralıdır. Aynı işi iki mekanizmayla yapma; tek doğruluk kaynağı kullan.
 
