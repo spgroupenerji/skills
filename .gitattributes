@@ -1,0 +1,23 @@
+# Tüm metin dosyaları repoda ve checkout'ta LF olarak tutulur.
+# Amaç: Windows'ta (CRLF) düzenlenen dosyaların Linux sunucuya CRLF ile
+# gitmesini kökten önlemek — kabuk betikleri CRLF ile çalışmaz
+# ("$'\r': command not found" / "set: pipefail: invalid option name").
+* text=auto eol=lf
+
+# Kabuk betikleri kesin LF
+*.sh text eol=lf
+
+# İkili varlıklar dönüştürülmez
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.webp binary
+*.gif binary
+*.svg text eol=lf
+*.woff binary
+*.woff2 binary
+*.webm binary
+*.mp4 binary
+*.pdf binary
+*.zip binary
+*.tar.gz binary

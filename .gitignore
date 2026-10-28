@@ -1,0 +1,120 @@
+# Ortam Degiskenleri
+.env
+.env.local
+.env.*.local
+
+# Bagimliliklar
+vendor/
+node_modules/
+venv/
+.venv/
+env/
+
+# Veritabani ve Anlik Olcum Dosyalari
+*.sql
+spgroupe1_rapor10.sql
+hafiraya_telemetri_db.sql
+python_daq/data/
+
+# Python Derleme Artiklari
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+
+# Gecmis Veriler & Yuklemeler
+data/parquet/
+# Yüklenen dosyalar sunucuda üretilir; yalnız web koruması (.htaccess) takip
+# edilir ki yüklenen dizinde script çalıştırma engeli her deployda garanti olsun.
+uploads/*
+!/uploads/.gitkeep
+!/uploads/.htaccess
+uploads/tmp_pdf/
+
+# IDE ve Ajan Dosyalari
+.idea/
+.vscode/
+*.swp
+*.swo
+.claude/
+.gemini/
+.kilo/
+.superpowers/
+.zcode/
+.zcodeignore
+.ignore
+# Proje seviyesi ajan bellegi ve calisma kaydi (yerel kalir, surume girmez)
+.workbuddy-ai/
+
+# Impeccable tasarim akisi gelistirme artefaktlari (yon karari, inceleme
+# ekran goruntuleri, derleme durumu, mock'lar) — canliya asla gitmez.
+.impeccable/
+AGENTS.md
+CLAUDE.md
+GEMINI.md
+
+# Log Dosyalari
+*.log
+error_log
+
+# log/ dizini: icerik tamamen calisma zamaninda sunucuda uretilir, surume girmez;
+# yalniz web korumasi (.htaccess) takip edilir ki her deployma garantili olsun
+log/*
+!log/.htaccess
+
+# PID ve Durdurma Bayraklari (DAQ servisi calisma zamaninda uretir)
+*.pid
+python_daq/daq.durdur
+
+# Yedek, Gecici ve Turetilmis Dosyalar
+*.tmp
+*.bak
+*.zip
+pdf*_metin.txt
+tmp/
+
+# docs/ bilincli olarak hosta yuklenir (docs/.htaccess -> Require all denied)
+
+# Gelistirme Notlari ve Betikler (hosta yuklenmez)
+md/
+scratch/
+tests/
+# web/ dizini: Vite + React SPA kaynagi ve derleme betikleri surume girer.
+# Yalniz bagimliliklar takip disidir; derleme ciktisi assets/build altindadir.
+web/node_modules/
+web/.vite/
+
+# Ajan indeks / baglam dosyalari (yerel uretilir, local kalir)
+.codegraph/
+/graft/
+.gitnexus/
+graphify-out/
+.graphify/
+.graphify*
+
+# Deploy kilit dosyalari (calisma zamani uretilir)
+/deploy/.deploy.lock
+deploy/deploy.lock
+.deploy.lock
+
+# OS Dosyalari
+.DS_Store
+Thumbs.db
+
+# Uygulama calisma zamani durumu (repoda tasinmaz)
+data/.kurulum-tamam
+data/.kurulum-hata
+seo/sitemap_cache.xml
+sitemap.xml
+
+# Ic urun kaydi: yalniz calisma agacinda kalir, surume ve canliya girmez
+PRODUCT.md
+
+# Superdesign canvas calisma alani ve tasarim sistemi dokumani (lokal kalir)
+.superdesign/
+DESIGN.md
+
+# design-taste-frontend denetim artefaktlari (lokal kalir)
+.taste-skill/
+
