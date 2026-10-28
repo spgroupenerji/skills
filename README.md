@@ -16,8 +16,8 @@ SP GROUP projelerinde kullanılan ajan yeteneklerinin (skill) tek deposu. Her ye
 
 | Yetenek | Sürüm | Kapsam |
 | --- | --- | --- |
-| [`kural-hatirlatici`](kural-hatirlatici/SKILL.md) | v202610282031 | Kullanıcının kalıcı çalışma direktiflerini ve tek kuyruk iş akışını her görevde hatırlatan başlangıç skili; araç disiplini, kanıt, Chrome DevTools doğrulaması, push/deploy/webhook ve kapanış senkronu |
-| [`zen-mimari-anayasa`](zen-mimari-anayasa/SKILL.md) | v202610281847 | Kıdemli yazılım mimarı anayasası; zero-build Tailwind/Iconify arayüzleri, Zen Katmanı ilkeleri, MCP yetenek mühendisliği ve 10 maddelik QA matrisi |
+| [`sp-sozlesme`](sp-sozlesme/SKILL.md) | v202610282326 | Kullanıcının kalıcı çalışma direktiflerini ve tek kuyruk disiplinini görev başında hatırlatan başlangıç skili; araç disiplini, kanıt, Chrome DevTools doğrulaması, push/deploy/webhook, yerel kimlik referansı ve kapanış senkronu |
+| [`sp-zen-dizayn`](sp-zen-dizayn/SKILL.md) | v202610282327 | Kıdemli yazılım mimarı anayasası; zero-build Tailwind/Iconify arayüzleri, Zen Katmanı ilkeleri, MCP yetenek mühendisliği ve 10 maddelik QA matrisi |
 
 Yeni yetenek eklendiğinde bu tabloya satır eklenir. Tablo, depodaki yeteneklerin tek doğruluk kaynağıdır.
 
@@ -26,7 +26,7 @@ Yeni yetenek eklendiğinde bu tabloya satır eklenir. Tablo, depodaki yetenekler
 Yetenekler derleme gerektirmez; ilgili dizin platformun yetenek klasörüne kopyalanır. Depo kökünden tek yetenek kurulumu:
 
 ```powershell
-Copy-Item -Recurse -Force zen-mimari-anayasa "$HOME/.dsh/skills/"
+Copy-Item -Recurse -Force sp-zen-dizayn "$HOME/.dsh/skills/"
 ```
 
 Tüm yetenekleri tek seferde kurmak için:
@@ -47,8 +47,8 @@ Get-ChildItem -Directory |
 
 Yetenekler `description` alanındaki tetikleyicilere göre otomatik yüklenir; ayrıca bir komut gerekmez. Örnek:
 
-- `kural-hatirlatici`: görev başında, kodlama/refaktör/hata ayıklama öncesinde ve "kuralları hatırlat" dendiğinde devreye girer; kullanıcının kalıcı direktiflerini ve araç kuyruğunu hatırlatır. Ayrıntı [SKILL.md](kural-hatirlatici/SKILL.md) dosyasındadır.
-- `zen-mimari-anayasa`: SCADA paneli, zero-build Tailwind arayüzü, MCP yeteneği veya refaktör isteğinde devreye girer. Ayrıntılı anayasa [SKILL.md](zen-mimari-anayasa/SKILL.md) dosyasındadır.
+- `sp-sozlesme`: görev başında, kodlama/refaktör/hata ayıklama öncesinde ve "kuralları hatırlat" dendiğinde devreye girer; kullanıcının kalıcı direktiflerini, araç disiplinini ve kapanış senkronunu hatırlatır. Ayrıntı [SKILL.md](sp-sozlesme/SKILL.md) dosyasındadır.
+- `sp-zen-dizayn`: SCADA paneli, zero-build Tailwind arayüzü, MCP yeteneği veya refaktör isteğinde devreye girer. Ayrıntılı anayasa [SKILL.md](sp-zen-dizayn/SKILL.md) dosyasındadır.
 
 ## Yeni Yetenek Ekleme
 
