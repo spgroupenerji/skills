@@ -16,7 +16,7 @@ SP GROUP projelerinde kullanılan ajan yeteneklerinin (skill) tek deposu. Her ye
 
 | Yetenek | Sürüm | Kapsam |
 | --- | --- | --- |
-| [`zen-mimari-anayasa`](zen-mimari-anayasa/SKILL.md) | 2.0.0 | Kıdemli yazılım mimarı anayasası; zero-build Tailwind/Iconify arayüzleri, Zen Katmanı ilkeleri, MCP yetenek mühendisliği ve 10 maddelik QA matrisi |
+| [`zen-mimari-anayasa`](zen-mimari-anayasa/SKILL.md) | 2.1.0 | Kıdemli yazılım mimarı anayasası; zero-build Tailwind/Iconify arayüzleri, Zen Katmanı ilkeleri, MCP yetenek mühendisliği ve 10 maddelik QA matrisi |
 
 Yeni yetenek eklendiğinde bu tabloya satır eklenir. Tablo, depodaki yeteneklerin tek doğruluk kaynağıdır.
 
@@ -75,7 +75,8 @@ allowed-tools:
 3. `description` yalnızca tetikleyici koşulları anlatsın; yeteneğin iş akışını özetlemesin.
 4. Sürümü Semantic Versioning (`MAJOR.MINOR.PATCH`) ile yönetin; her davranış değişikliğinde `version` alanını güncelleyin.
 5. Yeteneği yukarıdaki kataloğa alfabetik sıraya göre ekleyin.
-6. Teslim öncesi Doğrulama bölümündeki komutları çalıştırın.
+6. Araç kullanım mekaniğini yazma: yalnızca araç adını ve doğrulama hedefini belirt; çağrı protokolünü, fonksiyon adlarını ve parametreleri ajanın çalışma zamanına bırak.
+7. Teslim öncesi Doğrulama bölümündeki komutları çalıştırın.
 
 ## Depo Yapısı
 
