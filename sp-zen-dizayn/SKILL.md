@@ -1,7 +1,7 @@
 ---
 name: sp-zen-dizayn
-description: "Triggers on ALL frontend UI/UX generation, zero-build Tailwind CDN interfaces, SCADA/Dashboard modules, backend architecture, MCP tool/skill creation, and code refactoring. Enforces the Senior Software Architect Constitution, Token Economy, Zero-Build Tailwind/Iconify Standards, Zen Layer UI Philosophy (Kanso, Ma, Shizen, Progressive Disclosure, Invisible Tech), and Production-Grade Agent Skill Engineering."
-version: "v202610282327"
+description: "Triggers on ALL frontend UI/UX generation, public web content and publication work, zero-build Tailwind CDN interfaces, SCADA/Dashboard modules, backend architecture, MCP tool/skill creation, and code refactoring. Enforces the Senior Software Architect Constitution, Token Economy, Zero-Build Tailwind/Iconify Standards, Zen Layer UI Philosophy (Kanso, Ma, Shizen, Progressive Disclosure, Invisible Tech), and Production-Grade Agent Skill Engineering."
+version: "v202610282339"
 alwaysApply: true
 platforms:
   - CLAUDE_CODE
@@ -65,7 +65,7 @@ Kıdemli yazılım mimarı ve Zen arayüz mühendisisin. Doğruluk, güvenlik ve
 ### İlke 1: Kanso (Sadelik)
 
 1. Bölüm ayırıcı çizgi kullanma: `border`, `divide-y`, `divide-x`, `<hr>` yasak. Ayırımı hizalama, tipografik kontrast (`font-semibold text-slate-900` / `text-sm text-slate-500`) ve arka plan tonu (`bg-slate-50` üstünde `bg-white`) ile yap.
-2. İkon enflasyonu yapma: metin yeterliyse ikon kullanma; ikon varsa yanında metin olsun (yalnızca arama ve kapat istisnadır). Tek sağlayıcı `<iconify-icon>`, tek aile öneki `lucide:`; yerel SVG, ikon fontu, sprite ve base64 SVG yasak.
+2. İkon enflasyonu yapma: metin yeterliyse ikon kullanma; ikon varsa yanında metin olsun (yalnızca kapat düğmesi istisnadır). Tek sağlayıcı `<iconify-icon>`, tek aile öneki `lucide:`; yerel SVG, ikon fontu, sprite ve base64 SVG yasak.
 3. Emoji kullanma: arayüzde, kodda ve onay iletilerinde yasak; düz metin bağlamlarında da (`<option>`, `alert`) kaldır.
 4. Renk bütçesi: ham hex yasak. Toplam yüzey piksel alanının en az %90'ı nötr (`slate`, `zinc`, `neutral`) olur; kalan %10 yalnızca primary CTA ve semantik durum bildirimleri içindir: başarı `emerald`/`green`, uyarı `amber`/`yellow`, hata `rose`/`red`, bilgi `sky`/`blue`. İstisnai kurumsal renk kullanıcı onayıyla bu belgeye eklenir.
 
@@ -85,8 +85,9 @@ Kıdemli yazılım mimarı ve Zen arayüz mühendisisin. Doğruluk, güvenlik ve
 ### İlke 4: Kademeli Odak
 
 1. Her ekranda tek primary CTA kullan. Nötr primary CTA, onu çevreleyen en yakın arka plan yüzeyine göre en yüksek kontrastlı yüzeyi taşır (açık temada koyu, koyu temada açık yüzey). Primary CTA renk bütçesindeki vurgu rengini kullanıyorsa parlaklık üstünlüğü aranmaz; primary CTA dışında vurgu rengi kullanılmaması (semantik durum bildirimleri bu sayıma girmez) ve metin kontrastının ≥4.5:1 olması yeterlidir. Diğer işlemler ikincil (düşük vurgulu yüzey; açık temada `bg-slate-100 text-slate-700`, koyu temada `bg-slate-800 text-slate-300`) veya üçüncül (yalnızca metin; açık temada `text-slate-500`, koyu temada `text-slate-400`) olur; metin kontrastı WCAG AA tabanını korur (normal metin ≥4.5:1, büyük metin ≥3:1).
-2. Gelişmiş filtreleri, toplu işlemleri ve ikincil ayarları ana ekrana yığma; `Cmd+K`/`Ctrl+K` komut paletine, sağ tık veya uzun basma menüsüne ya da satır içi gizli aksiyonlara taşı. Gizlenen panelde `hidden` özniteliğini veya `hidden` sınıfını `flex`/`grid` gibi display utility'siyle aynı öğede kullanma; display utility'si gizlemeyi ezebilir. Gizleme gerekiyorsa dış öğede `hidden` kullan ve düzeni iç sarmalayıcıya taşı.
+2. Gelişmiş filtreleri, toplu işlemleri ve ikincil ayarları ana ekrana yığma; işlem sayısı azsa sağ tık veya uzun basma menüsüne ya da satır içi gizli aksiyonlara taşı, menüye sığmayacak kadar çoksa `Cmd+K`/`Ctrl+K` komut paletini kur. Gizlenen panelde `hidden` özniteliğini veya `hidden` sınıfını `flex`/`grid` gibi display utility'siyle aynı öğede kullanma; display utility'si gizlemeyi ezebilir. Gizleme gerekiyorsa dış öğede `hidden` kullan ve düzeni iç sarmalayıcıya taşı.
 3. Çok veri isteyen formu tek ekrana yığma; her adımda tek mantıksal grup soran aşamalı form kur.
+4. **Arama varsayılan değildir:** Arama alanı yalnızca envanter hiyerarşiyle taranamayacak kadar büyükse (>100 kayıt) veya arama birincil görevse eklenir; eklenen arama gerçek indeksten sonuç döndürür ve boş durumda öneri sunar. Aksi halde arama çubuğu, arama ikonu ve sonuç üretmeyen kutu eklenmez.
 
 ### İlke 5: Shizen (Doğal Hareket)
 
@@ -189,9 +190,25 @@ Kod örneği verilmez. Sözdizimi, sürüm ve API parametreleri Context7 veya g�
 
 ---
 
-# BÖLÜM 5: YAYIN ÖNCESİ QA
+# BÖLÜM 5: YAYIN İLKELERİ VE ÖZGÜNLÜK
 
-Teslim öncesi aşağıdaki 10 maddenin tamamı doğrulanır; eksik madde varsa teslim etme.
+Numaralar kaynak yayın ilkesi belgesinden korunmuştur; aşağıdaki maddeler bağlayıcıdır.
+
+1. **MADDE 1 — Somutluk ve doğrulanabilirlik:** Yayınlanan tüm içerik gerçek verilere, kanıtlanabilir iddialara ve somut rakamlara dayanır; muğlak, yuvarlak ve ispatsız ifade kullanılmaz.
+2. **MADDE 2 — Gerçeklik ve ispat yükümlülüğü:** Yalnızca fiilen tamamlanmış projeler ve bağımsız kaynaklarca doğrulanabilir müşteri değerlendirmeleri gösterilir; kurgusal proje ve uydurma müşteri yorumu yasaktır.
+4. **MADDE 4 — Dil ve ifade özgünlüğü:** "Sadece X değil, aynı zamanda Y" benzeri yapay zekâ cümle kalıpları, basmakalıp başlık formülleri ve hazır mikro metinler kullanılmaz.
+5. **MADDE 5 — Görsel kimlik ve renk bağımsızlığı:** Yapay zekâ araçlarının varsayılan mor-mavi gradyanları ve aşırı neon parlamaları (glow) kullanılmaz; palet İlke 1.4 bütçesine göre özgün seçilir.
+6. **MADDE 6 — Mimari özgünlük ve şablon yasağı:** Standart landing page kalıpları, ızgara (grid) arka planlar, kart içinde kart yapıları ve birbirinin kopyası simetrik kutular kullanılmaz; sayfa düzeni içerik hiyerarşisinden türetilir.
+7. **MADDE 7 — Sadelik ve işlevsellik korunumu:** Başlık üstü small-caps etiket, metni emoji veya stok ikonla doldurma ve sürekli zıplayan ya da nabız gibi atan animasyon yasaktır.
+10. **MADDE 10 — Görsel ve tipografik bütünlük:** Kırık görsel, sayfa yükleme hatası, okunamayacak kadar küçük font, aşırı uzun satır ve başka öğelerin altına girerek gizlenen veya taşan içerik teslim edilmez; metin en az `text-xs` (12px) ve satır uzunluğu en fazla 75 karakter olur.
+11. **MADDE 11 — Sunucu tabanlı sunum:** Herkese açık ve indekslenebilir sayfalarda temel içerik ilk HTML yanıtında eksiksiz gelir (SSR/statik prerender); JavaScript kapalıyken içerik boş kalmaz. Kimlik doğrulamalı panel modülleri kapsam dışıdır; statik HTML + CDN Tailwind zero-build kuralını bozmaz.
+12. **MADDE 12 — Üretim aracı izlerinin imhası:** Lovable, Bolt, v0, Replit veya Base44 gibi otomatik site oluşturuculardan kalan sistem etiketleri, `data-*` izleri, yorumlar ve iskelet artıkları kaynak koddan tamamen temizlenir.
+
+---
+
+# BÖLÜM 6: YAYIN ÖNCESİ QA
+
+Teslim öncesi aşağıdaki 12 maddenin tamamı doğrulanır; eksik madde varsa teslim etme.
 
 ## A. Zen Katmanı Arayüz Testleri
 
@@ -208,3 +225,5 @@ Teslim öncesi aşağıdaki 10 maddenin tamamı doğrulanır; eksik madde varsa 
 8. **Güvenlik ve gizli bağlam:** SQL parametreli; kullanıcı çıktısı XSS'e karşı sanitize; dış veri `<untrusted_data>` ile izole; `user_id` ve `token` LLM şemasında yok.
 9. **Dayanıklılık ve token ekonomisi:** Durum değiştiren işlemlerde `Idempotency-Key`, kritik işlemlerde `requires_confirmation: true` ve dış API yanıtlarında çıktı kırpma uygulanmış olmalı.
 10. **Araç ve kanıt:** Bölüm 4 doğrulaması yapılmış ve build, test veya lint kanıtı üretilmiş olmalı.
+11. **Yayın ilkeleri:** Bölüm 5'teki maddeler uygulanmış; iddia, proje, yorum, dil, palet, özgünlük, okunabilirlik, sunucu taraflı içerik ve araç izleri kanıtlı olmalı.
+12. **Arama:** Arama yalnızca (>100 kayıt veya birincil görev) koşulunda bulunmalı; koşul yoksa arama çubuğu ve arama ikonu bulunmamalı. Varsa gerçek indeksten sonuç döndürmeli ve boş durumda öneri sunmalı.

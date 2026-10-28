@@ -17,7 +17,7 @@ SP GROUP projelerinde kullanılan ajan yeteneklerinin (skill) tek deposu. Her ye
 | Yetenek | Sürüm | Kapsam |
 | --- | --- | --- |
 | [`sp-sozlesme`](sp-sozlesme/SKILL.md) | v202610282326 | Kullanıcının kalıcı çalışma direktiflerini ve tek kuyruk disiplinini görev başında hatırlatan başlangıç skili; araç disiplini, kanıt, Chrome DevTools doğrulaması, push/deploy/webhook, yerel kimlik referansı ve kapanış senkronu |
-| [`sp-zen-dizayn`](sp-zen-dizayn/SKILL.md) | v202610282327 | Kıdemli yazılım mimarı anayasası; zero-build Tailwind/Iconify arayüzleri, Zen Katmanı ilkeleri, MCP yetenek mühendisliği ve 10 maddelik QA matrisi |
+| [`sp-zen-dizayn`](sp-zen-dizayn/SKILL.md) | v202610282339 | Kıdemli yazılım mimarı anayasası; zero-build Tailwind/Iconify arayüzleri, Zen Katmanı ilkeleri, MCP yetenek mühendisliği, yayın ilkeleri ve 12 maddelik QA matrisi |
 
 Yeni yetenek eklendiğinde bu tabloya satır eklenir. Tablo, depodaki yeteneklerin tek doğruluk kaynağıdır.
 
@@ -48,7 +48,7 @@ Get-ChildItem -Directory |
 Yetenekler `description` alanındaki tetikleyicilere göre otomatik yüklenir; ayrıca bir komut gerekmez. Örnek:
 
 - `sp-sozlesme`: görev başında, kodlama/refaktör/hata ayıklama öncesinde ve "kuralları hatırlat" dendiğinde devreye girer; kullanıcının kalıcı direktiflerini, araç disiplinini ve kapanış senkronunu hatırlatır. Ayrıntı [SKILL.md](sp-sozlesme/SKILL.md) dosyasındadır.
-- `sp-zen-dizayn`: SCADA paneli, zero-build Tailwind arayüzü, MCP yeteneği veya refaktör isteğinde devreye girer. Ayrıntılı anayasa [SKILL.md](sp-zen-dizayn/SKILL.md) dosyasındadır.
+- `sp-zen-dizayn`: SCADA paneli, zero-build Tailwind arayüzü, web yayını/içerik denetimi, MCP yeteneği veya refaktör isteğinde devreye girer. Ayrıntılı anayasa [SKILL.md](sp-zen-dizayn/SKILL.md) dosyasındadır.
 
 ## Yeni Yetenek Ekleme
 
