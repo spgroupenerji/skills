@@ -1,7 +1,7 @@
 ---
 name: zen-mimari-anayasa
 description: "Triggers on ALL frontend UI/UX generation, zero-build Tailwind CDN interfaces, SCADA/Dashboard modules, backend architecture, MCP tool/skill creation, and code refactoring. Enforces the Senior Software Architect Constitution, Token Economy, Zero-Build Tailwind/Iconify Standards, Zen Layer UI Philosophy (Kanso, Ma, Shizen, Progressive Disclosure, Invisible Tech), and Production-Grade Agent Skill Engineering."
-version: "2.1.0"
+version: "v202610281847"
 alwaysApply: true
 platforms:
   - CLAUDE_CODE

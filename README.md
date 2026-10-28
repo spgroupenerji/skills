@@ -16,7 +16,7 @@ SP GROUP projelerinde kullanılan ajan yeteneklerinin (skill) tek deposu. Her ye
 
 | Yetenek | Sürüm | Kapsam |
 | --- | --- | --- |
-| [`zen-mimari-anayasa`](zen-mimari-anayasa/SKILL.md) | 2.1.0 | Kıdemli yazılım mimarı anayasası; zero-build Tailwind/Iconify arayüzleri, Zen Katmanı ilkeleri, MCP yetenek mühendisliği ve 10 maddelik QA matrisi |
+| [`zen-mimari-anayasa`](zen-mimari-anayasa/SKILL.md) | v202610281847 | Kıdemli yazılım mimarı anayasası; zero-build Tailwind/Iconify arayüzleri, Zen Katmanı ilkeleri, MCP yetenek mühendisliği ve 10 maddelik QA matrisi |
 
 Yeni yetenek eklendiğinde bu tabloya satır eklenir. Tablo, depodaki yeteneklerin tek doğruluk kaynağıdır.
 
@@ -57,7 +57,7 @@ Yetenekler `description` alanındaki tetikleyicilere göre otomatik yüklenir; a
 ---
 name: yetenek-adi
 description: "Tetikleyici koşulları anlatan kısa açıklama"
-version: "1.0.0"
+version: "vYYYYMMDDHHMM"
 alwaysApply: false
 platforms:
   - CLAUDE_CODE
@@ -73,7 +73,7 @@ allowed-tools:
 ```
 
 3. `description` yalnızca tetikleyici koşulları anlatsın; yeteneğin iş akışını özetlemesin.
-4. Sürümü Semantic Versioning (`MAJOR.MINOR.PATCH`) ile yönetin; her davranış değişikliğinde `version` alanını güncelleyin.
+4. Sürümü yayın anının `vYYYYMMDDHHMM` damgasıyla yönetin; damga frontmatter, katalog ve release tag'de birebir aynı olsun.
 5. Yeteneği yukarıdaki kataloğa alfabetik sıraya göre ekleyin.
 6. Araç kullanım mekaniğini yazma: yalnızca araç adını ve doğrulama hedefini belirt; çağrı protokolünü, fonksiyon adlarını ve parametreleri ajanın çalışma zamanına bırak.
 7. Teslim öncesi Doğrulama bölümündeki komutları çalıştırın.
@@ -103,7 +103,7 @@ git status --short
 git diff --check
 ```
 
-Ayrıca her yetenek dizininde `SKILL.md` bulunmalı; dosya `---` ile başlayan geçerli frontmatter içermeli ve LF satır sonu kullanmalıdır. Mevcut yetenek dosyalarını denetlemek için:
+Ayrıca her yetenek dizininde `SKILL.md` bulunmalı; dosya `---` ile başlayan geçerli frontmatter içermeli ve LF satır sonu kullanmalıdır. Sürüm damgası `vYYYYMMDDHHMM` biçiminde olmalı; frontmatter, katalog ve release tag'de aynı değeri taşımalıdır. Mevcut yetenek dosyalarını denetlemek için:
 
 ```powershell
 Get-ChildItem -Directory | ForEach-Object {
@@ -116,7 +116,8 @@ Get-ChildItem -Directory | ForEach-Object {
 
 ## Sürümleme ve Bakım
 
-- Her yetenek kendi `version` alanıyla bağımsız sürümlenir; depo genelinde ortak sürüm numarası tutulmaz.
+- Her yetenek kendi `vYYYYMMDDHHMM` yayın damgasıyla bağımsız sürümlenir; depo genelinde ortak sürüm numarası tutulmaz.
+- Damga; `SKILL.md` frontmatter'ı, katalog satırı ve aynı adlı release tag'inde birebir aynı olur; her yayında tag oluşturulup uzak depoya gönderilir.
 - Katalog tablosu, dizin içeriğiyle her değişiklikte eşitlenir.
 - Değişiklikler tek amaçlı, kısa ve emir kipiyle yazılmış commit mesajlarıyla iletilir.
 
