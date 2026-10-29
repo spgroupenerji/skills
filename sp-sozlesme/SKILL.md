@@ -1,7 +1,7 @@
 ---
 name: sp-sozlesme
 description: "Kullanıcının kalıcı çalışma sözleşmesini hatırlatır: kök neden, sıfır teknik borç, tek kuyruk düzeni, araç disiplini, bağlam hijyeni ve kanıt zorunluluğu. Şu durumlarda yükle: kullanıcı kural, hatırlat, anayasa, başla, push veya deploy dediğinde; kod yazma, düzeltme, refaktör, hata ayıklama, mimari analiz, kod inceleme, webhook/deploy kurulumu ve çok adımlı görevlerin başında. Sohbet, çeviri veya genel bilgi sorularında yüklenmez."
-version: "v202610290310"
+version: "v202610290345"
 alwaysApply: false
 platforms:
   - CLAUDE_CODE
@@ -46,12 +46,12 @@ Kullanıcının sık tekrarladığı çalışma direktiflerini etkin tutar ve ka
 
 ## 2. Yürütme
 
-2.1. **Paralellik:** Bağımsız işler fan-out/fan-in, bağımlı adımlar sıralı; aynı işi iki mekanizmayla yapma, tek doğruluk kaynağı kullan.
+2.1. **Paralellik:** Bağımsız işler fan-out/fan-in, bağımlı adımlar sıralı; aynı adımı iki kez çalıştırma, tek kuyruk kullan.
 2.2. **Erişim:** "Erişim yok" yedek gerekçesi değildir; sırayla dene: başlat, indeksle veya senkronize et, kur. Her denemeyi komut ve çıkış koduyla kanıtla. Etkinleştirme kanıtlı biçimde başarısızsa iş durmaz: alt kademe araçla ilerle ve devredeki yedeği tek cümleyle beyan et; kullanılmayan aracı zorla çağırma; çağrı mekaniğini bu belgeye gömme, ajan aracı kendi kataloğundan çalışma anında öğrenir.
 2.3. **Kimlik:** Kullanıcı talimatı: web deploy sonrası verilen kalıcı giriş bilgisi yalnız yerel secret deposunda (.env / işletim sistemi kimlik kasası) tutulur, kalıcı bellekte yalnız referansı saklanır; depoya, kitaba, uzağa ve loga yazılmaz; sonraki oturumda tekrar sorulmaz.
 2.4. **Kapanış:** Değişen indeksleri ve araç durumunu senkronize et; kalıcı kararı ve kanıt üreten araç-kullanım desenini claude-mem'e yaz; varsa README katalog damgasını frontmatter sürüm damgasıyla eşitle; ölü kod ve artık import bırakma; web projesinde push, deploy ve webhook'un kodu çektiğini doğrula.
 2.5. **Beyan:** Araç çağrısından önce tek satır yaz: tetik → araç → soracağım soru. Beyan edilen kullanım o görevde bağlayıcıdır; düşürmek yeni beyan ve gerekçe ister.
-2.6. **Kanıt:** Kapanışta her beyan için tek satır yaz: araç → sorgu → sonuç. Boş veya UNKNOWN sonuç kanıt değildir; 2.2 yedeğini beyan et ve 3.8 sınırında yeniden dene. Bir aracın kanıtı diğerinin beyanını kapatmaz; kanıtsız tamamlanmış iş yoktur (3.4).
+2.6. **Kanıt:** Kapanışta her beyan için tek satır yaz: araç → sorgu → sonuç. Boş veya UNKNOWN sonuç kanıt değildir; 2.2 yedeğini beyan et ve 3.8 sınırında yeniden dene. Bir aracın kanıtı diğerinin beyanını kapatmaz; aynı araç aynı kanıtı iki kez üretmez; kanıtsız tamamlanmış iş yoktur (3.4).
 
 ## 3. Dokunulmazlar
 
@@ -66,7 +66,7 @@ Kullanıcının sık tekrarladığı çalışma direktiflerini etkin tutar ve ka
 
 ## 4. Araç eşlemesi
 
-Her satır ayrı zorunluluktur: tetik varsa kanıtı zorunludur ve devredilemez; tetik yoksa çağrı yok. Aynı iddia tek araçla kanıtlanır (2.1); farklı iddiaların kanıtı birbirini kapatmaz (2.6). Kullanım mekaniği burada yazılmaz; ajan çalışma anında kataloğundan öğrenir.
+Her satır ayrı zorunluluktur: tetik varsa kanıtı zorunludur ve devredilemez; tetik yoksa çağrı yok. Araçlar birbirini tamamlar: her araç kendi benzersiz kanıtını üretir, bir aracın kanıtı diğerinin yerine geçmez (2.6); aynı araca aynı soruyu tekrar sorma (2.1). Kullanım mekaniği burada yazılmaz; ajan çalışma anında kataloğundan öğrenir.
 
 | Araç | Tetik | Benzersiz kanıt |
 | --- | --- | --- |
