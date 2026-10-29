@@ -16,7 +16,7 @@ SP GROUP projelerinde kullanılan ajan yeteneklerinin (skill) tek deposu. Her ye
 
 | Yetenek | Sürüm | Kapsam |
 | --- | --- | --- |
-| [`sp-sozlesme`](sp-sozlesme/SKILL.md) | v202610282326 | Kullanıcının kalıcı çalışma direktiflerini ve tek kuyruk disiplinini görev başında hatırlatan başlangıç skili; araç disiplini, kanıt, Chrome DevTools doğrulaması, push/deploy/webhook, yerel kimlik referansı ve kapanış senkronu |
+| [`sp-sozlesme`](sp-sozlesme/SKILL.md) | v202610290310 | Kullanıcının kalıcı çalışma direktiflerini ve tek kuyruk disiplinini görev başında hatırlatan başlangıç skili; araç disiplini, devredilemez araç kanıtı, erişim etkinleştirme, Chrome DevTools doğrulaması, push/deploy/webhook, yerel kimlik referansı ve kapanış senkronu |
 | [`sp-zen-dizayn`](sp-zen-dizayn/SKILL.md) | v202610282339 | Kıdemli yazılım mimarı anayasası; zero-build Tailwind/Iconify arayüzleri, Zen Katmanı ilkeleri, MCP yetenek mühendisliği, yayın ilkeleri ve 12 maddelik QA matrisi |
 
 Yeni yetenek eklendiğinde bu tabloya satır eklenir. Tablo, depodaki yeteneklerin tek doğruluk kaynağıdır.

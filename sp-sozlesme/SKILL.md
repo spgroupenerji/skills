@@ -1,7 +1,7 @@
 ---
 name: sp-sozlesme
 description: "Kullanıcının kalıcı çalışma sözleşmesini hatırlatır: kök neden, sıfır teknik borç, tek kuyruk düzeni, araç disiplini, bağlam hijyeni ve kanıt zorunluluğu. Şu durumlarda yükle: kullanıcı kural, hatırlat, anayasa, başla, push veya deploy dediğinde; kod yazma, düzeltme, refaktör, hata ayıklama, mimari analiz, kod inceleme, webhook/deploy kurulumu ve çok adımlı görevlerin başında. Sohbet, çeviri veya genel bilgi sorularında yüklenmez."
-version: "v202610282326"
+version: "v202610290310"
 alwaysApply: false
 platforms:
   - CLAUDE_CODE
@@ -35,7 +35,7 @@ Kullanıcının sık tekrarladığı çalışma direktiflerini etkin tutar ve ka
 ## 1. Direktifler
 
 1.1. **Uyum:** İşi kurallara ve öngördükleri yapıya tam uygun yap.
-1.2. **Araç:** codegraph, gitnexus, graphify, trail, context-mode ve claude-mem (kalıcı bellek) araçlarını en etkin şekilde kullan; kapalıysa başlat, senkron değilse senkronize et, kapanışta güncelle.
+1.2. **Araç:** codegraph, gitnexus, graphify, trail, context-mode ve claude-mem araçlarını §4 tetiklerinde zorunlu çalıştır; her aracın kanıtı ayrıdır, devredilemez. Kullanımı (sorgu, kapsam, derinlik) görev anında belirle; kapalıysa başlat, indeks veya senkron yoksa kur, kapanışta güncelle.
 1.3. **Bilgi:** Gereken bilgiyi context7 ile öğren; varsayım yapma.
 1.4. **Seçim:** Kararlılık, performans ve hafif yapıyı seç; işi tek kuyruk mekanizmasına sok; sistemi şişirme.
 1.5. **Yapı:** Kurulan yapıda birbiriyle yarışan ikinci yapı olmaz; düzenli kuyruk mekanizmalı kod yapısı kur.
@@ -47,9 +47,11 @@ Kullanıcının sık tekrarladığı çalışma direktiflerini etkin tutar ve ka
 ## 2. Yürütme
 
 2.1. **Paralellik:** Bağımsız işler fan-out/fan-in, bağımlı adımlar sıralı; aynı işi iki mekanizmayla yapma, tek doğruluk kaynağı kullan.
-2.2. **Yedek:** Araç yoksa veya çalışmıyorsa iş durmaz; alt kademe araçla ilerle ve devredeki yedeği tek cümleyle beyan et; kullanılmayan aracı zorla çağırma; çağrı mekaniğini bu belgeye gömme, ajan aracı kendi kataloğundan çalışma anında öğrenir.
+2.2. **Erişim:** "Erişim yok" yedek gerekçesi değildir; sırayla dene: başlat, indeksle veya senkronize et, kur. Her denemeyi komut ve çıkış koduyla kanıtla. Etkinleştirme kanıtlı biçimde başarısızsa iş durmaz: alt kademe araçla ilerle ve devredeki yedeği tek cümleyle beyan et; kullanılmayan aracı zorla çağırma; çağrı mekaniğini bu belgeye gömme, ajan aracı kendi kataloğundan çalışma anında öğrenir.
 2.3. **Kimlik:** Kullanıcı talimatı: web deploy sonrası verilen kalıcı giriş bilgisi yalnız yerel secret deposunda (.env / işletim sistemi kimlik kasası) tutulur, kalıcı bellekte yalnız referansı saklanır; depoya, kitaba, uzağa ve loga yazılmaz; sonraki oturumda tekrar sorulmaz.
-2.4. **Kapanış:** Değişen indeksleri ve araç durumunu senkronize et; kalıcı kararı claude-mem'e yaz; varsa README katalog damgasını frontmatter sürüm damgasıyla eşitle; ölü kod ve artık import bırakma; web projesinde push, deploy ve webhook'un kodu çektiğini doğrula.
+2.4. **Kapanış:** Değişen indeksleri ve araç durumunu senkronize et; kalıcı kararı ve kanıt üreten araç-kullanım desenini claude-mem'e yaz; varsa README katalog damgasını frontmatter sürüm damgasıyla eşitle; ölü kod ve artık import bırakma; web projesinde push, deploy ve webhook'un kodu çektiğini doğrula.
+2.5. **Beyan:** Araç çağrısından önce tek satır yaz: tetik → araç → soracağım soru. Beyan edilen kullanım o görevde bağlayıcıdır; düşürmek yeni beyan ve gerekçe ister.
+2.6. **Kanıt:** Kapanışta her beyan için tek satır yaz: araç → sorgu → sonuç. Boş veya UNKNOWN sonuç kanıt değildir; 2.2 yedeğini beyan et ve 3.8 sınırında yeniden dene. Bir aracın kanıtı diğerinin beyanını kapatmaz; kanıtsız tamamlanmış iş yoktur (3.4).
 
 ## 3. Dokunulmazlar
 
@@ -64,15 +66,17 @@ Kullanıcının sık tekrarladığı çalışma direktiflerini etkin tutar ve ka
 
 ## 4. Araç eşlemesi
 
-| Araç | Ne zaman | Hedef |
+Her satır ayrı zorunluluktur: tetik varsa kanıtı zorunludur ve devredilemez; tetik yoksa çağrı yok. Aynı iddia tek araçla kanıtlanır (2.1); farklı iddiaların kanıtı birbirini kapatmaz (2.6). Kullanım mekaniği burada yazılmaz; ajan çalışma anında kataloğundan öğrenir.
+
+| Araç | Tetik | Benzersiz kanıt |
 | --- | --- | --- |
-| codegraph | sembol, akış ve çağrı keşfi | yapısal kod gerçeği |
-| gitnexus | blast radius, süreç ve değişiklik etkisi | güvenli değişiklik |
-| graphify | kod, belge ve şema ilişki haritası | geniş bağlam haritası |
-| trail | proje bağlantı grafiği ve kod keşfi | keşif maliyetini düşürmek |
-| context-mode | token baskısı olan uzun oturumlar | sıkıştırılmış bağlam |
-| claude-mem | görev başı ve kapanış | kalıcı bellek |
-| context7 | API ve sürüm doğrulaması | kanıtlı bilgi |
-| markitdown | belge ve dosya okuma | Markdown bağlam |
-| chrome-devtools | arayüz ve tarayıcı doğrulaması | tarayıcı kanıtı |
-| subagent | bağımsız ve paralel işler | bağlam izolasyonu |
+| codegraph | sembol, çağrı ve akış sorusu | sembol kaynağı (dosya:satır) ve çağrı yolu |
+| gitnexus | süreç ve risk etkisi sorusu | risk seviyesi, etkilenen süreç ve topluluk |
+| graphify | kod, belge ve şema ilişkisi | açıklamalı kenar haritası |
+| trail | keşif maliyeti yüksek repo | repo haritası düğümü ve dosya:satır |
+| context-mode | bağlamı şişen çıktı | sıkıştırılmış çıktı referansı ve ölçüm |
+| claude-mem | görev başı ve kapanış | hatırlanan karar veya kayıt kimliği |
+| context7 | API ve sürüm sorusu | kütüphane kimliği, sürüm ve snippet |
+| markitdown | ikili veya ofis belgesi | Markdown dönüşümü |
+| chrome-devtools | arayüz ve tarayıcı doğrulaması | DOM, console ve ağ kanıtı |
+| subagent | bağımsız veya paralel iş | izole bağlamlı bağımsız rapor |
