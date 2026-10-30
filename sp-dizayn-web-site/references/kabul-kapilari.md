@@ -2,6 +2,11 @@
 
 > `sp-dizayn-web-site` eki. Hem tasarım kalitesini hem teknik tabanı ölçülebilir hâle getirir. Tasarım puanı ile teknik skor ayrı kanıtlardır; biri diğerinin yerine geçmez.
 
+## 0. Mod ayrımı
+
+0.1. Taban kontroller (içerik, erişilebilirlik, performans, SEO, çalışırlık) her modda geçerlidir; release kapıları yalnız release veya risk tetiklediğinde tam kanıt ister.
+0.2. Tasarım puanı ilk önizlemede ve cilalı teslimde ayrı verilir; teknik skor yaratıcı puan yerine geçmez.
+
 ## 1. Sekiz boyutlu tasarım değerlendirmesi (1-10)
 
 Aşağıdaki sekiz başlık ilk önizlemede ve cilalı teslimde ayrı ayrı puanlanır. Her puan tek cümlelik kanıtla yazılır; kanıtsız puan verilmez.
@@ -30,38 +35,32 @@ Kural: 10 üzerinden 8+ hedeflenir; en zayıf üç boyut ve her biri için tek s
 ## 3. Erişilebilirlik tabanı
 
 - Semantik landmark'lar (`nav`, `main`, `footer`), tek `h1`, atlanmayan başlık sırası, skip link.
-- Klavye ile tüm işlev; görünür `:focus-visible`; odak tuzağı yalnız modalda.
-- Kontrast: gövde 4,5:1; büyük metin, kenar ve ikon 3:1.
+- Klavye ile tüm işlev; görünür `:focus-visible`; odak tuzağı yalnız modalda. Kontrast: gövde 4,5:1; büyük metin, kenar ve ikon 3:1.
 - Dokunma hedefi kaba işaretçide en az 44px, her durumda 24x24 CSS px.
 - `prefers-reduced-motion` altında hareketli her öğenin tasarlanmış final durumu vardır.
-- Görsellerde anlamlı `alt`, dekoratif görselde boş `alt`; form alanları görünür etiketli.
-- 320px genişlikte yatay gövde kaydırması yok; 360/768/1440/1920 genişliklerde taşma yok.
+- Görsellerde anlamlı `alt`, dekoratif görselde boş `alt`; form alanları görünür etiketli. 320px genişlikte yatay kaydırma yok; 360/768/1440/1920 genişliklerde taşma yok.
 
 ## 4. Performans ve varlık tabanı
 
-- İlk yükleme bütçesi proje kaydında tanımlıdır ve aşılmaz; JS toplamı site mimarisi bütçesine uyar.
-- LCP ≤ 2,5 sn, INP ≤ 200 ms, CLS ≤ 0,1 (lab); alan verisi yoksa "doğrulanmalı" yazılır.
+- İlk yükleme bütçesi proje kaydında tanımlıdır ve aşılmaz; JS toplamı site mimarisi bütçesine uyar. LCP ≤ 2,5 sn ve CLS ≤ 0,1 lab ile ölçülür; INP alan verisi veya etkileşim trace'iyle ölçülür, yoksa "doğrulanmalı" yazılır.
 - Görseller WebP/AVIF, görüntülenen boyutta, `width`/`height` tanımlı; hero dışı `loading=lazy`.
 - Hero video poster ile başlar, sessizdir, kullanıcı kontrolü vardır; mobilde statik alternatif.
 - Tek `assets/css/site.css`, `:root` tokenları; Node, CDN, harici font CDN'i ve ikinci stil dosyası yok.
+- Sinematik varsa: JS/GPU bütçesi proje kaydında onaylıdır; kütüphaneler self-host ve lisansı doğrulanmıştır; reduced-motion, video/WebGL yokluğu ve JS kapalı testleri geçmiştir.
 - Hash'li varlıklar uzun ömürlü, HTML kısa ömürlü önbelleklenir; kaynak haritası ve sır istemciye gitmez.
 
 ## 5. SEO ve yapısal taban
 
-- Gerçek `title`, meta description, canonical, Open Graph ve Twitter Card.
-- Organization/WebSite JSON-LD; uygun sayfada BreadcrumbList/Product/FAQPage; uydurma veri yok.
-- `robots.txt` ve `sitemap.xml` doğru; yayın ortamında indeksleme engeli yok.
-- Adres değişiklikleri 301; zincirleme yönlendirme yok; çok dilli sitede hreflang karşılıklı.
-- İçerik sunucudan gelir; JS kapalıyken ana metin ve bağlantılar okunabilir.
+Altyapı (meta, canonical, JSON-LD, sitemap, robots, yönlendirme) sp-mimari-web-site'tadır; burada tasarım çıktısı kontrol edilir:
+- Gerçek title/description/canonical/OG; tek h1 ve görsel hiyerarşiyle aynı başlık sırası.
+- JSON-LD uydurma veri taşımaz; içerik JS kapalıyken okunur; hreflang karşılıklı.
 
 ## 6. Çalışırlık ve yayın kapısı
 
-- Konsol hatası sıfır; ağ hatası, eksik görsel ve 404 varlık yok.
-- Form: istemci + sunucu doğrulaması, CSRF/honeypot, gerçek başarı ve hata durumu; demo form "gönderildi" diyemez.
-- Menü, galeri, video, modal ve dil/para birimi gibi etkileşimler klavye ve dokunmayla çalışır.
-- Yayın öncesi ve sonrası smoke listesi ile geri alma adımı yazılıdır.
-- Yayın sonrası HTTPS, canlı URL 200, canonical/OG gerçek adres, form ucu ve robots durumu doğrulanır.
-- Emülasyon gerçek telefon diye sunulmaz; fiziksel cihaz kontrolü yapılmadıysa "doğrulanmalı" yazılır.
+Yayın prosedürü, geri alma ve alan izleme sp-mimari-web-site'tadır; burada canlı çıktının smoke kontrolü yapılır:
+- Konsol/ağ/404 sıfır; form istemci + sunucu doğrulamalı, demo form "gönderildi" diyemez.
+- Menü, galeri, video, modal klavye ve dokunmayla çalışır; HTTPS, canlı URL 200, canonical/OG, robots doğrulanır.
+- Emülasyon gerçek telefon sayılmaz; fiziksel cihaz yoksa "doğrulanmalı".
 
 ## 7. Kanıt biçimi
 
@@ -72,6 +71,7 @@ Kural: 10 üzerinden 8+ hedeflenir; en zayıf üç boyut ve her biri için tek s
 5. Kontrast ve hedef boyutu ölçümleri; klavye turu notu.
 6. Metin taraması: yasak kalıp eşleşmeleri ve insan editör onayı.
 7. Yayın smoke çıktısı: HTTP durum kodları, canlı URL, form testi.
+8. Sinematik kanıt: trace özeti (frame süresi ve uzun görev), üç fallback ekranı (tam, reduced motion, WebGL/video yok), gerçek cihaz notu, kare dizisinde ileri/geri/rastgele seek tutarlılığı.
 
 ## 8. Durdurucu koşullar
 
@@ -80,3 +80,12 @@ Kural: 10 üzerinden 8+ hedeflenir; en zayıf üç boyut ve her biri için tek s
 - Bütçe aşımı veya konsol hatası; kırık görsel/video.
 - Onaysız metin değişikliği; design package ile çelişen build.
 - Gerçek cihaz/alan verisi kanıtı olmadan "doğrulandı" beyanı.
+
+## 9. Kanıt şablonu
+
+| Kapı | Araç veya komut | Çıktı | Sonuç |
+| --- | --- | --- | --- |
+| Taban (konsol, 404, form) | chrome-devtools | Konsol/ağ listesi, form testi | Geçti/Kaldı |
+| Tasarım (8 boyut) | Ekranlar ve değerlendirme | Hero, alt bölüm, telefon | Puan ve en zayıf üç madde |
+| Erişilebilirlik ve performans | a11y-debugging, trace, Lighthouse | Odak/kontrast, LCP/CLS, INP trace | Geçti/Kaldı |
+| Sinematik ve yayın | trace, cihaz, canlı URL | Frame, üç fallback, seek, HTTP/OG | Geçti/Kaldı |

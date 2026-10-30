@@ -1,22 +1,16 @@
 # Medya Üretimi
 
-> sp-dizayn-web-site gövde §6'nın ayrıntısı: görsel, video, 3B, ses ve sinematik tipografi üretimi; teslim biçimi, arıza durumları, lisans ve kanıt. Medya offline üretilir ve statik varlık olarak teslim edilir; site çalışma anında üretmez, derlemez ve medya için CDN ya da Node kullanmaz. Sürüm, model, API ve araç davranışı varsayılmaz; çalışma anında resmî kaynaktan doğrulanır.
+> sp-dizayn-web-site gövde 6'nın ayrıntısı: görsel, video, ses ve 3B varlık üretimi, teslim, arıza, lisans ve kanıt. Medya offline üretilip statik teslim edilir; site runtime'da üretmez, derlemez, CDN/Node kullanmaz. Sinematik mimari references/sinematik-katman.md'dedir; sürüm/model/API runtime'da doğrulanır.
 
 ## 1. Üretim öncesi yetenek keşfi ve karar ağacı
 
 1.1. Medya yalnız açık bir ihtiyaç varsa üretilir: hero filmi, bölüm görseli, ürün kanıtı, ses veya anlatı gerektiren 3B. Süs için üretim yapılmaz.
 1.2. Önce medya yeteneği envanteri çıkarılır: görsel/video üretimi, ses kaynağı, yerel encode, tarayıcı doğrulama ve ölçüm. Genel keşif, kanıt katmanları ve erişim tanısı arac-ortam.md dosyasındadır; medya kararı bu envantere dayanır.
 1.3. Ücretli üretici, API anahtarı, kota ve abonelik varsayılmaz (arac-ortam.md). Harcama yalnız kullanıcı onayıyla yapılır; onay yoksa ücretsiz, yerel ve statik yola düşülür.
-1.4. Karar ağacı sırayla işletilir:
-1.4.1. Yeterli gerçek varlık varsa üretim yapılmaz; düzenleme, kırpma ve renk düzeltmesi yeterlidir.
-1.4.2. Görsel gerekli ama üretici yoksa CSS, SVG, tipografi, doku ve mevcut fotoğrafla onurlu statik kompozisyon kurulur; boşluk bırakılmaz.
-1.4.3. Video gerekli ama üretici yoksa poster ve statik sahne tasarlanır; gerekliyse kodla üretilen kare dizisi veya scrub kullanılır.
-1.4.4. 3B yalnız anlatı için zorunluysa kullanılır; değilse 2B derinlik, paralaks ve görsel dil tercih edilir.
-1.4.5. Ses yalnız açık istek veya onaylı deneyim parçasıysa üretilir; varsayılan sessizdir.
-1.5. Üretici seçilecekse güncel yetenek ve kalite meta veriden doğrulanır; model adı dondurulmaz. Karşılaştırma aynı brief ve aynı değerlendirme ölçütüyle yapılır.
-1.6. Pahalı yol ancak temsili pilot ve onaylı bütçeyle açılır; üretim sağlayıcısı tek seçilir, doğrulama, encode ve ölçüm gibi farklı işler için hibrit araç kullanılabilir.
-1.7. Yetenek yoksa veya yetmezse sonuç tasarım olarak tamamlanır; üretilemeyen medya yerine tasarlanmış statik çözüm konur ve sınır kayda geçer.
-1.8. Erişim hatasında tanı sırası ve basit çözüm arac-ortam.md dosyasındadır; medya hattı çözülemezse işe başlamadan kullanıcıya bildirilir.
+1.4. Karar ağacı sırayla işletilir: yeterli gerçek varlık varsa üretim yapılmaz; görsel gerekli ama üretici yoksa CSS/SVG/tipografi/doku ile statik kompozisyon; video gerekli ama üretici yoksa poster veya kodla kare dizisi; 3B yalnız anlatı zorunluysa; ses yalnız açık istek veya onaylı deneyim parçasıysa (varsayılan sessiz).
+1.5. Üretici seçilecekse güncel yetenek ve kalite meta veriden doğrulanır; model adı dondurulmaz. Karşılaştırma aynı brief ve ölçütle yapılır.
+1.6. Pahalı yol yalnız temsili pilot ve onaylı bütçeyle açılır; üretim sağlayıcısı tek seçilir, doğrulama/encode/ölçüm için hibrit araç kullanılabilir.
+1.7. Yetenek yoksa veya yetmezse sonuç tasarım olarak tamamlanır; üretilemeyen medya yerine tasarlanmış statik çözüm konur ve sınır kayda geçer. Erişim hatasında tanı arac-ortam.md'dedir; çözülemezse işe başlamadan bildirilir.
 
 ## 2. Görsel üretimi
 
@@ -51,13 +45,9 @@
 
 ## 4. 3B ve WebGL
 
-4.1. 3B varsayılan değildir; yalnız anlatı gerçek zamanlı kamera, ışık veya model etkileşimi gerektiriyorsa kullanılır.
-4.2. Fallback zorunludur: WebGL yoksa, bağlam kaybolursa veya reduced motion açıksa tasarlanmış statik kompozisyon gösterilir; konsol hatası sıfır kalır.
-4.3. Tek rAF döngüsü: sayfadaki tüm sahne hareketi tek döngüden yürür; ikinci döngü açılmaz, sekme gizlenince döngü durur.
-4.4. Yaşam döngüsü yönetilir: geometri, materyal, doku ve hedefler bırakılır (dispose); olay dinleyicileri sökülür; bağlam kaybı dinlenir ve geri dönüş ya da fallback gösterilir.
-4.5. Maliyet sınırlanır: düşük poligon, sınırlı doku boyutu, ölçek sınırlı çizim; sahne görünür değilken çalışmaz.
-4.6. Ağır 3B yerine önce daha ucuz alternatif değerlendirilir: kare dizisi, derinlikli görsel, paralaks veya CSS/SVG sahne.
-4.7. Yetenek yoksa 3B zorlanmaz; 2B derinlik ve statik fallback ile tasarım tamamlanır.
+4.1. Sinematik karar, mod seçimi, sahne mimarisi ve performans bütçesi references/sinematik-katman.md dosyasındadır; burada yalnız üretim ve teslim kuralı vardır.
+4.2. 3B varsayılan değildir; yalnız anlatı gerçek zamanlı kamera, ışık veya model etkileşimi gerektiriyorsa üretilir. Ağır 3B yerine kare dizisi, derinlikli görsel, paralaks veya CSS/SVG sahne değerlendirilir.
+4.3. Teslim edilen 3B varlık için statik fallback, tek rAF, dispose, görünürlük durdurma ve bağlam kaybı yönetimi zorunludur; yetenek yoksa 3B zorlanmaz.
 
 ## 5. Ses
 
@@ -80,34 +70,24 @@
 
 ## 7. Sinematik tipografi
 
-7.1. Film varsa tipografi filme bağlanır: her ana başlık için tanımlanabilir çekim ipucu (kamera veya özne hareketi), başlangıç konumu/ölçeği, dönüşüm yönü ve zamanı, okunabilir duruş yazılır.
-7.2. Jenerik giriş ve saydamlık geçişi sinematik sayılmaz; tipografi kaydırmadan değil ekrandaki gerçek kareden sürülür.
-7.3. Statik hero metni ayrı yazılır: reduced motion, video yokluğu veya telefon fallback'inde poster üstünde başlık, alt satır ve CTA okunur kalır.
-7.4. Kare eşleme testi: aynı kare aynı tip durumunu vermeli; ileri, geri ve rastgele seek aynı sonucu üretmeli; ters kaydırmada sıçrama olmamalı.
-7.5. Okunabilirlik: her metin bandı en kötü kareye göre kontrast taşır (yerel scrim, gerçek gölge), en sakin bölgeye yerleşir; uzun okunabilir plato ve kısa rampalarla tempolanır, hızlı flick ile test edilir.
-7.6. Telefon koreografisi ayrı yazılır; masaüstü değerleri kopyalanmaz, satır kırılmaları ve plato yeniden kurulur.
-7.7. Tipografi hareketi transform ve saydamlıkla sınırlanır; reduced motion altında doğrudan final durum görünür.
-7.8. Cue haritası design package'a yazılır: kare zamanı, beklenen hareket, uygulanan tip durumu ve doğrulama sonucu.
+7.1. Film varsa tipografi filme bağlanır; sahne koreografisi, okunabilir plato ve cue haritası references/sinematik-katman.md 7. maddesine göre yazılır.
+7.2. Statik hero metni ayrı yazılır: reduced motion, video yokluğu veya telefon fallback'inde poster üstünde başlık, alt satır ve CTA okunur kalır.
+7.3. Kare eşleme testi: aynı kare aynı tip durumunu vermeli; ileri, geri ve rastgele seek aynı sonucu üretmeli; ters kaydırmada sıçrama olmamalı.
+7.4. Okunabilirlik en kötü kareye göre ölçülür; metin transform ve saydamlıkla hareket eder, reduced motion'da doğrudan final durum görünür.
 
 ## 8. Reduced motion ve medya arızası
 
 8.1. Reduced motion açıksa video yüklenmez, animasyon final duruma atlar, statik hero görünür; içerik ve eylem eksiksizdir.
-8.2. Video yüklenemezse poster, başlık ve CTA ile sayfa tam çalışır; boş kutu, kırık oynatıcı ve düzen sıçraması olmaz.
-8.3. Görsel yüklenemezse width/height korunur, alt metin okunur ve yer tutucu tasarım devreye girer.
-8.4. Ses yüklenemezse kontrol gizlenir; sayfa sessiz çalışır.
-8.5. 3B veya WebGL başarısız olursa statik fallback gösterilir; hata kullanıcıya sızmaz, konsol temiz kalır.
-8.6. Yavaş ağda poster ilk gelir, video sonra yüklenir; LCP posteri beklemez.
-8.7. Arıza durumları gerçek testle kanıtlanır (medya engelleme, reduced motion emülasyonu, ağ kısıtlama); kod incelemesi tek başına kanıt değildir.
+8.2. Video yüklenemezse poster, başlık ve CTA ile sayfa tam çalışır; boş kutu, kırık oynatıcı ve düzen sıçraması olmaz. Görsel yüklenemezse width/height korunur, alt metin okunur.
+8.3. Ses yüklenemezse kontrol gizlenir; sayfa sessiz çalışır.
+8.4. 3B/WebGL başarısız olursa statik fallback gösterilir; hata kullanıcıya sızmaz, konsol temiz kalır.
+8.5. Yavaş ağda poster ilk gelir, video sonra yüklenir; LCP posteri beklemez. Arıza durumları gerçek testle kanıtlanır (medya engelleme, reduced motion, ağ kısıtlama); kod incelemesi kanıt değildir.
 
 ## 9. Lisans, atıf ve üretim kanıtı
 
 9.1. Üretilen medyanın lisansı ve ticari kullanım hakkı sağlayıcı koşullarına bağlıdır; varsayılmaz, çalışma anında resmî kaynaktan doğrulanır ve kayda geçer.
 9.2. Gerçek fotoğraf ve video yalnız kullanıcının kendisi veya açık izinli kişi için kullanılır; izin ve bağlam kaydı tutulur.
-9.3. Ses ve müzikte lisans türü, kaynak ve atıf zorunluluğu kaydedilir; atıf gerekiyorsa görünür yerde verilir.
-9.4. Açık lisanslı stok varlıkta kaynak, lisans ve atıf koşulu; tanınabilir marka veya kişi varsa kullanım izni doğrulanır.
-9.5. Üretim kanıtı her varlık için tutulur: kaynak türü, üretim notu veya prompt özeti, seçilen sürüm, lisans durumu, kabul notu ve ölçüm.
-9.6. Lisansı doğrulanamayan medya yayınlanmaz; teslimde doğrulanmalı etiketiyle ve yayın dışı olarak işaretlenir.
-9.7. Üretim araçları, planları ve ham dosyalar sürüm kontrolü dışında tutulur; site yalnız teslim edilen varlıkları taşır.
-9.8. Üretim kanıtı kalite kapılarına bağlanır (kabul-kapilari.md): medya, fallback'ler, lisans ve ölçüm kabul kanıtı olarak sunulur.
-9.9. Ücretli üretim yapıldıysa kullanıcı onayı, harcama ve kota kaydı üretim defterine yazılır; onaysız harcama yapılmaz.
-9.10. Yasal belirsizlikte varsayımla yayınlanmaz; gerekiyorsa uzman görüşü istenir ve karar kayda geçer.
+9.3. Ses ve müzikte lisans türü, kaynak ve atıf zorunluluğu kaydedilir; açık lisanslı stokta kaynak ve atıf koşulu, tanınabilir marka/kişide izin doğrulanır; atıf görünür yerde verilir.
+9.4. Üretim kanıtı her varlık için tutulur: kaynak türü, üretim notu veya prompt özeti, seçilen sürüm, lisans durumu, kabul notu ve ölçüm. Lisansı doğrulanamayan medya yayınlanmaz; "doğrulanmalı" ve yayın dışı işaretlenir.
+9.5. Üretim araçları, planları ve ham dosyalar sürüm kontrolü dışında tutulur; site yalnız teslim edilen varlıkları taşır. Kanıt kabul kapılarına bağlanır.
+9.6. Ücretli üretimde onay, harcama ve kota kaydı üretim defterine yazılır; onaysız harcama yapılmaz. Yasal belirsizlikte varsayımla yayınlanmaz; uzman görüşü istenir ve karar kayda geçer.

@@ -97,17 +97,8 @@
 
 ## 9. Kontrol listesi
 
-9.1. Alıcının gerçek sözlerinden en az üç ifade metne girmiştir.
-9.2. Her iddianın kaynağı vardır; uydurma sayı, yorum, logo ve ödül yoktur.
-9.3. Bölüm sırası ziyaretçi işini izler; jenerik sıra kalmamıştır.
-9.4. Tek CTA vardır; aynı ifadeyle en fazla üç kez görünür.
-9.5. Anti-AI-slop listesi taranmıştır: Türkçe ve İngilizce kalıp, em dash, üçlü sıfat ve retorik soru yoktur.
-9.6. Başlık hiyerarşisi tektir: bir `h1`, atlanmamış `h2`/`h3`; `title` ve `description` sayfaya özgüdür.
-9.7. Form etiketleri görünür; yardım ve hata metinleri alanla ilişkilidir.
-9.8. Başarı mesajı gerçekleşeni söyler; önizleme formu gönderim iddia etmez.
-9.9. Mikro metin, SSS ve CTA aynı marka sesindedir; "siz/sen" tercihi tektir.
-9.10. Türkçe imlâ tamdır; ğ, ü, ş, ı, ö, ç eksiksizdir; çeviri kokusu yoktur.
-9.11. Sesli okuma ve insan editör geçişi yapılmış; önce/sonra kanıtı kaydedilmiştir.
+9.1. Kapı ölçütleri references/kabul-kapilari.md §2'de tektir; bu dosya yalnız metin kararını ve editör kanıtını tanımlar.
+9.2. Teslimde sesli okuma, insan editör geçişi ve önce/sonra kanıtı kaydedilir.
 
 ## Kaynak ve sınır
 

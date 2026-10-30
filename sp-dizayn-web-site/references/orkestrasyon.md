@@ -1,8 +1,8 @@
-# Orkestrasyon — beş akış, ekip, sıra ve kapılar
+# Orkestrasyon — altı akış, ekip, sıra ve kapılar
 
 > `sp-dizayn-web-site` eki; gövdedeki 8. bölümün ayrıntısıdır. Lead ve subagent iş bölümünü, bağımlılık sırasını, handoff biçimini ve anti-desenleri tanımlar. Kapı ölçütleri kabul-kapilari.md dosyasındadır; bu dosya onları tekrar etmez.
 
-## 1. İşi beş akışa bölme
+## 1. İşi altı akışa bölme
 
 1.1. Akışlar: sanat yönü ve keşif, metin, medya, build, QA ve yayın. Her akışın tek sahibi, tanımlı girdisi, dosya artefaktı ve kapısı vardır.
 1.2. Akış sınırı: bir akış diğerinin dosyasına yazmaz; girdi dosya ve kısa notla taşınır.
@@ -14,10 +14,13 @@
 | Metin | Onaylı brief ve araştırma | copy/copy.md, birebir metinler | Kopya ve insan dili kapısı |
 | Medya | Onaylı paket ve izinli bütçe | assets/media/, master ve teslim | Görsel doğrulama ve hareket pilotu |
 | Build | Onaylı paket, metin, medya | site/, tek site.css | Çalışan önizleme |
-| QA ve yayın | Çalışan önizleme | review/ rapor ve görseller | Kabul kapıları, smoke, geri alma |
+| QA | Çalışan önizleme | review/ rapor ve görseller | Kabul kapıları |
+| Yayın | QA onaylı çıktı ve canlı ortam | canlı site, release kaydı | Canlı smoke, geri alma |
 
 1.4. Zero-build sınırı: build akışı Node veya CDN üretmez; medya offline üretilip statik varlığa dönüşür. Yayın ayrı alt adımdır; yayın kabulü canlı doğrulamayla kapanır.
 1.5. Akış atlanmaz; küçük işte akışlar birleşse bile artefakt ve kapı ayrımı korunur.
+1.6. Süreç kapısı: brief ve yön onayı brainstorming ile, çok adımlı iş writing-plans ile, kapanış kanıtı verification-before-completion ile alınır.
+1.7. Akış-beceri ataması references/arac-ortam.md §2'dedir; aynı iş iki beceriye verilmez, tek sahip ve tek kanıt zinciri kurulur.
 
 ## 2. Subagent tablosu
 
@@ -32,7 +35,7 @@
 
 2.1. Her üye tek kapsam, net girdi, net çıktı, yazma kapsamı ve ölçülebilir kabul alır.
 2.2. Aynı dosyaya iki üye yazmaz; QA kaynak siteye yazmaz, bulguyu görev kaydıyla iade eder.
-2.3. Medya üyesi yalnız açık video veya ses isteği ve onaylı araç ya da bütçe varsa açılır; yoksa akış atlanır ve fallback yazılır.
+2.3. Medya üyesi görsel, video, ses veya 3B ihtiyacı ve onaylı araç/bütçe varsa açılır; yoksa akış atlanır ve fallback yazılır.
 2.4. Ekip iş hacmine göre ölçeklenir; küçük işte tek ajan yeterlidir, aşırı bölünme iletişim maliyeti üretir.
 
 ## 3. Bağımlılık ve sıra
@@ -47,11 +50,9 @@
 
 ## 4. Paralel ve bağımsız işler
 
-4.1. Paralel işler: araştırma ile ilk metin, medya üretimi ile alt bölüm build'i, QA test planı ile build devamı.
-4.2. Sıralı işler: paket sonrası build, treatment sonrası geniş medya, build sonrası QA, QA sonrası yayın.
-4.3. Bağımsız dizinler ayrı sahipte: design/, copy/, assets/media/, site/, review/.
-4.4. Aynı dizin veya dosya üzerinde eşzamanlı yazma yapılmaz; çakışma riski varsa iş sıralanır.
-4.5. Paralel işler ortak planı değiştirmez; plan değişikliği Lead onayındadır.
+4.1. Paralel: araştırma ile ilk metin, medya üretimi ile alt bölüm build'i, QA test planı ile build devamı.
+4.2. Sıralı: paket sonrası build, treatment sonrası geniş medya, build sonrası QA, QA sonrası yayın.
+4.3. Bağımsız dizinler ayrı sahipte (design/, copy/, assets/media/, site/, review/); aynı dosyaya eşzamanlı yazma yok, plan değişikliği Lead onayındadır.
 
 ## 5. Handoff ve kabul
 
@@ -67,7 +68,7 @@
 6.1. Lead plan.md, karar kaydı ve onay durumlarını tek yerde tutar; her aşamada onaylı sürüm bellidir.
 6.2. Entegrasyon sırası: design package, build, QA, yayın. Lead dosya bütünlüğünü ve son diff'i görür.
 6.3. Kapı anları: yön onayı, erken treatment, çalışan önizleme, kabul kapıları, yayın smoke'u. Ölçütler kabul-kapilari.md dosyasındadır.
-6.4. Yayın kararı Lead'de; yayın kabulü canlı doğrulamayla ayrı kanıttır: HTTPS, URL durumu, canonical/OG, form ve robots.
+6.4. Yayın kararı Lead'de; canlı smoke sp-mimari-web-site kapılarına bağlanır ve ayrı kanıttır (HTTPS, URL, canonical/OG, form, robots).
 6.5. Çelişkide öncelik zinciri gövde 0. bölümdedir; estetik tercih ölçülebilir tabanı esnetmez.
 6.6. Kapanış: kabul edilen iş, açık riskler ve doğrulanmalı listesi tek raporda teslim edilir.
 
@@ -80,10 +81,6 @@
 | Onaysız kapsam veya harcama | Geri dönüş zor, güven kaybı | Yeni onay ve yazılı gerekçe |
 | Aynı dosyaya çok yazıcı | Çakışma ve kayıp | Tek sahip, yazma kapsamı ayrımı |
 | QA'yı build sahibine vermek | Kendi hatasını görmez | Bağımsız QA üyesi |
-| Kapı atlamak veya sonra düzeltilir demek | Yön kayması ve borç | blocked_by; kapı kapanmadan ilerleme yok |
-| Aşırı subagent | İletişim maliyeti ve gecikme | İş hacmine göre ölçekle |
+| Kapı atlamak | Yön kayması ve borç | blocked_by; kapı kapanmadan ilerleme yok |
 | Emülasyonu gerçek cihaz saymak | Yanlış kanıt | Doğrulanmalı ve fiziksel kontrol notu |
-| Teknik skoru yaratıcı kanıt saymak | Yanlış kalite kararı | Tasarım puanı ve teknik skor ayrı |
-| Paket dışına metin yazmak | Onaysız içerik | Build birebir bağlar; değişiklik pakette |
-| Hazır motor veya araç paketini koşulsuz kopyalamak | Lisans ve bakım bağı, zero-build sınırı | Mekanizmayı kendi CSS/JS'inde yeniden kur |
-| Ücretli aracı varsaymak | Onaysız harcama ve hayal kırıklığı | Ortamı runtime keşfet, onay al |
+| Hazır motoru lisanssız/koşulsuz kopyalamak | Lisans ve bakım riski | Lisans doğrula; sinematik istisna onayı |

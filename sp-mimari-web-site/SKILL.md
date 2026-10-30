@@ -1,7 +1,7 @@
 ---
 name: sp-mimari-web-site
 description: "Statik ve SEO odaklı tanıtım sitelerinin mimarisini tanımlar; barındırma, PHP ortak parçalar, elle yazılmış site.css, varlık ve JS bütçesi, SEO/indeksleme, lead formu güvenliği, opsiyonel MySQL ve release kapılarını kapsar. Tanıtım/landing sitesi kurulumunda, SEO ve Core Web Vitals düzeninde, PHP form ucu ve lead saklamada, site yayına almada kullanılır. Oturumlu panel veya SCADA uygulamasında, yalnız görsel tasarım veya estetik dil talebinde, Rust masaüstünde kullanılmaz."
-version: "v202610300619"
+version: "v202610302324"
 ---
 
 # sp-mimari-web-site
@@ -39,7 +39,8 @@ Herkese açık, oturumsuz, statik öncelikli tanıtım sitesinin mimarisi. Amaç
 ## 3. JavaScript, font ve görsel bütçesi
 
 3.1. JavaScript vanilla ve defer ile yüklenir; framework, SPA yönlendirici ve üçüncü taraf betik CDN'i yoktur. Tek istisna zorunlu ikon yükleyicisidir: sürüm sabitlenir, SRI eklenir, CSP kaynak listesine yazılır; sürüm ve SRI çalışma anında resmî kaynaktan doğrulanır.
-3.2. Sayfa başına toplam JavaScript bütçesi 30 KB gzip'tir; bütçeyi aşan sürüm kabul edilmez, ölçüm ağ panelindeki transfer toplamından alınır.
+3.2. Sayfa başına toplam JavaScript bütçesi 30 KB gzip'tir; bütçeyi aşan sürüm 3.2.1 istisnası olmadan kabul edilmez, ölçüm ağ panelindeki transfer toplamından alınır.
+3.2.1. Sinematik istisna: sp-dizayn-web-site sinematik katmanı proje kaydında onaylıysa, yalnız ilgili sayfa için JS bütçesi proje kaydında ayrı tanımlanır. Varsayılan 30 KB ve CDN yasağı korunur; kütüphaneler self-host edilir, üçüncü taraf lisansı doğrulanır, fallback ve reduced-motion zorunludur. İstisna sayfa bazlıdır, site geneline yayılmaz.
 3.3. Tipografi varsayılan olarak sistem font yığınıdır; marka fontu zorunluysa yalnız self-host woff2 alt kümesi kullanılır, en fazla iki dosya yüklenir, her dosya preload ve font-display swap taşır; harici font CDN'i ve @import yasaktır.
 3.4. Görseller AVIF veya WebP sunulur, desteklemeyen tarayıcı için picture içinde geri dönüş biçimi bulunur; her img etiketinde width ve height zorunludur.
 3.5. LCP görseli fetchpriority ve preload ile yüklenir; katlanma altı görseller lazy taşır. Hero video poster ile başlar, preload none, muted ve playsinline olur; mobilde statik görsel sunulur ve duraklatma denetimi bulunur.

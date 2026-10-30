@@ -1,66 +1,92 @@
-# Araç ve Ortam — keşif, eşleme, hibrit kullanım
+# Araç Zinciri ve Ortam — beceri eşlemesi, keşif ve kanıt
 
-> `sp-dizayn-web-site` eki; gövdedeki 7. bölümün ayrıntısıdır. Araç adı geçen her yerde çağrılabilirlik çalışma anında kanıtlanır; bu dosya envanter değil, keşif ve karar protokolüdür. Sürüm, API ve araç mekaniği iddiası taşımaz.
+> sp-dizayn-web-site eki; gövde 7 ve 8'in ayrıntısıdır. Hangi işin hangi beceri veya MCP ile yapılacağını, kanıtı ve erişim hatasında ne yapılacağını tanımlar.
+> Kural: araç adı ve doğrulama hedefi yazılır; çağrı protokolü/parametre yazılmaz. Her araç runtime'da keşfedilir; gömülü envanter karar dayanağı değildir; onaysız harcama yapılmaz.
 
-## 1. Araç keşif protokolü
+## 1. Keşif ve doğrulama
 
-1.1. Üç kanıt katmanı aranır: oturum kataloğunda ad, fiziksel dizinde SKILL.md, canlı çağrıda yanıt. Üçü tamamlanmadan araç var sayılmaz.
-1.2. Keşif sırası: beceri kataloğu, beceri dizinleri ve SKILL.md, MCP sunucu listesi ve tek canlı çağrı, PATH'teki yerel komutlar, proje araç zinciri. Sıra atlanmaz.
-1.3. MCP aracı için bağlantı canlı çağrıyla sınanır; envantere bağlı yazmak için yanıt şarttır. Sunucu tanımlı ama hedef uygulama kapalıysa araç kullanılamaz sayılır.
-1.4. Yerel araç için --help, sürüm veya zararsız bir örnek komut çalıştırılır; çıktı yoksa araç yok sayılır.
-1.5. Keşif sonucu envanter satırına yazılır: ihtiyaç, aday, çağrı yolu, kanıt türü, yedek ve tarih. Kanıtsız satır doğrulanmalı etiketi taşır.
-1.6. Envanter iş başında ve yeni yetenek gerektiğinde tazelenir; eski tarihli kayıt güncel karar dayanağı değildir.
+1.1. Üç kanıt katmanı: katalogda ad, fiziksel dizinde SKILL.md, canlı çağrıda yanıt. Üçü tamamlanmadan araç var sayılmaz.
+1.2. Keşif sırası: beceri kataloğu → beceri dizinleri → MCP listesi ve tek canlı çağrı → PATH araçları → proje araç zinciri.
+1.3. MCP bağlantısı canlı çağrıyla sınanır; hedef uygulama kapalıysa araç kullanılamaz. Yerel araç için sürüm veya zararsız bir örnek çalıştırılır.
+1.4. Envanter satırı: ihtiyaç, aday, çağrı yolu, kanıt türü, yedek ve tarih. Kanıtsız satır "doğrulanmalı" taşır; iş başında tazelenir.
 
-## 2. İhtiyaç → araç matrisi
+## 2. Aşama → beceri eşlemesi
 
-Tablodaki adaylar yön gösterir; her satırın kanıt durumu kullanımdan önce yeniden sınanır. Kanıtsız araç işe bağlanmaz.
+Tablodaki adlar kurulu beceriler ve bağlanabilir MCP'lerdir; çağrı biçimi runtime'dadır. Bir satırda birden fazla ad varsa sıra öneridir, hepsi birden çağrılmaz.
 
-| İhtiyaç | Aday (envanterdeki durum) | Yedek ve kural |
-|---|---|---|
-| Sanat yönü | design-taste-frontend, frontend-design, hallmark, impeccable, brand, ui-ux-pro-max (katalogda tanımlı; canlı kullanım sınanır) | Kullanıcı brief'i ve yerel referans arşivi; kompozisyon kopyalanmaz |
-| Metin | brand ve tasarım paketi akışı (tanımlı) | Gerçek malzeme ile insan editör; uydurma iddia yasak |
-| Görsel | Üretken görsel yalnız bağlıysa; kullanıcı fotoğrafı ve açık lisans arşiv adaydır | Araçsız tasarlanmış statik kompozisyon, CSS/SVG |
-| Video ve hareket | hyperframes, remotion, gsap-* (envanterde yanıt veya global kayıt var; kullanımdan önce sınanır) | CSS/WAAPI ve poster; üretken video yoksa statik sahne |
-| Ses | sound-effects, sound-design (dizin ve SKILL.md var) | Varsayılan sessiz; açık istekte CC0 kit |
-| 3B | blender MCP (envanterde eklenti bağlantısı başarısızdı; açılmadan kullanılamaz), img2threejs | Kod tabanlı Three.js, CSS/SVG; 3B gerekmiyorsa kullanılmaz |
-| Tarayıcı ve QA | chrome-devtools MCP (canlı çağrı doğrulandı) | MCP yoksa manuel tarayıcı ve Lighthouse |
-| Performans | chrome-devtools trace ve debug-optimize-lcp; trace ilk çalıştırmada sınanır | Laboratuvar ölçümü; alan verisi yoksa doğrulanmalı |
-| Erişilebilirlik | a11y-debugging, chrome-devtools snapshot ve lighthouse | Elle klavye, kontrast ve odak ölçümü |
-| SEO | Site mimarisi becerisi ve lighthouse SEO denetimi | Elle meta/JSON-LD ve canlı yanıt kontrolü |
-| Varlık iyileştirme | ffmpeg ve Pillow (PATH'te; biçim desteği sınanır) | Pillow ve ffmpeg; eksik araç varsayılmaz |
-| Prototip | Statik önizleme ve chrome-devtools | Tek HTML dosya, yerel sunucu ve tarayıcı |
+| Aşama | Birincil | Ne zaman / sınır | Çıktı ve kanıt |
+| --- | --- | --- | --- |
+| Brief ve niyet | brainstorming, sp-sozlesme, research | Kapsam belirsiz, yeni/yeniden tasarım, çok adımlı iş | Onaylı brief, karar notu |
+| Sanat yönü | design-taste-frontend, frontend-design, hallmark, ui-ux-pro-max, awesome-design-md, brand-intake, design-system, sp-zen-dizayn | Yeni sayfa, AI-slop kırma, token sistemi, marka dili, Apple-klasik | Yön sheet, design package, ekran |
+| Denetim ve cila | impeccable, emil-design-eng, break-ui | İlk build sonrası denetim, cila, mikro etkileşim, en kötü veri | Puan, bulgu, düzeltme |
+| Metin | brand, insan editör | Ses/ton; ayrı copy becerisi yok | Copy deck, editör kanıtı |
+| Motion ve scroll | animate, motion-design-principles, apple-design, gsap-core, gsap-scrolltrigger, gsap-timeline, gsap-plugins, gsap-utils, gsap-performance, animation-performance | Karar, ilke, jest, scroll/timeline, jank | Motion spec, trace, ekran |
+| 3B ve WebGL | title-sequence-3d, img2threejs, web-sims, blender MCP, threejs-devtools-mcp | Başlık sekansı, model, simülasyon, varlık, canlı inceleme | Sahne, GLB, ekran, trace |
+| Sinematik site | 10k-websites, prototype | Uçtan uca kare dizisi/video/depth motoru; yerleşim denemesi | Engine kopyası, önizleme |
+| Video ve ses | hyperframes, remotion-best-practices, media-use, sound-design, sound-effects, ffmpeg/Pillow | Site dışı offline medya, encode, poster, mix | MP4, WebP, poster, ölçüm |
+| QA | chrome-devtools, a11y-debugging, debug-optimize-lcp, mobile-native, verification-before-completion | DOM/konsol/ağ/trace, a11y, LCP, mobil, kapanış | Rapor, ekran, ölçüm |
+| Mimari ve yayın | sp-mimari-web-site | Barındırma, SEO, form, bütçe, release | Mimari karar, canlı smoke |
+| Meta ve hafıza | writing-for-agents, writing-skills, mem-search | Kural/beceri düzenleme, geçmiş karar | Belge, kayıt kimliği |
 
-Envanterde adı geçmeyen üretken üretim veya barındırma connector'ı yok sayılır; onun yerine yalnız yöntem ve manuel adım kullanılır.
+## 3. Sanat yönü: öncelik ve çakışma
 
-## 3. Hibrit kullanım örnekleri
+3.1. Brief markayı, paleti veya tipografiyi sabitliyorsa önce o uygulanır; design-taste-frontend yalnız kompozisyon verir ve marka değerlerini korur.
+3.2. Yeni sayfada tam yön: design-taste-frontend ana; frontend-design konsept dili; hallmark yalnız yeni sayfa veya adı geçtiğinde; ui-ux-pro-max yalnız veri araması; design-system yalnız token/bileşen sözleşmesi.
+3.3. impeccable ilk build'den sonra denetim, cila, audit, polish ve overdrive için; yönü tek başına kurmaz. overdrive, animate ve delight belgelenmiş komutlardır, "gizli" değildir; sinematik mimarinin yerine geçmez.
+3.4. sp-zen-dizayn yalnız Apple klasik estetiği açıkça istenirse yüklenir. Aynı sayfada iki yön sahibi olmaz; çakışmada design package ve kullanıcı onayı üstündür.
 
-3.1. Görsel hattı: yön becerisiyle kompozisyon kararı, varlığın kullanıcıdan veya açık lisans arşivinden temini, ffmpeg/Pillow ile optimize, chrome-devtools ile sayfada doğrulama. Her adım kendi kanıtını üretir.
-3.2. Hareket hattı: kod tabanlı üretim veya kullanıcı videosu, ffmpeg ile encode ve poster, tarayıcıda oynatma, seek ve reduced-motion kontrolü. Poster ve mobil statik alternatif ayrı doğrulanır.
-3.3. QA hattı: chrome-devtools ile ekran, konsol ve ağ; Lighthouse veya a11y denetimi; metin ve imlâ taraması; ölçüm kaydı. Tek araç tam kabul üretmez.
-3.4. Hibrit kuralı: bir aracın çıktısı diğerinin kanıtı yerine geçmez; araç yoksa tasarım statik ve dürüst fallback'e düşer, kalite iddiası da buna göre düşürülür.
-3.5. Zero-build sınırı: hiçbir araç siteye Node bağımlılığı, CDN kütüphanesi veya ikinci stil dosyası sokamaz; araç çıktısı assets/ altında statik varlığa dönüşür.
+## 4. Motion ve 3B: sıra
 
-## 4. Erişim hatasında tanı ve çözüm
+4.1. Sıra: animate (karar) → motion-design-principles (12 ilke) veya apple-design (his) → gsap-* ya da vanilya (uygulama) → animation-performance/gsap-performance (jank) → chrome-devtools (kanıt).
+4.2. GSAP API ve parametreleri gsap-* becerisinden veya context7'den doğrulanır; bu dosya kod örneği taşımaz.
+4.3. title-sequence-3d video başlık sekansı, img2threejs referanstan model, web-sims simülasyon videosu içindir; blender MCP yalnız bağlıysa varlık üretir; threejs-devtools-mcp bağlı değilse chrome-devtools ekran/trace ile yetinilir.
+4.4. Sinematik karar ve mimari references/sinematik-katman.md dosyasındadır; burada yalnız araç seçimi vardır.
 
-4.1. Tanı sırası: hedef uygulama veya sunucu kapalı mı, bağımlılık eksik mi, ağ mı, yetki veya hesap mı, yol ya da sürüm uyumsuz mu. Şıklar tek tek ayrılır.
-4.2. Basit çözüm: uygulamayı aç, yalnız gerekli bağımlılığı kur, gerekirse yerel veya offline alternatife geç. Ücretli hesap ve yeni abonelik zorlanmaz.
-4.3. Tarayıcı MCP'si bağlanmıyorsa tarayıcı açılır; 3B MCP'si için uygulama ve eklenti açılır. Açılmıyorsa manuel doğrulama yapılır ve sonuç doğrulanmalı işaretlenir.
-4.4. Dış connector yoksa ilke ve yöntem uygulanır; üretken medya, otomatik yayın ve sağlayıcıya bağlı adımlar atlanır; manuel adımlar açıkça yazılır.
-4.5. Çözülemeyen erişimde işe başlamadan kullanıcıya bildirilir; sessiz vazgeçme ve sahte tamam yoktur.
-4.6. Her tanı ve çözüm komut ya da yanıt çıktısıyla kayda geçer; çalıştı beyanı kanıtsızdır.
+## 5. MCP sunucuları
 
-## 5. Ücretli araç, ağ ve lisans politikası
+| Sunucu | Ne işe yarar | Kanıt | Sınır |
+| --- | --- | --- | --- |
+| chrome-devtools | DOM, konsol, ağ, ekran, trace, Lighthouse | Canlı çıktı, ölçüm | Bağlı değilse manuel tarayıcı |
+| blender | 3B sahne ve varlık üretimi/incelemesi | Sahne, ekran | Uygulama ve eklenti açık değilse kullanılamaz |
+| context7 | Kütüphane API ve sürüm doğrulaması | Kaynak snippet | Resmî doküman önceliklidir |
+| codegraph / gitnexus | Kod yapısı, etki, süreç | Sembol, risk | Yalnız site kodu varsa |
+| markitdown | Ofis/ikili belgeyi Markdown'a çevirme | Dönüşüm | Medya üretmez |
+| sequential-thinking | Karmaşık karar ve plan | Karar kaydı | Kanıt değil, akıl yürütme yardımı |
 
-5.1. Ücretli araç, API anahtarı, kredi ve harici hesap varsayılmaz; onay olmadan harcama yapılmaz, fiyat veya indirim taahhüdü verilmez.
-5.2. OpenArt, Hostinger ve HeyGen gibi ücretli sağlayıcılar bu ortamda varsayılmaz; connector yoksa yalnız yöntem kullanılır, üretim ve yayın adımı manuel ve doğrulanmalı olur.
-5.3. Ağ yoksa yerel arşivler, ffmpeg ve Pillow, kod tabanlı görsel ve hareket kullanılır; ağ isteyen script çalıştırılmaz.
-5.4. Lisans: yalnız kendi varlığı veya açık lisanslı malzeme kullanılır; credit zorunludur; marka referans dosyası kopyalanmaz.
-5.5. Gerçek fotoğraf yalnız sahibinin izniyle işlenir; kişisel veri üretim aracına gönderilmez.
-5.6. Ücretsiz araç da kanıt ister; kurulum ağ veya izin gerektiriyorsa plana yazılır, sessizce atlanmaz.
+## 6. Harici ve opsiyonel MCP/platformlar
 
-## 6. Güncellik ve doğrulama
+6.1. Spline MCP 3B sahneyi, Framer MCP sayfa/animasyon/CMS'i ajan üzerinden düzenler; resmî uç nokta, hesap ve OAuth ister. Bağlı değilse yalnız manuel sahne/sayfa ve export yöntemi kullanılır.
+6.2. threejs-devtools-mcp canlı Three.js sahnesini inceler; Three.js Resources MCP sürüm doğrulanmış rehber ve shader dönüşümü sunar; ikisi de runtime'da sınanır.
+6.3. Üçüncü taraf WebSocket tabanlı 3B MCP'ler yalnız kaynak deposu ve lisansı doğrulandıktan sonra değerlendirilir; paket/dağıtım adı doğrulanmadan kurulmaz.
+6.4. Spline + Framer gibi no-code yollar ayrı teslim modelidir, zero-build kapsamına girmez; MotionSites/Scrollytelling gibi şablon platformlar yalnız ilham kaynağıdır ve iddiaları doğrulanmadan kullanılmaz.
+6.5. Harici MCP bağlı değilse "bağlı" sayılmaz; yalnız yöntem ve manuel adım yazılır. Kurulum, hesap ve ücret onay ister; çağrı mekaniği bu dosyaya yazılmaz.
 
-6.1. Sürüm, API ve araç davranışı bu dosyaya gömülmez; context7 veya resmî kaynak çalışma anında doğrulanır.
-6.2. Örnek komut, URL, model adı ve sağlayıcı adı kopyalanmaz; her kullanımda yeniden doğrulanır.
-6.3. Doğrulanamayan bilgi doğrulanmalı etiketiyle teslim edilir.
-6.4. Envanter tarih ve kanıtla tazelenir; süresi geçmiş envanter karar dayanağı olmaz.
+## 7. Erişim hatasında tanı
+
+7.1. Tanı sırası: hedef uygulama/sunucu kapalı mı, bağımlılık eksik mi, ağ mı, yetki/hesap mı, yol veya sürüm uyumsuz mu. Şıklar tek tek ayrılır.
+7.2. Basit çözüm: uygulamayı aç, yalnız gerekli bağımlılığı kur, yerel veya offline alternatife geç. Ücretli hesap zorlanmaz.
+7.3. Tarayıcı MCP'si bağlanmıyorsa tarayıcı açılır; 3B MCP'si için uygulama ve eklenti açılır. Açılmıyorsa manuel doğrulama yapılır ve "doğrulanmalı" işaretlenir; çözülemeyen erişimde işe başlamadan kullanıcıya bildirilir (sp-sozlesme 1.3, 2.2, §4).
+
+## 8. Hibrit kullanım ve bütçe
+
+8.1. Görsel hattı: yön becerisiyle kompozisyon, varlığın kullanıcıdan veya açık lisans arşivinden temini, ffmpeg/Pillow ile optimize, chrome-devtools ile sayfada doğrulama.
+8.2. Hareket hattı: kod tabanlı üretim veya kullanıcı videosu, ffmpeg ile encode ve poster, tarayıcıda oynatma, seek ve reduced-motion kontrolü.
+8.3. QA hattı: chrome-devtools ile ekran, konsol ve ağ; Lighthouse veya a11y denetimi; metin ve imlâ taraması; ölçüm kaydı. Tek araç tam kabul üretmez.
+8.4. Zero-build sınırı: hiçbir araç siteye Node bağımlılığı, CDN kütüphanesi veya ikinci stil dosyası sokamaz; araç çıktısı assets/ altında statik varlığa dönüşür. Sinematik istisna proje kaydında onaylanır; JS/GPU bütçesi sp-mimari-web-site alanındadır, bu beceri bütçeyi kendisi değiştirmez.
+
+## 9. Ücret, lisans, güncellik
+
+9.1. Ücretli araç, API anahtarı, kredi ve harici hesap varsayılmaz; onaysız harcama yapılmaz.
+9.2. Yalnız kendi varlığı veya açık lisanslı malzeme kullanılır; atıf zorunluysa görünür yerde verilir. Lisansı doğrulanamayan medya yayınlanmaz.
+9.3. Üçüncü taraf kütüphane, motor, model ve doku lisansı çalışma anında resmî kaynaktan doğrulanır; proje kaydına yazılır.
+9.4. Sürüm, API ve araç davranışı bu dosyaya gömülmez; context7 veya resmî kaynakla doğrulanır. Gerçek fotoğraf ve video yalnız sahibinin izniyle işlenir.
+
+## 10. Anti-desenler
+
+| Anti-desen | Neden kötü | Doğrusu |
+| --- | --- | --- |
+| Her aracı çağırmak | Bağlam şişer, çelişkili çıktı doğar | İşe uyan tek sahip; sıra ve kanıt |
+| Araç çıktısını kanıt saymak | Doğrulanmamış teslim | Ekran, ölçüm, komut çıktısı |
+| Aynı işi iki beceriye vermek | Çift yön, çift kapı | Tek sahip, design package |
+| Harici MCP'yi bağlı saymak | Kurulum/hesap yok, sahte yetenek | Bağlantı sınaması; yoksa manuel yöntem |
+| Lisanssız kütüphane/model kopyalamak | Hukuki ve bakım riski | Lisans doğrula, kayda geçir |
