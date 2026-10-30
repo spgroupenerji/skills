@@ -92,6 +92,7 @@ web/.vite/
 graphify-out/
 .graphify/
 .graphify*
+.anayasa-analiz/
 
 # Deploy kilit dosyalari (calisma zamani uretilir)
 /deploy/.deploy.lock

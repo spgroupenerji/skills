@@ -7,29 +7,44 @@ SP GROUP projelerinde kullanılan ajan yeteneklerinin (skill) tek deposu. Her ye
 - Yetenek başına tek dizin ve tek `SKILL.md`; derleme, paketleme veya servis bağımlılığı yoktur
 - `description` tetikleyicileriyle otomatik yüklenen, platformdan bağımsız yetenek tanımları
 - Tek katalog tablosu ve yeni yetenek ekleme kuralları ile ölçeklenen depo düzeni
-- Kopyala-çalıştır kurulum; yetenek dizinleri platformun yetenek klasörüne kopyalanır
+- Tek kaynak depo; geliştirmede junction, junction desteklenmiyorsa kopyalama ile kurulum
 - Türkçe imla ve ASCII uyumlu Türkçe kod isimlendirmesi standardı
 - Git üzerinde LF satır sonu politikası (`.gitattributes`); Windows'ta CRLF karışması önlenir
 - Güvenli varsayılanlar: depoya secret girmez, dış veri talimat olarak yürütülmez
+- Beceriler sürüm/API/davranış iddiası taşımaz; doğrulama çalışma anında context7 veya resmî kaynakla yapılır
 
 ## Yetenek Kataloğu
 
 | Yetenek | Sürüm | Kapsam |
 | --- | --- | --- |
-| [`sp-sozlesme`](sp-sozlesme/SKILL.md) | v202610290345 | Kullanıcının kalıcı çalışma direktiflerini ve tek kuyruk disiplinini görev başında hatırlatan başlangıç skili; araç disiplini, devredilemez araç kanıtı, erişim etkinleştirme, Chrome DevTools doğrulaması, push/deploy/webhook, yerel kimlik referansı ve kapanış senkronu |
-| [`sp-zen-dizayn`](sp-zen-dizayn/SKILL.md) | v202610282339 | Kıdemli yazılım mimarı anayasası; zero-build Tailwind/Iconify arayüzleri, Zen Katmanı ilkeleri, MCP yetenek mühendisliği, yayın ilkeleri ve 12 maddelik QA matrisi |
+| [`sp-mimari-web-site`](sp-mimari-web-site/SKILL.md) | v202610300500 | Statik/SEO tanıtım sitesi mimarisi: barındırma, elle yazılmış site.css, varlık/JS bütçesi, SEO, lead formu güvenliği, opsiyonel MySQL, release kapıları |
+| [`sp-dizayn-web-site`](sp-dizayn-web-site/SKILL.md) | v202610300600 | Herkese açık siteler için en üst seviye tasarım: ziyaretçi işi, sanat yönü, insan dili metin, görsel/video/ses üretimi, sinematik hareket, zero-build site.css ve ölçülebilir kalite kapıları |
+| [`sp-mimari-web-uygulama`](sp-mimari-web-uygulama/SKILL.md) | v202610300440 | Oturumlu PHP panel mimarisi: istek yaşam döngüsü, katman sınırları, oturum/yetki/CSRF, SSR + Tailwind tarayıcı motoru + htmx, MySQL, servis, dağıtım |
+| [`sp-mimari-web-spa`](sp-mimari-web-spa/SKILL.md) | v202610300515 | Vite + React SPA + LiteSpeed PHP API mimarisi: dist teslimi, /api/* PHP + SPA fallback, same-origin oturum/CSRF, sözleşme-önce API, mevcut DB/deploy sürekliliği, npm/CDN ayrımı |
+| [`sp-mimari-masaustu`](sp-mimari-masaustu/SKILL.md) | v202610300555 | Rust/GPUI masaüstü mimarisi: katman, bağımlılık, eşzamanlılık, davranış, SQLite, paketleme, derleme/sürüm ve release artefaktı |
+| [`sp-dizayn-web-uygulama`](sp-dizayn-web-uygulama/SKILL.md) | v202610300420 | Panel/uygulama yapısal tasarımı: kabuk, yoğunluk, tipografi, renk/durum, ikon, bileşen davranışı, erişilebilirlik, zero-build teslim |
+| [`sp-dizayn-masaustu`](sp-dizayn-masaustu/SKILL.md) | v202610300440 | GPUI masaüstü yapısal tasarımı: tema/token, ölçü, bileşen/ikon, pencere ve durumlar, hareket, erişilebilirlik |
+| [`sp-zen-dizayn`](sp-zen-dizayn/SKILL.md) | v202610300440 | Apple klasik/ilk iPhone dönemi sade estetik dil: renk/boşluk/tipografi hissi, materyal/derinlik, yay fiziği, reduced-motion |
+| [`sp-sozlesme`](sp-sozlesme/SKILL.md) | v202610290345 | Görev başı sözleşme: direktifler, araç disiplini ve kanıtı, erişim etkinleştirme, push/deploy/webhook, kapanış senkronu |
 
 Yeni yetenek eklendiğinde bu tabloya satır eklenir. Tablo, depodaki yeteneklerin tek doğruluk kaynağıdır.
 
 ## Kurulum
 
-Yetenekler derleme gerektirmez; ilgili dizin platformun yetenek klasörüne kopyalanır. Depo kökünden tek yetenek kurulumu:
+Yetenekler derleme gerektirmez. Depo tek doğruluk kaynağıdır: geliştirme sırasında yetenek dizinleri DSH yetenek klasörüne junction ile bağlanır; junction desteklenmiyorsa kopyalama kullanılır. DSH, proje kökündeki `SKILL.md` dosyalarını yerinde keşfetmez; kurulum zorunludur ve keşif tek seviyelidir.
 
 ```powershell
-Copy-Item -Recurse -Force sp-zen-dizayn "$HOME/.dsh/skills/"
+# Depo kökünde: tüm sp-* yeteneklerini DSH'ye junction ile bağla
+Get-ChildItem -Directory |
+  Where-Object { Test-Path (Join-Path $_.FullName 'SKILL.md') } |
+  ForEach-Object {
+    $hedef = Join-Path "$HOME/.dsh/skills" $_.Name
+    if (Test-Path $hedef) { Remove-Item -LiteralPath $hedef -Recurse -Force }
+    New-Item -ItemType Junction -Path $hedef -Target $_.FullName | Out-Null
+  }
 ```
 
-Tüm yetenekleri tek seferde kurmak için:
+Junction desteklenmiyorsa kopyalama:
 
 ```powershell
 Get-ChildItem -Directory |
@@ -47,8 +62,12 @@ Get-ChildItem -Directory |
 
 Yetenekler `description` alanındaki tetikleyicilere göre otomatik yüklenir; ayrıca bir komut gerekmez. Örnek:
 
-- `sp-sozlesme`: görev başında, kodlama/refaktör/hata ayıklama öncesinde ve "kuralları hatırlat" dendiğinde devreye girer; kullanıcının kalıcı direktiflerini, araç disiplinini ve kapanış senkronunu hatırlatır. Ayrıntı [SKILL.md](sp-sozlesme/SKILL.md) dosyasındadır.
-- `sp-zen-dizayn`: SCADA paneli, zero-build Tailwind arayüzü, web yayını/içerik denetimi, MCP yeteneği veya refaktör isteğinde devreye girer. Ayrıntılı anayasa [SKILL.md](sp-zen-dizayn/SKILL.md) dosyasındadır.
+- `sp-sozlesme`: görev başında, kodlama/refaktör/hata ayıklama öncesinde ve "kuralları hatırlat" dendiğinde devreye girer; direktifleri, araç disiplinini ve kapanış senkronunu hatırlatır. Ayrıntı [SKILL.md](sp-sozlesme/SKILL.md) dosyasındadır.
+- `sp-mimari-web-uygulama` + `sp-dizayn-web-uygulama`: yeni panel modülü, oturum/yetki akışı veya panel ekranı tasarımında birlikte yüklenir; mimari ve yapısal tasarımı ayırır.
+- `sp-mimari-web-site` + `sp-dizayn-web-site`: tanıtım/landing sitesi işlerinde mimari ile tasarım/üretim hattını ayırır; panel kapsam dışıdır.
+- `sp-mimari-masaustu` + `sp-dizayn-masaustu`: Rust/GPUI masaüstü uygulamasında mimari (derleme/sürüm dahil) ve arayüz işlerini ayırır.
+- `sp-mimari-web-spa` + `sp-dizayn-web-uygulama`: Vite + React SPA + PHP API hedefinde mimari ve yapısal tasarımı ayırır; SSR zero-build panel hedefiyle karıştırılmaz.
+- `sp-zen-dizayn`: yalnız "Apple tarzı, klasik iPhone sadeliği, sade tasarım dili" istendiğinde yüklenir; yapısal/teknik uygulama istendiğinde platform becerileri kullanılır. Ayrıntı [SKILL.md](sp-zen-dizayn/SKILL.md) dosyasındadır.
 
 ## Yeni Yetenek Ekleme
 
@@ -58,33 +77,26 @@ Yetenekler `description` alanındaki tetikleyicilere göre otomatik yüklenir; a
 ```yaml
 ---
 name: yetenek-adi
-description: "Tetikleyici koşulları anlatan kısa açıklama"
+description: "Kullan/kullanma sınırı ve tetik örnekleri içeren, 480 karakteri aşmayan açıklama"
 version: "vYYYYMMDDHHMM"
-alwaysApply: false
-platforms:
-  - CLAUDE_CODE
-  - CURSOR
-  - WINDSURF
-  - CODEX_CLI
-  - MCP_HOST
-tags:
-  - kategori
-allowed-tools:
-  - context7
 ---
 ```
+
+DSH yalnız `name` ve `description` alanlarını okur; `description` katalogda 500 karakterde kırpılır. `version` repo geleneği içindir ve DSH'de işlevsizdir; `alwaysApply`, `platforms`, `tags`, `allowed-tools` gibi alanlar DSH'de yok sayılır ve eklenmez.
 
 3. `description` yalnızca tetikleyici koşulları anlatsın; yeteneğin iş akışını özetlemesin.
 4. Sürümü yayın anının `vYYYYMMDDHHMM` damgasıyla yönetin; damga frontmatter, katalog ve release tag'de birebir aynı olsun.
 5. Yeteneği yukarıdaki kataloğa alfabetik sıraya göre ekleyin.
 6. Araç kullanım mekaniğini yazma: yalnızca araç adını ve doğrulama hedefini belirt; çağrı protokolünü, fonksiyon adlarını ve parametreleri ajanın çalışma zamanına bırak.
 7. Teslim öncesi Doğrulama bölümündeki komutları çalıştırın.
+8. Beceriye sürüm/API/davranış iddiası, SRI değeri veya EOL tarihi gömmeyin; "çalışma anında context7 veya resmî kaynaktan doğrula" kuralı yazın. Araç seçimi işe göredir; erişim hatasında tanı, basit çözüm, çözülemezse işe başlamadan bildirim kuralını sp-sozlesme 1.3/2.2/§4'e atıfla verin.
 
 ## Depo Yapısı
 
 | Yol | İçerik |
 | --- | --- |
-| `<yetenek-adı>/SKILL.md` | Yetenek tanımı (frontmatter ve yönerge) |
+| `<yetenek-adı>/SKILL.md` | Yetenek tanımı (frontmatter ve constitutional kurallar) |
+| `<yetenek-adı>/references/` | İsteğe bağlı ayrıntı dosyaları; gövde tetiklendiğinde okunur |
 | `README.md` | Katalog, kurulum ve yeni yetenek kuralları |
 | `.gitattributes` | LF satır sonu politikası |
 | `.gitignore` | Ortam, bağımlılık ve yerel ajan artefaktları |
