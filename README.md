@@ -17,10 +17,10 @@ SP GROUP projelerinde kullanılan ajan yeteneklerinin (skill) tek deposu. Her ye
 
 | Yetenek | Sürüm | Kapsam |
 | --- | --- | --- |
-| [`sp-mimari-web-site`](sp-mimari-web-site/SKILL.md) | v202610300500 | Statik/SEO tanıtım sitesi mimarisi: barındırma, elle yazılmış site.css, varlık/JS bütçesi, SEO, lead formu güvenliği, opsiyonel MySQL, release kapıları |
+| [`sp-mimari-web-site`](sp-mimari-web-site/SKILL.md) | v202610300619 | Statik/SEO tanıtım sitesi mimarisi: barındırma, elle yazılmış site.css, varlık/JS bütçesi, SEO, lead formu güvenliği, opsiyonel MySQL, release kapıları |
 | [`sp-dizayn-web-site`](sp-dizayn-web-site/SKILL.md) | v202610300600 | Herkese açık siteler için en üst seviye tasarım: ziyaretçi işi, sanat yönü, insan dili metin, görsel/video/ses üretimi, sinematik hareket, zero-build site.css ve ölçülebilir kalite kapıları |
-| [`sp-mimari-web-uygulama`](sp-mimari-web-uygulama/SKILL.md) | v202610300440 | Oturumlu PHP panel mimarisi: istek yaşam döngüsü, katman sınırları, oturum/yetki/CSRF, SSR + Tailwind tarayıcı motoru + htmx, MySQL, servis, dağıtım |
-| [`sp-mimari-web-spa`](sp-mimari-web-spa/SKILL.md) | v202610300515 | Vite + React SPA + LiteSpeed PHP API mimarisi: dist teslimi, /api/* PHP + SPA fallback, same-origin oturum/CSRF, sözleşme-önce API, mevcut DB/deploy sürekliliği, npm/CDN ayrımı |
+| [`sp-mimari-web-uygulama`](sp-mimari-web-uygulama/SKILL.md) | v202610300619 | Oturumlu PHP panel mimarisi: istek yaşam döngüsü, katman sınırları, oturum/yetki/CSRF, SSR + Tailwind tarayıcı motoru + htmx, MySQL, servis, dağıtım |
+| [`sp-mimari-web-spa`](sp-mimari-web-spa/SKILL.md) | v202610300619 | Vite + React SPA + LiteSpeed PHP API mimarisi: dist teslimi, /api/* PHP + SPA fallback, same-origin oturum/CSRF, sözleşme-önce API, mevcut DB/deploy sürekliliği, npm/CDN ayrımı |
 | [`sp-mimari-masaustu`](sp-mimari-masaustu/SKILL.md) | v202610300555 | Rust/GPUI masaüstü mimarisi: katman, bağımlılık, eşzamanlılık, davranış, SQLite, paketleme, derleme/sürüm ve release artefaktı |
 | [`sp-dizayn-web-uygulama`](sp-dizayn-web-uygulama/SKILL.md) | v202610300420 | Panel/uygulama yapısal tasarımı: kabuk, yoğunluk, tipografi, renk/durum, ikon, bileşen davranışı, erişilebilirlik, zero-build teslim |
 | [`sp-dizayn-masaustu`](sp-dizayn-masaustu/SKILL.md) | v202610300440 | GPUI masaüstü yapısal tasarımı: tema/token, ölçü, bileşen/ikon, pencere ve durumlar, hareket, erişilebilirlik |

@@ -23,6 +23,7 @@
 3.2. Oturum ini değerleri (strict mode, yalnız çerez, httponly, samesite, secure) ve uzantı envanteri doğrulanır.
 3.3. Veritabanı sürümü, karakter kümesi ve kolasyonu sunucuda doğrulanır.
 3.4. Ortam envanteri kaydı olmadan dağıtım yapılmaz.
+3.5. Bilgi/hakkında sayfasındaki sürüm damgası `vYYYYMMDDHHMM` biçimindedir; release kaydı ve aynı adlı tag ile birebir aynıdır.
 
 ## 4. Release — güvenlik
 

@@ -1,7 +1,7 @@
 ---
 name: sp-mimari-web-site
 description: "Statik ve SEO odaklı tanıtım sitelerinin mimarisini tanımlar; barındırma, PHP ortak parçalar, elle yazılmış site.css, varlık ve JS bütçesi, SEO/indeksleme, lead formu güvenliği, opsiyonel MySQL ve release kapılarını kapsar. Tanıtım/landing sitesi kurulumunda, SEO ve Core Web Vitals düzeninde, PHP form ucu ve lead saklamada, site yayına almada kullanılır. Oturumlu panel veya SCADA uygulamasında, yalnız görsel tasarım veya estetik dil talebinde, Rust masaüstünde kullanılmaz."
-version: "v202610300500"
+version: "v202610300619"
 ---
 
 # sp-mimari-web-site
@@ -73,6 +73,7 @@ Herkese açık, oturumsuz, statik öncelikli tanıtım sitesinin mimarisi. Amaç
 6.4. Release kapsamı: HTTPS/HSTS, CSP ve SRI, gzip/Brotli bütçesi, lab CWV ölçümü ve varsa alan verisi, robots/sitemap, dizin erişim testi, yedek ve geri dönüş adımı, sürüm/API doğrulaması.
 6.5. Yeni sitede alan verisi henüz yoktur: yayın öncesi lab ölçümü zorunlu, alan verisi yayın sonrası izlenir; eşiği aşan sürüm geri alınır.
 6.6. Ortamlar ayrıdır: dev, staging ve prod farklı yapılandırma kullanır; prod'da debug kapalıdır ve hata sunucu loguna yazılır.
+6.7. Sürüm damgası `vYYYYMMDDHHMM` biçimindedir: küçük v öneki ve on iki haneli yıl-ay-gün-saat-dakika; nokta, tire, alt çizgi, iki nokta ve boşluk kullanılmaz. Damga dağıtım betiğinde yayın anında bir kez üretilir, çalışma anında hesaplanmaz, elle yazılmaz ve düzeltilmez. Bilgi/hakkında sayfasındaki sürüm satırı, release kaydı ve aynı adlı tag birebir aynı değeri taşır; farklıysa yayın kabul edilmez.
 
 ## 7. Sınır ve referanslar
 

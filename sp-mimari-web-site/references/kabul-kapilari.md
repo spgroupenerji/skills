@@ -71,6 +71,7 @@ Bu dosya yalnız risk sınıfı veya açık yayın isteğiyle yüklenir. Her mad
 7.2. canonical canlı adresi gösterir; noindex sayfa sitemap'te bulunmaz.
 7.3. Yayın kaydı tutulur: hangi kapıların çalıştığı, komut ve özet çıktı.
 7.4. Dağıtım sonrası ana sayfa, bir iç sayfa ve form ucu elle doğrulanır.
+7.5. Bilgi/hakkında sayfasındaki sürüm damgası `vYYYYMMDDHHMM` biçimindedir; release kaydı ve aynı adlı tag ile birebir aynıdır.
 
 ## 8. Yayın sonrası
 

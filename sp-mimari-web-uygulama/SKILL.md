@@ -1,7 +1,7 @@
 ---
 name: sp-mimari-web-uygulama
 description: "Oturumlu, rol tabanlı PHP panel uygulamalarının mimarisini kurar: istek yaşam döngüsü, katman sınırları, oturum/yetki/CSRF, SSR teslimi (sabit sürümlü Tailwind tarayıcı motoru, htmx), MySQL veri katmanı, servis ve dağıtım disiplini. Şu durumlarda kullan: yeni panel modülü, oturum ve yetki akışı, htmx kısmi etkileşim. Kullanma: statik tanıtım sitesi/SEO, yalnız estetik dil, yapısal UI tasarımı, Rust masaüstü, Vite+React SPA + PHP API (sp-mimari-web-spa)."
-version: "v202610300440"
+version: "v202610300619"
 ---
 
 # sp-mimari-web-uygulama
@@ -92,6 +92,7 @@ Oturumlu, rol tabanlı PHP panel uygulamalarının mimari sözleşmesi. Varsayı
 7.5. Dağıtım sonrası OPcache temizlenir ve sağlık kontrolü yapılır; başarısız sağlıkta geri dönüş zorunludur; ortam dosyası ve yükleme dizini üzerine yazılmaz.
 7.6. Log ve denetim tek kanaldadır; kanal başına budama tavanı tanımlıdır ve log dizini web'den erişilemez.
 7.7. Ayrıntı: references/dagitim.md, references/kabul-kapilari.md.
+7.8. Sürüm damgası `vYYYYMMDDHHMM` biçimindedir: küçük v öneki ve on iki haneli yıl-ay-gün-saat-dakika; nokta, tire, alt çizgi, iki nokta ve boşluk kullanılmaz. Damga dağıtım betiğinde yayın anında bir kez üretilir, çalışma anında hesaplanmaz, elle yazılmaz ve düzeltilmez. Bilgi/hakkında sayfasındaki sürüm satırı, release kaydı ve aynı adlı tag birebir aynı değeri taşır; farklıysa dağıtım kabul edilmez.
 
 ## 8. Mod sözleşmesi
 

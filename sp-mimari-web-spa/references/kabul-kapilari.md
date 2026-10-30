@@ -43,6 +43,7 @@
 5.4. Rollback hedefi (önceki dist ve önceki API commit'i) kayıtlıdır.
 5.5. Smoke başarısızlığında rollback adımı uygulanmış veya release kapatılmıştır.
 5.6. Dağıtım sonrası OPcache temizliği ve sağlık kontrolü kayıtlıdır.
+5.7. Bilgi/hakkında sayfasındaki sürüm damgası `vYYYYMMDDHHMM` biçimindedir; release kaydı ve aynı adlı tag ile birebir aynıdır.
 
 ## 6. Kanıt biçimi
 

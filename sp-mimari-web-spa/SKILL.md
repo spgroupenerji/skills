@@ -1,7 +1,7 @@
 ---
 name: sp-mimari-web-spa
 description: "Vite ile derlenen React SPA'nın (istemci yönlendirme) LiteSpeed üzerinde PHP REST API ile mimarisini kurar: dist teslimi, /api/* yönlendirmesi, aynı origin oturum ve CSRF, sözleşme-önce API, süreklilik ve release kapıları. Şu durumlarda kullan: React SPA + PHP API kurulumu, SPA yönlendirme/derin bağlantı sorunu, API sözleşmesi ve dağıtımı. Kullanma: SSR panel, statik/SEO site, salt estetik dil; bu alanlarda yüklenmez."
-version: "v202610300515"
+version: "v202610300619"
 ---
 
 # sp-mimari-web-spa
@@ -79,6 +79,7 @@ Vite ile derlenen React SPA ve LiteSpeed üzerinde PHP REST API mimarisinin söz
 6.4. Yapılandırma mevcut düzende kalır; yeni ortam anahtarları belgelenir; sırlar ortam dosyasında tutulur.
 6.5. Dağıtım öncesi ve sonrası smoke listesi ile geri alma adımı yazılıdır; rollback önceki dist ve önceki API commit'ini hedefler.
 6.6. Ayrıntı: references/sureklilik-dagitim.md.
+6.7. Sürüm damgası `vYYYYMMDDHHMM` biçimindedir: küçük v öneki ve on iki haneli yıl-ay-gün-saat-dakika; nokta, tire, alt çizgi, iki nokta ve boşluk kullanılmaz. Damga build başlamadan üretim betiğinde bir kez üretilir ve build ortam değişkeniyle bilgi/hakkında sayfasına aktarılır; çalışma anında hesaplanmaz, elle yazılmaz, koda gömülü ikinci sürüm sabiti bulunmaz. Bilgi sayfası, release kaydı ve aynı adlı tag birebir aynı değeri taşır; farklıysa dağıtım kabul edilmez. Bu damga §5'teki API sürümlemesinden ayrıdır.
 
 ## 7. Mod sözleşmesi
 
