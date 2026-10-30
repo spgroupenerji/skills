@@ -26,6 +26,7 @@ SP GROUP projelerinde kullanılan ajan yeteneklerinin (skill) tek deposu. Her ye
 | [`sp-dizayn-masaustu`](sp-dizayn-masaustu/SKILL.md) | v202610300440 | GPUI masaüstü yapısal tasarımı: tema/token, ölçü, bileşen/ikon, pencere ve durumlar, hareket, erişilebilirlik |
 | [`sp-zen-dizayn`](sp-zen-dizayn/SKILL.md) | v202610300440 | Apple klasik/ilk iPhone dönemi sade estetik dil: renk/boşluk/tipografi hissi, materyal/derinlik, yay fiziği, reduced-motion |
 | [`sp-sozlesme`](sp-sozlesme/SKILL.md) | v202610290345 | Görev başı sözleşme: direktifler, araç disiplini ve kanıtı, erişim etkinleştirme, push/deploy/webhook, kapanış senkronu |
+| [`sp-unsplash-gorsel-indirme`](sp-unsplash-gorsel-indirme/SKILL.md) | v202610310029 | Unsplash görsel tedariki: ticari güvenlik kapısı/onay kaydı, API/CLI + unsplash-php/unsplash-js + anahtarsız Chrome/CDP tarayıcı yedeği, hotlink/atıf, SEO adlı WebP/JPG, srcset, credits.json, hız limiti ve hata yönetimi |
 
 Yeni yetenek eklendiğinde bu tabloya satır eklenir. Tablo, depodaki yeteneklerin tek doğruluk kaynağıdır.
 
