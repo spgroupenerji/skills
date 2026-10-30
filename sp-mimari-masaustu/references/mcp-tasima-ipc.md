@@ -1,8 +1,8 @@
-# Taşıma Kararı
+# MCP Taşıma ve IPC
 
-> Gövde §2'nin ayrıntısı. SDK adları, sürüm ve feature'lar burada sabitlenmez; seçim ölçütleri ve doğrulama hedefleri yazılır.
+> Gövde §9'un ayrıntısı. SDK adları, sürüm ve feature'lar burada sabitlenmez; seçim ölçütleri ve doğrulama hedefleri yazılır.
 
-## 1. Ölçütler
+## 1. Taşıma ölçütleri
 1.1. Tek örnek: uygulama aynı anda tek pencere ve tek SQLite yazıcısı olmalı.
 1.2. İstemci desteği: hedef istemcilerde stdio varsayılan; HTTP veya connector desteği istemci ve sürüme göre değişir.
 1.3. Dağıtım: ek sidecar binary kabul edilebilir mi; tek exe şartı var mı.
@@ -31,13 +31,25 @@
 4.2. GUI tek örnek şartsa bu mod ancak ikinci süreç mevcut örneğe devrediyorsa geçerlidir; aksi hâlde A'ya dönülür.
 4.3. Doğrulama: ikinci başlatmada pencere ve DB çoğalmıyor mu; çıkış kodu ve stderr anlaşılır mı.
 
-## 5. Karar kaydı ve geri dönüş
-5.1. Seçilen taşıma, gerekçe, riskler, geri dönüş adımı ve test kanıtı yazılır.
-5.2. Taşıma değişikliği kırıcı değişikliktir; istemci yapılandırması ve sürüm el sıkışması birlikte güncellenir.
-5.3. A'dan B'ye geçiş aynı araç yüzeyini korur; araç sözleşmesi taşımadan bağımsızdır.
+## 5. Sidecar ve IPC sözleşmesi
+5.1. Sorumluluk: sidecar stdio MCP yüzeyi, pipe istemcisi, sınırlı yeniden bağlanma ve anlaşılır hata taşır; iş mantığı taşımaz. GUI pipe sunucusu, MCP oturumu, araç yürütme, UI köprüsü ve yetkiyi taşır.
+5.2. Sidecar stdout'a yalnız MCP mesajı yazar; kendi logu stderr'dedir; GUI sürecini sahiplenmez.
+5.3. Başlatma: argüman doğrula; pipe'a sınırlı denemeyle bağlan (deneme, bekleme, geri çekilme adlandırılmış sabit); uygulama sürümü, IPC protokol sürümü ve araç manifest özetiyle el sıkış.
+5.4. Uyuşmazlıkta yazma araçları reddedilir; okuma veya teşhis aracı varsa yalnız o açılır; hata Türkçe ve eyleme dönüktür.
+5.5. GUI yoksa anlaşılır hata döndürülür; GUI başlatma ürün kararıysa tek seferlik kilit altında yapılır ve bağlanma sınırlı denenir; hazır olmadan başarı yanıtı verilmez.
+5.6. Çerçeve: pipe üzerinde stdio çerçevesi (UTF-8, satır başına tek JSON-RPC, gömülü satır yok); satır boyutu üst sınırı; aşan mesaj bağlantı hatası.
+5.7. Yön: istemci → GUI istek/bildirim; GUI → istemci yanıt/bildirim; ters yön yok. İki yön ayrı görevlerde pompalanır; bir yönün hatası diğerini sessizce bırakmaz.
+5.8. Pipe yazımı bloklandığında okuma bekletilir; sınırsız tampon yoktur; istek kimliği SDK'da kalır, sidecar yeniden yazmaz.
+5.9. Hata/kapanış: pipe kopunca sınırlı yeniden bağlanma, başarısızsa stderr log ve sıfır olmayan çıkış; GUI araç hatası JSON-RPC hata yanıtı olarak iletilir; stdin EOF'ta pipe kapanır ve temiz çıkılır; GUI kapanınca bekleyen çağrılar iptal edilir.
+5.10. Süreç öldürme testinde iki tarafta da kalıntı ve asılı çağrı kalmamalıdır.
+5.11. Windows hijyeni: konsol penceresi açılmaz; panik çıktısı stderr'e; çıkış kodu anlamlı; pipe sunucusu ilk örnek bayrağıyla tek örnek niyetini bildirir; GUI tek örnek kilidi pipe'tan bağımsız korunur.
+5.12. İstemci yapılandırması sidecar'ın derlenmiş exe yolunu gösterir.
+5.13. Gözlemlenebilirlik: stderr yapısal log, seviye ortam değişkeniyle; log dosyasında boyut/döndürme sınırı ve sır/PII maskesi; istemciye kısa Türkçe teşhis.
 
 ## 6. Kontrol listesi
 - [ ] Tek örnek kuralı taşımada korunuyor.
 - [ ] Sidecar sürüm el sıkışması tanımlı ve test edildi.
+- [ ] stdout saflık testi geçti (yalnız MCP mesajı, log stderr).
 - [ ] HTTP seçildiyse Host/Origin/kimlik doğrulama açıkça yapılandırıldı.
+- [ ] GUI kapalı, süreç öldürme ve yeniden bağlanma testleri yeşil.
 - [ ] Taşıma ve feature doğrulaması resmî kaynakla yapıldı; sürüm gömülü değil.

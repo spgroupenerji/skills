@@ -1,6 +1,6 @@
 # Kabul Kapıları
 
-> Gövde §7 ve §8'in ayrıntısı. Kapılar yalnız release veya risk tetikte yüklenir; dev modda hızlı kontrol yeterlidir.
+> Gövde §7, §8 ve §9'un ayrıntısı. Kapılar yalnız release veya risk tetikte yüklenir; dev modda hızlı kontrol yeterlidir.
 
 ## 1. Mod eşlemesi
 
@@ -37,7 +37,14 @@
 4.2. İstisna (ör. GPU'suz CI'da yazılım Vulkan, gerekçeli tam eşzamanlama) kayda geçer; kayıtsız istisna yok.
 4.3. Başarısız kapıda yayın durur; kapı atlanmaz, kapsamı daraltılmış geçici istisna yazılı onayla kaydedilir.
 
-## 5. Kapı listesi
+## 5. MCP kapıları
+
+5.1. Geliştirme: stdout saflık testi (her stdout satırı geçerli MCP mesajı, log stderr); el sıkışma ve en az bir araç çağrısı; katman grep'i (MCP modülü UI çizim kodu ve doğrudan SQL içermez, `ui/` altında MCP taşıma kodu yok); araç açıklama ve şema gözden geçirmesi.
+5.2. Release veya risk: MCP Inspector ile manuel doğrulama (resmî araç, sürümü çalışma anında doğrulanır); istemci matrisi (Claude Desktop, VS Code ve hedeflenen diğer istemcide ilk araç çağrısı); Windows E2E (iki istemci oturumu tek GUI, GUI kapalıyken sidecar hatası, süreç öldürme/yeniden bağlanma, SQLite kilidi); sürüm el sıkışması ve uyuşmazlık reddi; installer sidecar'ı doğru yolda içerir.
+5.3. HTTP seçildiyse 127.0.0.1 bağlama, Host/Origin doğrulaması, kimlik doğrulama, istek boyutu ve hız sınırı doğrulanır.
+5.4. MCP kapı sonuçları kanıt kaydına yazılır; kanıtsız geçti beyanı yoktur.
+
+## 6. Kapı listesi
 
 - [ ] `cargo build --release --locked` ve `cargo test --locked` yeşil.
 - [ ] `cargo fmt --check` ve `cargo clippy -- -D warnings` temiz.
@@ -49,3 +56,6 @@
 - [ ] Erişilebilirlik ağacı ve IME, ekran okuyucu gerçek test kaydı var.
 - [ ] Katman grep'i temiz; sır taraması temiz.
 - [ ] Platform CI iki iş yeşil; `release/` ve `target/` izlenmiyor.
+- [ ] MCP seçildiyse stdout saflık testi geçti (yalnız JSON-RPC, log stderr).
+- [ ] El sıkışma/araç testi, istemci matrisi ve sürüm el sıkışması kanıtlandı.
+- [ ] Windows E2E (tek GUI, GUI kapalı hata, kill/reconnect, SQLite kilidi) geçti.
