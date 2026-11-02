@@ -1,7 +1,7 @@
 ---
 name: sp-zen-dizayn
 description: "Şu durumlarda yükle: Apple'ın klasik/ilk iPhone döneminin sakin, sade ve insani tasarım hissi istendiğinde; 'zen/minimal estetik', 'az çok', 'sade ama sıcak' tarifi veya mevcut arayüzün bu yöne çekilmesi istendiğinde. Kullanma: bileşen, ızgara, token, kod, erişilebilirlik veya performans uygulaması istendiğinde; bunlar platform becerilerinin alanıdır."
-version: "v202611020443"
+version: "v202611020457"
 ---
 
 # sp-zen-dizayn
@@ -41,7 +41,7 @@ Tasarım kararsız kaldığında bu sorular yön verir:
 1. İki öğe aynı anda bağırıyor mu? Biri kazanmalı; ikisi birden vurgulanmaz.
 2. Emin değil miyim? Önce eksiltme denenir; anlam kaybolursa geri konur.
 3. Gürültülü mü? Fazladır. Boş mu? Anlam eksiktir; süs eklenmez, niyet eklenir.
-4. Tanıdık ama sıradan mı? Tek bir yerde tek bir sürpriz yeter.
+4. Tanıdık ama sıradan mı? Sürpriz sayısı değil, her yeniliğin bir işi çözmesi esastır.
 5. Hareket bir değişikliği mi anlatıyor? Anlatmıyorsa kaldırılır.
 6. Renk anlam taşıyor mu? Taşımıyorsa nötrleşir.
 7. Dokunma gecikiyor mu? Tasarım ölmüştür; anında yanıt esastır.
@@ -60,7 +60,7 @@ Tasarım kararsız kaldığında bu sorular yön verir:
 - Erişilebilirlik, güvenlik, veri bütünlüğü ve performans bu felsefenin üstündedir; estetik gerekçe onları esnetmez. Hareket, reduced-motion tercihine saygı duyar.
 - Somut ölçü, renk kodu, süre ve eğri dayatılmaz; platform becerisi kendi değerini çalışma anında doğrular.
 - UI metni tam Türkçe imlâ ile yazılır (ğ, ü, ş, ı, ö, ç); doğrulanamayan yetenek "doğrulanmalı" etiketiyle ele alınır.
-- Web sitesi sp-dizayn-web-site, panel sp-dizayn-web-uygulama, masaüstü sp-dizayn-masaustu alanındadır; bu beceri onlara yön verir, uygulamayı üstlenmez.
+- Web sitesi sp-dizayn-web-site, panel sp-dizayn-web-uygulama, masaüstü sp-dizayn-masaustu alanındadır; mobil/yerel uygulama yapısal uygulaması da platform becerilerinin alanındadır. Bu beceri onlara yön verir, uygulamayı üstlenmez.
 
 ## Kapanış testi
 
