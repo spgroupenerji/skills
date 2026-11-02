@@ -1,7 +1,7 @@
 ---
 name: sp-sozlesme
 description: "Kullanıcının kalıcı çalışma sözleşmesini hatırlatır: kök neden, sıfır teknik borç, tek kuyruk düzeni, araç disiplini, bağlam hijyeni ve kanıt zorunluluğu. Şu durumlarda yükle: kullanıcı kural, hatırlat, anayasa, başla, push veya deploy dediğinde; kod yazma, düzeltme, refaktör, hata ayıklama, mimari analiz, kod inceleme, webhook/deploy kurulumu ve çok adımlı görevlerin başında. Sohbet, çeviri veya genel bilgi sorularında yüklenmez."
-version: "v202611020351"
+version: "v202611020408"
 alwaysApply: false
 platforms:
   - CLAUDE_CODE
@@ -30,7 +30,7 @@ allowed-tools:
 ---
 # sp-sozlesme
 
-Kullanıcının sık tekrarladığı çalışma direktiflerini etkin tutar ve kaynak kuralları hatırlatır. Kaynak: `C:\01-github\kodlama-kural-ayar` (`AGENTS-tr.md`, `04-skill-mimarisi-kurallari.md`) ve `sp-zen-dizayn` skili. Çelişkide öncelik: anayasa > sp-zen-dizayn > bu skil.
+Kullanıcının sık tekrarladığı çalışma direktiflerini etkin tutar.
 
 ## 1. Direktifler
 
