@@ -1,7 +1,7 @@
 ---
 name: sp-mimari-web-spa
 description: "Vite ile derlenen React SPA'nın (istemci yönlendirme) LiteSpeed üzerinde PHP REST API ile mimarisini kurar: dist teslimi, /api/* yönlendirmesi, aynı origin oturum ve CSRF, sözleşme-önce API, süreklilik ve release kapıları. Şu durumlarda kullan: React SPA + PHP API kurulumu, SPA yönlendirme/derin bağlantı sorunu, API sözleşmesi ve dağıtımı. Kullanma: SSR panel, statik/SEO site, salt estetik dil; bu alanlarda yüklenmez."
-version: "v202610300619"
+version: "v202611020443"
 ---
 
 # sp-mimari-web-spa
@@ -9,9 +9,9 @@ version: "v202610300619"
 Vite ile derlenen React SPA ve LiteSpeed üzerinde PHP REST API mimarisinin sözleşmesi: istemci yönlendirme, statik dist teslimi, aynı origin güvenlik, sözleşme-önce API ve mevcut sistemle süreklilik. Varsayılan mod geliştirmedir; güvenlik, erişilebilirlik, veri bütünlüğü ve sır yönetimi her modda değişmezdir.
 
 ## 0. Ortak çalışma ilkeleri
-> Kaynak: AGENTS-tr; ortak blok, bilinçli kopya. Süreç ve araç ayrıntısı: sp-sozlesme 1.3, 2.2 ve §4.
+> Kaynak: anayasa; ortak blok, bilinçli kopya. Süreç ve araç ayrıntısı: sp-sozlesme 1.3, 2.2 ve §4.
 
-0.1. Öncelik: kullanıcının güncel yazılı talimatı > AGENTS-tr > bu beceri > model genel bilgisi. Çelişkide üstteki kaynak kazanır.
+0.1. Öncelik: kullanıcının güncel yazılı talimatı > anayasa > bu beceri > model genel bilgisi. Çelişkide üstteki kaynak kazanır.
 0.2. Mod: varsayılan geliştirmedir; release/prod kapıları yalnız risk sınıfı (oturum, API sözleşmesi, env/secret, yönlendirme, dağıtım) veya açık yayın isteğiyle yüklenir.
 0.3. Değişmezler: güvenlik, erişilebilirlik, veri bütünlüğü, sır yönetimi ve Türkçe imlâ her modda korunur; hız veya token için kısaltılmaz.
 0.4. Bilgi: sürüm, API ve davranış varsayılmaz; çalışma anında context7 veya resmî kaynaktan doğrulanır; doğrulanamayan bilgi "doğrulanmalı" etiketiyle verilir.
@@ -25,7 +25,7 @@ Vite ile derlenen React SPA ve LiteSpeed üzerinde PHP REST API mimarisinin söz
 1.3. Kapsam dışı: SSR zero-build PHP panel (sp-mimari-web-uygulama), statik/SEO site (sp-mimari-web-site), salt estetik dil (sp-zen-dizayn), yapısal UI tasarımı (sp-dizayn-web-uygulama).
 1.4. SSR panelde SPA yasaktır; SPA modeli ayrı yüzey veya proje içindir; iki teslim modeli aynı yüzeyde karıştırılmaz.
 1.5. Yapısal UI ve erişilebilirlik sp-dizayn-web-uygulama alanındadır; o becerinin zero-build/htmx teslim bölümü SPA'da uygulanmaz, build ve teslim mekaniği bu beceridedir.
-1.6. Çelişkide öncelik: kullanıcı talimatı > AGENTS-tr > platform mimari becerisi > tasarım becerisi > estetik dil; SPA teslim mekaniğinde bu beceri mimari katmandır.
+1.6. Çelişkide öncelik: kullanıcı talimatı > anayasa > platform mimari becerisi > tasarım becerisi > estetik dil; SPA teslim mekaniğinde bu beceri mimari katmandır.
 
 ## 2. Model ve dağıtım
 

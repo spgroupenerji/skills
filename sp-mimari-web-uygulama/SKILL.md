@@ -1,7 +1,7 @@
 ---
 name: sp-mimari-web-uygulama
 description: "Oturumlu, rol tabanlı PHP panel uygulamalarının mimarisini kurar: istek yaşam döngüsü, katman sınırları, oturum/yetki/CSRF, SSR teslimi (sabit sürümlü Tailwind tarayıcı motoru, htmx), MySQL veri katmanı, servis ve dağıtım disiplini. Şu durumlarda kullan: yeni panel modülü, oturum ve yetki akışı, htmx kısmi etkileşim. Kullanma: statik tanıtım sitesi/SEO, yalnız estetik dil, yapısal UI tasarımı, Rust masaüstü, Vite+React SPA + PHP API (sp-mimari-web-spa)."
-version: "v202610300619"
+version: "v202611020443"
 ---
 
 # sp-mimari-web-uygulama
@@ -9,9 +9,9 @@ version: "v202610300619"
 Oturumlu, rol tabanlı PHP panel uygulamalarının mimari sözleşmesi. Varsayılan mod geliştirmedir: derleme yok, her mikro değişiklikte tam kapı yok; güvenlik, erişilebilirlik, veri bütünlüğü ve sır yönetimi her modda değişmezdir. Statik site mimarisi, estetik dil ve yapısal UI tasarımı kapsam dışıdır; yapısal tasarım sp-dizayn-web-uygulama, estetik dil sp-zen-dizayn alanındadır.
 
 ## 0. Ortak çalışma ilkeleri
-> Kaynak: AGENTS-tr; ortak blok, bilinçli kopya. Süreç ve araç ayrıntısı: sp-sozlesme 1.3, 2.2 ve §4.
+> Kaynak: anayasa; ortak blok, bilinçli kopya. Süreç ve araç ayrıntısı: sp-sozlesme 1.3, 2.2 ve §4.
 
-0.1. Öncelik: kullanıcının güncel yazılı talimatı > AGENTS-tr > bu beceri > model genel bilgisi. Çelişkide üstteki kaynak kazanır.
+0.1. Öncelik: kullanıcının güncel yazılı talimatı > anayasa > bu beceri > model genel bilgisi. Çelişkide üstteki kaynak kazanır.
 0.2. Mod: varsayılan geliştirmedir; release/prod kapıları yalnız risk sınıfı (oturum, şema, sır, dağıtım) veya açık yayın isteğiyle yüklenir.
 0.3. Değişmezler: güvenlik, erişilebilirlik, veri bütünlüğü, sır yönetimi ve Türkçe imlâ her modda korunur; hız veya token için kısaltılmaz.
 0.4. Bilgi: sürüm, API ve davranış varsayılmaz; çalışma anında context7 veya resmî kaynaktan doğrulanır; doğrulanamayan bilgi "doğrulanmalı" etiketiyle verilir.

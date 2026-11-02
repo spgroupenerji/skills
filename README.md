@@ -17,16 +17,16 @@ SP GROUP projelerinde kullanılan ajan yeteneklerinin (skill) tek deposu. Her ye
 
 | Yetenek | Sürüm | Kapsam |
 | --- | --- | --- |
-| [`sp-mimari-web-site`](sp-mimari-web-site/SKILL.md) | v202610302324 | Statik/SEO tanıtım sitesi mimarisi: barındırma, elle yazılmış site.css, varlık/JS bütçesi, SEO, lead formu güvenliği, opsiyonel MySQL, sinematik JS istisnası, release kapıları |
-| [`sp-dizayn-web-site`](sp-dizayn-web-site/SKILL.md) | v202610302324 | Herkese açık siteler için en üst seviye tasarım: ziyaretçi işi, sanat yönü, insan dili metin, görsel/video/ses üretimi, sinematik scroll ve 3B/WebGL, araç zinciri, zero-build site.css ve ölçülebilir kalite kapıları |
-| [`sp-mimari-web-uygulama`](sp-mimari-web-uygulama/SKILL.md) | v202610300619 | Oturumlu PHP panel mimarisi: istek yaşam döngüsü, katman sınırları, oturum/yetki/CSRF, SSR + Tailwind tarayıcı motoru + htmx, MySQL, servis, dağıtım |
-| [`sp-mimari-web-spa`](sp-mimari-web-spa/SKILL.md) | v202610300619 | Vite + React SPA + LiteSpeed PHP API mimarisi: dist teslimi, /api/* PHP + SPA fallback, same-origin oturum/CSRF, sözleşme-önce API, mevcut DB/deploy sürekliliği, npm/CDN ayrımı |
-| [`sp-mimari-masaustu`](sp-mimari-masaustu/SKILL.md) | v202610301810 | Rust/GPUI masaüstü mimarisi: katman, bağımlılık, eşzamanlılık, davranış, SQLite, MCP sunucu desteği (sidecar/named pipe, loopback HTTP, araç, UI köprüsü, güvenlik), paketleme ve derleme/sürüm artefaktı |
+| [`sp-mimari-web-site`](sp-mimari-web-site/SKILL.md) | v202611020443 | Statik/SEO tanıtım sitesi mimarisi: barındırma, elle yazılmış site.css, varlık/JS bütçesi, SEO, lead formu güvenliği, opsiyonel MySQL, sinematik JS istisnası, release kapıları |
+| [`sp-dizayn-web-site`](sp-dizayn-web-site/SKILL.md) | v202611020443 | Herkese açık siteler için en üst seviye tasarım: ziyaretçi işi, sanat yönü, insan dili metin, görsel/video/ses üretimi, sinematik scroll ve 3B/WebGL, araç zinciri, zero-build site.css ve ölçülebilir kalite kapıları |
+| [`sp-mimari-web-uygulama`](sp-mimari-web-uygulama/SKILL.md) | v202611020443 | Oturumlu PHP panel mimarisi: istek yaşam döngüsü, katman sınırları, oturum/yetki/CSRF, SSR + Tailwind tarayıcı motoru + htmx, MySQL, servis, dağıtım |
+| [`sp-mimari-web-spa`](sp-mimari-web-spa/SKILL.md) | v202611020443 | Vite + React SPA + LiteSpeed PHP API mimarisi: dist teslimi, /api/* PHP + SPA fallback, same-origin oturum/CSRF, sözleşme-önce API, mevcut DB/deploy sürekliliği, npm/CDN ayrımı |
+| [`sp-mimari-masaustu`](sp-mimari-masaustu/SKILL.md) | v202611020443 | Rust/GPUI masaüstü mimarisi: katman, bağımlılık, eşzamanlılık, davranış, SQLite, MCP sunucu desteği (sidecar/named pipe, loopback HTTP, araç, UI köprüsü, güvenlik), paketleme ve derleme/sürüm artefaktı |
 | [`sp-dizayn-web-uygulama`](sp-dizayn-web-uygulama/SKILL.md) | v202610300420 | Panel/uygulama yapısal tasarımı: kabuk, yoğunluk, tipografi, renk/durum, ikon, bileşen davranışı, erişilebilirlik, zero-build teslim |
-| [`sp-dizayn-masaustu`](sp-dizayn-masaustu/SKILL.md) | v202610300440 | GPUI masaüstü yapısal tasarımı: tema/token, ölçü, bileşen/ikon, pencere ve durumlar, hareket, erişilebilirlik |
-| [`sp-zen-dizayn`](sp-zen-dizayn/SKILL.md) | v202610300440 | Apple klasik/ilk iPhone dönemi sade estetik dil: renk/boşluk/tipografi hissi, materyal/derinlik, yay fiziği, reduced-motion |
-| [`sp-orkestra`](sp-orkestra/SKILL.md) | v202611020351 | Görev orkestrasyonu: uzman merceği, canlı katalogdan araç zinciri, zorunlu kod zekâsı araçları, kanıtlı kapanış |
-| [`sp-sozlesme`](sp-sozlesme/SKILL.md) | v202611020408 | Görev başı sözleşme: direktifler, araç disiplini ve kanıtı, erişim etkinleştirme, push/deploy/webhook, kapanış senkronu |
+| [`sp-dizayn-masaustu`](sp-dizayn-masaustu/SKILL.md) | v202611020443 | GPUI masaüstü yapısal tasarımı: tema/token, ölçü, bileşen/ikon, pencere ve durumlar, hareket, erişilebilirlik |
+| [`sp-zen-dizayn`](sp-zen-dizayn/SKILL.md) | v202611020443 | Apple klasik/ilk iPhone dönemi tasarım felsefesi: sakinlik, az-çok, aktif boşluk, doğal hareket, içeriği öne çıkaran his; yaratıcılığı kısıtlamayan yön |
+| [`sp-orkestra`](sp-orkestra/SKILL.md) | v202611020443 | Görev orkestrasyonu: uzman merceği, canlı katalogdan araç zinciri, zorunlu kod zekâsı araçları, kanıtlı kapanış |
+| [`sp-sozlesme`](sp-sozlesme/SKILL.md) | v202611020443 | Görev başı sözleşme: direktifler, araç disiplini ve kanıtı, erişim etkinleştirme, push/deploy/webhook, kapanış senkronu |
 | [`sp-unsplash-gorsel-indirme`](sp-unsplash-gorsel-indirme/SKILL.md) | v202610310029 | Unsplash görsel tedariki: ticari güvenlik kapısı/onay kaydı, API/CLI + unsplash-php/unsplash-js + anahtarsız Chrome/CDP tarayıcı yedeği, hotlink/atıf, SEO adlı WebP/JPG, srcset, credits.json, hız limiti ve hata yönetimi |
 
 Yeni yetenek eklendiğinde bu tabloya satır eklenir. Tablo, depodaki yeteneklerin tek doğruluk kaynağıdır.
@@ -70,7 +70,7 @@ Yetenekler `description` alanındaki tetikleyicilere göre otomatik yüklenir; a
 - `sp-mimari-web-site` + `sp-dizayn-web-site`: tanıtım/landing sitesi işlerinde mimari ile tasarım/üretim hattını ayırır; panel kapsam dışıdır.
 - `sp-mimari-masaustu` + `sp-dizayn-masaustu`: Rust/GPUI masaüstü uygulamasında mimari (derleme/sürüm dahil) ve arayüz işlerini ayırır.
 - `sp-mimari-web-spa` + `sp-dizayn-web-uygulama`: Vite + React SPA + PHP API hedefinde mimari ve yapısal tasarımı ayırır; SSR zero-build panel hedefiyle karıştırılmaz.
-- `sp-zen-dizayn`: yalnız "Apple tarzı, klasik iPhone sadeliği, sade tasarım dili" istendiğinde yüklenir; yapısal/teknik uygulama istendiğinde platform becerileri kullanılır. Ayrıntı [SKILL.md](sp-zen-dizayn/SKILL.md) dosyasındadır.
+- `sp-zen-dizayn`: Apple'ın klasik dönem hissini felsefe olarak yükler; tasarımı bu yöne çeker, yaratıcılığı kısıtlamaz. Yapısal/teknik uygulama istendiğinde platform becerileri kullanılır. Ayrıntı [SKILL.md](sp-zen-dizayn/SKILL.md) dosyasındadır.
 
 ## Yeni Yetenek Ekleme
 

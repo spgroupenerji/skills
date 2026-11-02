@@ -1,122 +1,74 @@
 ---
 name: sp-zen-dizayn
-description: "Apple'ın klasik/ilk iPhone döneminin (iPhone 5 ve öncesi) sade ama göze hoş gelen tasarım dilini estetik referans olarak tanımlar: sakin renk, cömert boşluk, sistem tipografisi, hafif derinlik ve doğal hareket. Şu durumlarda yüklenir: Apple tarzı arayüz, klasik iPhone sadeliği, sade ve göze hoş tasarım dili, zen/minimal estetik istendiğinde. Yapısal veya teknik uygulama istendiğinde kullanılmaz; bileşen, yerleşim, kod ve erişilebilirlik platform becerilerinin alanıdır."
-version: "v202610300440"
+description: "Şu durumlarda yükle: Apple'ın klasik/ilk iPhone döneminin sakin, sade ve insani tasarım hissi istendiğinde; 'zen/minimal estetik', 'az çok', 'sade ama sıcak' tarifi veya mevcut arayüzün bu yöne çekilmesi istendiğinde. Kullanma: bileşen, ızgara, token, kod, erişilebilirlik veya performans uygulaması istendiğinde; bunlar platform becerilerinin alanıdır."
+version: "v202611020443"
 ---
 
 # sp-zen-dizayn
 
-Sade ama göze hoş gelen bir arayüzün estetik dilini tarif eder: neyin sakin, tanıdık ve ustalıklı hissettirdiğini söyler; bileşeni, yerleşimi ve kodu kurmaz. Uygulama sorusunun yanıtı platform becerilerindedir; bu becerinin yanıtı "nasıl hissettirmeli" sorusudur.
+## Bu belge ne?
 
-## Ne zaman / ne zaman değil
+Bu bir kural kitabı değil, bir **yön duygusudur**. Apple'ın klasik döneminin (iPhone 5 ve öncesi) tasarım hissini tarif eder: sakin, net, sıcak, dokunulabilir, kendini değil içeriği gösteren bir dünya. "Şunu yap" demez; tasarımın bu dünyaya ait olup olmadığını sezdirir.
 
-| Kullan | Kullanma |
-| --- | --- |
-| "Apple tarzı arayüz", "klasik iPhone sadeliği" istendiğinde | Bileşen, yerleşim, ızgara veya durum davranışı kurulacaksa |
-| "Sade ve göze hoş tasarım dili", "zen/minimal estetik" tarifi istendiğinde | Kod, token altyapısı, tema mimarisi veya derleme işi varsa |
-| Renk, boşluk, tipografi ve hareket karakteri seçilirken | Erişilebilirlik denetimi, performans bütçesi veya test isteniyorsa |
-| Mevcut arayüzün estetik yönü tartışılırken | Platforma özgü API, sürüm veya bileşen sözleşmesi kararı verilecekse |
+Bu felsefe yaratıcılığı kısıtlamak için değil, dağınıklığı azaltmak için vardır. Kullanıcının brief'i, marka değerleri ve içerik bu felsefenin önündedir; felsefe onları yorumlar, dayatmaz. Yeni fikirler, beklenmedik kompozisyonlar ve kişisel yorum serbesttir; ölçüt taklit değil, hissi kendi çözümünle üretmektir.
 
-Estetik dil ile uygulama aynı işte gerekiyorsa ikisini birlikte yükle: platform becerisi yapıyı, bu beceri hissi belirler.
+## Dünya görüşü
 
-## Estetik çekirdek
+- **Sadelik, boşluk değil karar berraklığıdır.** Az şey, doğru şeydir; eksiklik değil özdür.
+- **Sessizlik bir malzemedir.** Boşluk nefes ve hiyerarşidir; arayüz bağırmaz, alan açar.
+- **İçerik kahramandır.** Arayüz kendi gösterisini yapmaz; kullanıcının işini görünür kılar.
+- **Yüzey insan gibi davranır.** Dokununca anında yanıt verir; ağırlığı, ışığı ve malzemesi tutarlıdır.
+- **Hareket açıklamadır.** Bir değişikliği anlatır; süs olarak kullanılmaz.
+- **Tanıdıklık güven verir, yenilik anlam kattığında değerlidir.** Bildik davranış korunur; sürpriz yalnız işi kolaylaştırıyorsa.
+- **Sıcaklık detaydadır.** Ton, tipografi ritmi, kenar yumuşaklığı ve mikro geri bildirim tasarımı insani kılar.
 
-Apple'ın sekiz tasarım ilkesinden süzülen beş çekirdek bu dilin omurgasıdır:
+## Zen katmanı
 
-1. **Amaç:** Her öğe bir işe yarar; yaramayan öğe eklenmez.
-2. **Sakinlik:** Arayüz yarışmaz; tek vurgu, sakin yüzey ve dengeli boşluk dikkat çeker.
-3. **Ustalık:** Hizalama, boşluk ve tipografi keyfi değildir; her değer savunulabilir.
-4. **Tanıdıklık:** Bilinen davranış ve yerleşim korunur; sürpriz yenilik yerine öngörülebilirlik.
-5. **Sürtünmesizlik:** Akıllı varsayılan, kısa yol ve tek adım; kullanıcı akışı kesilmez.
+Beş fikir, bu dünyanın omurgasıdır; kural değil, bakış açısıdır:
 
-Zen katmanı:
+- **Kanso — sadelik:** Gereksiz olan çıkarılır. Ayrım çizgiyle değil ton, boşluk ve tipografiyle kurulur.
+- **Ma — aktif boşluk:** Boşluk süs değildir; yakınlık ilişkiyi, uzaklık ayrımı anlatır.
+- **Shizen — doğal hareket:** Hareket fizikten doğar; kesintiye uğrayabilir, yön değiştirebilir, hedefe yumuşak döner.
+- **Görünmez teknoloji:** Arayüz bağlamı öngörür, doğru varsayılanı sunar, kullanıcıyı akışta tutar; kendini hatırlatmaz.
+- **Kademeli odak:** Her yüzeyde tek birincil niyet vardır; ayrıntı katman katman açılır.
 
-- **Kanso (sadelik):** Gereksiz olan çıkar; ayrım çizgiyle değil ton, boşluk ve tipografiyle kurulur.
-- **Ma (aktif boşluk):** Boşluk süs değil gruplama aracıdır; yakınlık ilişkiyi, uzaklık ayrımı anlatır.
-- **Shizen (doğal hareket):** Hareket fizikten doğar; yapay süre ve sabit eğri yerine yay ve momentum kullanılır.
-- **Görünmez teknoloji:** Arayüz kendini değil kullanıcının işini gösterir; bağlamı öngörür, doğru varsayılanı sunar, boş durumda tek eylem önerir.
-- **Kademeli odak:** Ekranda tek primary eylem; ayrıntı katman katman açılır.
+**Sade-iyi-his:** Klasik iPhone'un parlak skeuomorfizmi taklit edilmez. Alınan şey süs değil histir: net hiyerarşi, dürüst materyal, yumuşak hareket ve dokununca canlanan yüzey.
 
-**Sade-iyi-his:** Klasik iPhone döneminin dokulu, parlak skeuomorfizmi taklit edilmez. Alınan şey süs değil histir: net hiyerarşi, gerçek materyal hissi, yumuşak hareket ve dokununca anında yanıt veren yüzey.
+## Karar anları
 
-## Renk
+Tasarım kararsız kaldığında bu sorular yön verir:
 
-- Yüzeyin en az %90'ı nötr ton ailesindedir; sıcak-soğuk tek aile seçilir, karıştırılmaz.
-- Tek vurgu rengi kullanılır; vurgu primary eylemde ve seçili durumda görünür, geri kalanı nötrdür.
-- Ham hex renk kodlanmaz; token önerisi: `--yuzey`, `--yuzey-ust`, `--metin`, `--metin-soluk`, `--sinir`, `--vurgu`.
-- Durum renkleri sabittir: başarı `emerald`, uyarı `amber`, hata `rose`, bilgi `sky`; ton aynı ailede kalır.
-- Renk tek başına anlam taşımaz; durum her zaman metin veya ikonla birlikte verilir.
-- Kontrast WCAG 2.2 AA eşiğinin altına inmez; estetik gerekçe erişilebilirliği esnetmez.
+1. İki öğe aynı anda bağırıyor mu? Biri kazanmalı; ikisi birden vurgulanmaz.
+2. Emin değil miyim? Önce eksiltme denenir; anlam kaybolursa geri konur.
+3. Gürültülü mü? Fazladır. Boş mu? Anlam eksiktir; süs eklenmez, niyet eklenir.
+4. Tanıdık ama sıradan mı? Tek bir yerde tek bir sürpriz yeter.
+5. Hareket bir değişikliği mi anlatıyor? Anlatmıyorsa kaldırılır.
+6. Renk anlam taşıyor mu? Taşımıyorsa nötrleşir.
+7. Dokunma gecikiyor mu? Tasarım ölmüştür; anında yanıt esastır.
+8. Bu bir Apple taklidi mi, bu dünyaya ait özgün bir çözüm mü?
 
-## Boşluk
+## Yaratıcılık sözleşmesi
 
-- Barem 4px'tir; 8pt ritim kullanılmaz. Adımlar: 4, 8, 12, 16, 24, 32, 48, 64.
-- Beyaz alan cömerttir: içerik ekran kenarına yapışmaz, bölümler arasında 32-48px nefes payı kalır.
-- Yakınlık hiyerarşisi: ilişkili öğeler 4-8px, farklı gruplar 32-48px aralıkla ayrılır.
-- Dikey dolgu simetriktir; asimetrik dolgu optik dengeyi bozar.
-- Ayrımı önce boşluk, sonra ton, en son ince çizgi kurar.
-
-## Tipografi
-
-- Varsayılan sistem fontudur; marka fontu zorunlu değil, tek aile yeterlidir.
-- Optical sizing açık tutulur; yazı boyutla birlikte şekil değiştirir.
-- Tracking boyuta göre değişir: büyük başlıkta negatif (yaklaşık -0.02em), gövdede sıfıra yakın, küçük etikette hafif pozitif.
-- Leading boyutla ters çalışır: büyük başlık 1.05-1.15, gövde yaklaşık 1.5.
-- Hiyerarşi ağırlık, boyut ve leading birlikte kurulur; iki-üç ağırlık yeterlidir.
-- Satır uzunluğu 60-75 karakter aralığında tutulur; metin büyütmesinde düzen kırılmaz.
-
-## Derinlik ve materyal
-
-- Tek ışık ve tek yükseklik dili kullanılır; gölge yumuşak, düşük opaklıkta ve az sayıdadır.
-- Yarı saydam katman yalnız platform destekliyorsa ve işlev taşıyorsa kullanılır; desteklenmiyorsa düz yüzey ve ton farkı yeterlidir.
-- Gereksiz çerçeve, kutu ve ayırıcı çizgi yoktur; hiyerarşi boşluk ve tipografiyle kurulur.
-- Materyal ağırlığı hiyerarşi taşır: yapısal yüzey daha ağır, etkileşimli yüzey daha hafif; açık yüzey üstüne açık yüzey konmaz.
-- Gölge yığını ve dekoratif parlama yoktur; derinlik işlevi açıklar.
-
-## Hareket
-
-| Bağlam | Damping | Response |
-| --- | --- | --- |
-| Varsayılan geçiş | 1.0 | 0.3-0.4 |
-| Momentumlu sürükleme/fırlatma | ~0.8 | 0.3-0.4 |
-| Panel/katman açılışı | 0.8-1.0 | 0.3-0.4 |
-
-- Hareket yay fiziğiyle kurulur; sabit süre ve sabit eğri yerine hedef değişince yay yeniden hesaplanır.
-- Animasyon kesintiye uğratılabilir: canlı ekran değerinden başlar, kullanıcı yön değiştirince sıçramaz.
-- Momentum projeksiyonu: hedef, bırakılan noktaya göre değil, hareketin gideceği yere göre seçilir.
-- Giriş ve çıkış aynı yolu izler; aynı yönden giren aynı yöne çıkar.
-- `prefers-reduced-motion: reduce` tercihinde kayma, yay ve paralaks yerine kısa cross-fade kullanılır.
-- Animasyon zorunlu değildir; statik hâl de doğru kabul edilir. Sürekli veya nabız gibi atan animasyon yoktur.
-
-## Geri bildirim
-
-- Görsel tepki pointer-down anında başlar; bırakıldıktan sonra değil.
-- Basılı hâl hafif ölçek küçülmesiyle (yaklaşık 0.97) ve kısa geçişle verilir.
-- Sürükleme, kaydırma ve çekme sırasında geri bildirim kesintisiz sürer; yalnız sonuçta gösterilmez.
-- Haptik yalnız destekleyen platformda kullanılır; desteklenmeyen yerde titreşim taklidi yapılmaz.
-- Görsel, ses ve haptik aynı anda tetiklenir; nedeni belli olmayan ve sık tekrarlanan geri bildirim kullanılmaz.
-
-## Yap / Yapma
-
-| Yap | Yapma |
-| --- | --- |
-| Tek vurgu, nötr zemin | İkon enflasyonu; metin yeterliyken ikon |
-| Cömert boşluk, az çizgi | Border ve ayırıcı çizgi kalabalığı |
-| Sistem fontu ve ağırlık hiyerarşisi | Ölçek dışı punto, keyfi piksel |
-| Ton farkıyla ayırma | Mor-mavi AI gradyanı, neon parlama |
-| Tek yönlü, kesintisiz hareket | Sürekli, nabız gibi atan animasyon |
-| Sakin durum geçişleri | Skeuomorfik doku ve gölge taklidi |
-| Ham hex yerine token | Emoji ve süs ikonları |
+- Bu felsefe bir tarz reçetesi değildir; Apple'ın yüzeyini kopyalamak değil, hissini kendi malzemenle üretmek esastır.
+- Kullanıcının istediği yön, marka ve içerik önce gelir; felsefe onları sadeleştirir, onların yerine geçmez.
+- Yeni fikir, cesur kompozisyon ve beklenmedik detay serbesttir; ölçüt "bu dünyaya ait mi?" sorusudur.
+- Felsefe bir kısıt değil, pusuladır: yaratıcılığı azaltmaz, yönünü netleştirir.
 
 ## Sınırlar
 
-- Öncelik: kullanıcı talimatı > AGENTS-tr > platform mimari becerisi > platform tasarım becerisi > bu estetik dil.
-- Yapısal uygulama bu becerinin dışındadır: bileşen, yerleşim, tema altyapısı ve kod platform becerilerinindir.
-- Somut token, sınıf ve ölçü değerleri platform tasarım becerisinde tutulur; buradaki değerler estetik referanstır.
-- Sürüm, API ve araç davranışı gömülmez; platform becerisi ilgili bilgiyi çalışma anında resmî kaynakla doğrular.
-- 4px barem ve durum renkleri değişmezdir; bu beceri onları esnetmez.
-- WCAG 2.2 AA erişilebilirlik hedefi platform becerisinde denetlenir; estetik karar bu hedefi bozamaz.
-- UI metinleri tam Türkçe imlâ ile yazılır (ğ, ü, ş, ı, ö, ç).
-- Bu beceri kod, token dosyası veya derleme adımı üretmez.
-- Platformun translucency, haptik gibi yetenekleri doğrulanmadan varsayılmaz; destek durumu "doğrulanmalı" etiketiyle ele alınır.
-- Web sitesi tasarımı ve üretimi sp-dizayn-web-site alanındadır; bu beceri yalnız estetik dil referansıdır.
+- Yapısal uygulama bu becerinin dışındadır: bileşen, ızgara, token, kod ve tema altyapısı platform becerilerinindir.
+- Erişilebilirlik, güvenlik, veri bütünlüğü ve performans bu felsefenin üstündedir; estetik gerekçe onları esnetmez. Hareket, reduced-motion tercihine saygı duyar.
+- Somut ölçü, renk kodu, süre ve eğri dayatılmaz; platform becerisi kendi değerini çalışma anında doğrular.
+- UI metni tam Türkçe imlâ ile yazılır (ğ, ü, ş, ı, ö, ç); doğrulanamayan yetenek "doğrulanmalı" etiketiyle ele alınır.
+- Web sitesi sp-dizayn-web-site, panel sp-dizayn-web-uygulama, masaüstü sp-dizayn-masaustu alanındadır; bu beceri onlara yön verir, uygulamayı üstlenmez.
+
+## Kapanış testi
+
+Tasarımı teslim etmeden önce bu dünyaya ait olup olmadığını yokla:
+
+- İlk bakışta içerik mi görünüyor, arayüz mü?
+- Sakin mi, yarışıyor mu?
+- Dokununca yaşıyor mu, gecikiyor mu?
+- Hareket bir değişikliği mi açıklıyor?
+- Tanıdık gelirken tek bir taze fikir taşıyor mu?
+- Apple'ı mı taklit ediyor, yoksa bu hissi kendi çözümüyle mi üretiyor?

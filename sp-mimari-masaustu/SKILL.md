@@ -1,7 +1,7 @@
 ---
 name: sp-mimari-masaustu
 description: "Rust ve GPUI Kit masaüstü uygulamalarının katman, bağımlılık, eşzamanlılık, davranış, hata/gizlilik, SQLite, MCP sunucu desteği ve derleme/sürüm sözleşmesini uygular. Şu durumlarda kullan: yeni uygulama kurulumu, GPUI katman/eşzamanlılık kararı, SQLite göçü, MCP desteği ekleme, stdio sidecar/named pipe/loopback HTTP taşıma kararı, derleme betiği ve release exe üretimi. Kullanma: görsel tasarım, web/panel mimarisi, salt estetik dil."
-version: "v202610301810"
+version: "v202611020443"
 ---
 
 # sp-mimari-masaustu
@@ -10,9 +10,9 @@ Rust ve GPUI Kit ile geliştirilen yerel çizimli masaüstü uygulamalarının m
 
 Varsayılan mod geliştirmedir; release ve prod kapıları yalnız risk sınıfı veya açık yayın isteğiyle yüklenir. Alan ayrıntıları references dosyalarındadır ve yalnız o alan tetiklendiğinde okunur.
 
-## 0. Ortak çalışma ilkeleri (kaynak: AGENTS-tr; bilinçli kopya)
+## 0. Ortak çalışma ilkeleri (kaynak: anayasa; bilinçli kopya)
 
-0.1. Öncelik: kullanıcı talimatı > AGENTS-tr > bu beceri > model bilgisi.
+0.1. Öncelik: kullanıcı talimatı > anayasa > bu beceri > model bilgisi.
 0.2. Mod: varsayılan geliştirme; release ve prod kapıları yalnız risk sınıfı veya açık yayın isteğiyle yüklenir.
 0.3. Değişmezler: güvenlik, erişilebilirlik, veri bütünlüğü, sır yönetimi ve Türkçe imlâ her modda korunur.
 0.4. Bilgi: sürüm, API ve davranış varsayılmaz; çalışma anında context7 veya resmî kaynaktan doğrulanır; doğrulanamayan bilgi doğrulanmalı etiketiyle verilir.

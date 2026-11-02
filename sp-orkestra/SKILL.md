@@ -1,7 +1,7 @@
 ---
 name: sp-orkestra
 description: "Şu durumlarda yükle: kullanıcı bir alanı adlandırıp 'yapılması gerekeni yap', 'en üst seviyede yap' veya 'eksiksiz yap' dediğinde; kapsamı ve kalite çıtasını kullanıcı değil ajan belirleyecekse; beceri adıyla çağrıldığında. Tek dosya düzeltmesi, sohbet, çeviri, bilgi sorusu ve acil küçük işlerde yükleme."
-version: "v202611020351"
+version: "v202611020443"
 ---
 
 # sp-orkestra
@@ -14,6 +14,7 @@ Görevi alanın en üst çıtasına derinleştirir, çalışma anındaki beceri 
 0.2. Yükleme sınırı: tek dosya düzeltmesi, sohbet, çeviri, bilgi sorusu ve acil küçük işlerde kullanılmaz; kullanıcı açıkça istemedikçe basit işe seremoni bindirilmez.
 0.3. Öncelik: anayasa > sp-sozlesme > bu beceri (yalnız sıra/seçim) > alan becerisi içeriği. Kural ve kanıt sp-sozlesme'de, içerik alan becerisindedir; bu beceri yalnız hangi becerinin hangi sırada çalışacağını belirler.
 0.4. Adım çıktıları sohbete üç blok olarak yazılır: uzman merceği, zincir tablosu, icra direktifi. Kullanıcı sessiz mod isterse yalnız direktif içeride tutulur.
+0.5. **Kök neden:** Belirtiyi kapatan yama iş sayılmaz; borç bırakan seçenek seçilmez. Kök neden çözülmeden kapanış yoktur.
 
 ## 1. Kapı ve sınıflandırma
 
@@ -70,6 +71,7 @@ Görevi alanın en üst çıtasına derinleştirir, çalışma anındaki beceri 
 8.3. Kalan riskleri ve `doğrulanmalı` listesini açık bırak; kullanıcıya "bitti" derken bu listeyi de ver.
 8.4. Kalıcı kararı ve kanıt üreten araç-kullanım desenini claude-mem'e yaz; değişen indeksleri ve araç durumunu senkronize et.
 8.5. İş ancak kullanıcı "en üst seviyede yapılmıştır" diyebiliyorsa kapanır; aksi halde kapanmaz.
+8.6. Geçici yama, ertelenmiş borç veya "sonra düzeltilir" notu bırakılmışsa iş `bitmedi`dir; borç kaydı ve kök neden çözümü yoksa kapanış yoktur.
 
 ## 9. Anti-desenler
 

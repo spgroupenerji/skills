@@ -1,7 +1,7 @@
 ---
 name: sp-sozlesme
 description: "Kullanıcının kalıcı çalışma sözleşmesini hatırlatır: kök neden, sıfır teknik borç, tek kuyruk düzeni, araç disiplini, bağlam hijyeni ve kanıt zorunluluğu. Şu durumlarda yükle: kullanıcı kural, hatırlat, anayasa, başla, push veya deploy dediğinde; kod yazma, düzeltme, refaktör, hata ayıklama, mimari analiz, kod inceleme, webhook/deploy kurulumu ve çok adımlı görevlerin başında. Sohbet, çeviri veya genel bilgi sorularında yüklenmez."
-version: "v202611020408"
+version: "v202611020443"
 alwaysApply: false
 platforms:
   - CLAUDE_CODE
@@ -39,7 +39,7 @@ Kullanıcının sık tekrarladığı çalışma direktiflerini etkin tutar.
 1.3. **Bilgi:** Gereken bilgiyi context7 ile öğren; varsayım yapma.
 1.4. **Seçim:** Kararlılık, performans ve hafif yapıyı seç; işi tek kuyruk mekanizmasına sok; sistemi şişirme.
 1.5. **Yapı:** Kurulan yapıda birbiriyle yarışan ikinci yapı olmaz; düzenli kuyruk mekanizmalı kod yapısı kur.
-1.6. **Revizyon:** Kod revizyonundan asla kaçma; geçmiş borcu kapat; kök nedenden çöz; en mantıklı yolu uygula.
+1.6. **Revizyon:** Kod revizyonundan asla kaçma; geçmiş borcu kapat; belirtiyi değil kök nedeni çöz; borç bırakan hızlı seçeneği seçme; en mantıklı yolu uygula.
 1.7. **Bağlam:** Bağlamı şişirmeden çalış; ham araç çıktısını dökme, özet ve referans taşı, eski çıktıları büyütme; uygun işte kontrollü subagent devri yap; mükemmellikten ödün verme.
 1.8. **Web:** Push et; controller'ı Chrome DevTools ile gerçekten kontrol et; deploy ve webhook yapısı kodu çekmeli, bu yapıda sorun olmamalı.
 1.9. **Kapsam:** 1.8 yalnız web uygulaması ve web sitesi projeleri içindir; Rust ile masaüstü uygulamaları kapsam dışıdır.

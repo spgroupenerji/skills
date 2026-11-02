@@ -1,16 +1,16 @@
 ---
 name: sp-mimari-web-site
 description: "Statik ve SEO odaklı tanıtım sitelerinin mimarisini tanımlar; barındırma, PHP ortak parçalar, elle yazılmış site.css, varlık ve JS bütçesi, SEO/indeksleme, lead formu güvenliği, opsiyonel MySQL ve release kapılarını kapsar. Tanıtım/landing sitesi kurulumunda, SEO ve Core Web Vitals düzeninde, PHP form ucu ve lead saklamada, site yayına almada kullanılır. Oturumlu panel veya SCADA uygulamasında, yalnız görsel tasarım veya estetik dil talebinde, Rust masaüstünde kullanılmaz."
-version: "v202610302324"
+version: "v202611020443"
 ---
 
 # sp-mimari-web-site
 
 Herkese açık, oturumsuz, statik öncelikli tanıtım sitesinin mimarisi. Amaç hızlı, indekslenebilir ve güvenli bir site; panel, oturum ve uygulama kabuğu bu becerinin dışındadır.
 
-## 0. Ortak çalışma ilkeleri (kaynak: AGENTS-tr; bilinçli kopya)
+## 0. Ortak çalışma ilkeleri (kaynak: anayasa; bilinçli kopya)
 
-0.1. Öncelik: kullanıcının güncel yazılı talimatı > AGENTS-tr > bu beceri > model bilgisi.
+0.1. Öncelik: kullanıcının güncel yazılı talimatı > anayasa > bu beceri > model bilgisi.
 0.2. Mod: varsayılan geliştirmedir; release/prod kapıları yalnız risk sınıfı veya açık yayın isteğiyle yüklenir.
 0.3. Değişmezler: güvenlik, erişilebilirlik, veri bütünlüğü, sır yönetimi ve Türkçe imlâ her modda korunur.
 0.4. Bilgi: sürüm, API ve davranış varsayılmaz; çalışma anında context7 veya resmî kaynaktan doğrulanır; doğrulanamayan "doğrulanmalı" etiketiyle verilir.

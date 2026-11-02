@@ -1,16 +1,16 @@
 ---
 name: sp-dizayn-masaustu
 description: "GPUI masaüstü arayüzünün yapısal tasarımını tanımlar: tema token disiplini, ölçü/boşluk/tipografi, platform bileşen ve ikon kataloğu, pencere/yerleşim durumları, hareket, erişilebilirlik ve Türkçe imlâ. Şu durumlarda kullan: GPUI arayüzü kurarken, masaüstü pencere/panel yerleşimi tasarlarken, bileşen durumlarını belirlerken. Kullanma: yalnız estetik dil tarifi istendiğinde (sp-zen-dizayn), yalnız Rust mimarisi veya paketleme işi olduğunda; bu alanlar başka becerilerindir."
-version: "v202610300440"
+version: "v202611020443"
 ---
 
 # sp-dizayn-masaustu
 
 GPUI masaüstü arayüzünün yapısal tasarımı: tema token disiplini, ölçü ve tipografi, platform bileşen ve ikon kullanımı, pencere ve yerleşim durumları, hareket, erişilebilirlik ve Türkçe metin. Beceri yapıyı ve davranışı kurar; estetik dil (renk/boşluk/tipografi hissi, materyal, derinlik, hareket karakteri) sp-zen-dizayn alanıdır ve orada aranır.
 
-## 0. Ortak çalışma ilkeleri (kaynak: AGENTS-tr; bilinçli kopya)
+## 0. Ortak çalışma ilkeleri (kaynak: anayasa; bilinçli kopya)
 
-0.1. Öncelik: kullanıcı talimatı > AGENTS-tr > bu beceri > model bilgisi.
+0.1. Öncelik: kullanıcı talimatı > anayasa > bu beceri > model bilgisi.
 0.2. Mod: varsayılan geliştirme; release/prod kapıları yalnız risk sınıfı veya açık yayın isteğiyle yüklenir.
 0.3. Değişmezler: güvenlik, erişilebilirlik, veri bütünlüğü, sır yönetimi ve Türkçe imlâ her modda korunur.
 0.4. Bilgi: sürüm/API/davranış varsayılmaz; çalışma anında context7 veya resmî kaynaktan doğrulanır; doğrulanamayan "doğrulanmalı" etiketiyle verilir.
@@ -21,7 +21,7 @@ GPUI masaüstü arayüzünün yapısal tasarımı: tema token disiplini, ölçü
 
 1.1. Bu beceri GPUI masaüstü arayüzünün yapısını kurar: tema token değerleri, ölçü, bileşen ve ikon kullanımı, pencere/yerleşim, durumlar, hareket ve erişilebilirlik.
 1.2. Estetik dil bu becerinin dışındadır; istendiğinde sp-zen-dizayn yüklenir ve bu beceri onun kararını yapısal olarak uygular.
-1.3. Öncelik: kullanıcı talimatı > AGENTS-tr > platform mimari becerisi > bu beceri > estetik dil.
+1.3. Öncelik: kullanıcı talimatı > anayasa > platform mimari becerisi > bu beceri > estetik dil.
 1.4. Kullanıcının yazılı tasarım direktifi bu beceriye maddedir; çelişkide en güncel yazılı onay uygulanır.
 1.5. Beceri geliştirme aşaması içindir; release ve paketleme kapıları yalnız risk sınıfı veya açık yayın isteğiyle yüklenir.
 1.6. Türkçe metin: arayüz metinleri tam Türkçe imlâ ile yazılır (ğ, ü, ş, ı, ö, ç); lorem ipsum, İngilizce kalıntı ve yer tutucu metin yoktur; hata mesajı eyleme dönüktür; sayı, tarih ve para biçimi Türkçe yerelleşir.
