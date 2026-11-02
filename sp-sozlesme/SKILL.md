@@ -1,7 +1,7 @@
 ---
 name: sp-sozlesme
 description: "Kullanıcının kalıcı çalışma sözleşmesini hatırlatır: kök neden, sıfır teknik borç, tek kuyruk düzeni, araç disiplini, bağlam hijyeni ve kanıt zorunluluğu. Şu durumlarda yükle: kullanıcı kural, hatırlat, anayasa, başla, push veya deploy dediğinde; kod yazma, düzeltme, refaktör, hata ayıklama, mimari analiz, kod inceleme, webhook/deploy kurulumu ve çok adımlı görevlerin başında. Sohbet, çeviri veya genel bilgi sorularında yüklenmez."
-version: "v202610290345"
+version: "v202611020351"
 alwaysApply: false
 platforms:
   - CLAUDE_CODE
@@ -66,7 +66,7 @@ Kullanıcının sık tekrarladığı çalışma direktiflerini etkin tutar ve ka
 
 ## 4. Araç eşlemesi
 
-Her satır ayrı zorunluluktur: tetik varsa kanıtı zorunludur ve devredilemez; tetik yoksa çağrı yok. Araçlar birbirini tamamlar: her araç kendi benzersiz kanıtını üretir, bir aracın kanıtı diğerinin yerine geçmez (2.6); aynı araca aynı soruyu tekrar sorma (2.1). Kullanım mekaniği burada yazılmaz; ajan çalışma anında kataloğundan öğrenir.
+Her satır ayrı zorunluluktur: tetik varsa kanıtı zorunludur ve devredilemez; tetik yoksa çağrı yok. Araçlar birbirini tamamlar: her araç kendi benzersiz kanıtını üretir, bir aracın kanıtı diğerinin yerine geçmez (2.6); aynı araca aynı soruyu tekrar sorma (2.1). Kullanım mekaniği burada yazılmaz; ajan çalışma anında kataloğundan öğrenir. Tablodaki araçlar tabandır; katalogda aynı işlevi gören yeni araç da aynı zorunluluğa girer.
 
 | Araç | Tetik | Benzersiz kanıt |
 | --- | --- | --- |
