@@ -1,7 +1,7 @@
 ---
 name: sp-dizayn-web-site
 description: "Şu durumlarda kullan: herkese açık tanıtım, kurumsal, landing veya portfolyo sitesi tasarlama/yeniden tasarlama; Awwwards tarzı sinematik scroll, scrollytelling, kare dizisi veya WebGL sahne; site metni, görsel/video/ses üretimi; tasarım denetimi ve cilası. Kullanma: panel/SPA/Rust masaüstü, yalnız mimari veya veri işi, yalnız estetik dil tarifi (sp-zen-dizayn)."
-version: "v202611020443"
+version: "v202611080142"
 ---
 
 # sp-dizayn-web-site

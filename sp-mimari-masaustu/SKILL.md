@@ -1,7 +1,7 @@
 ---
 name: sp-mimari-masaustu
 description: "Rust ve GPUI Kit masaüstü uygulamalarının katman, bağımlılık, eşzamanlılık, davranış, hata/gizlilik, SQLite, MCP sunucu desteği ve derleme/sürüm sözleşmesini uygular. Şu durumlarda kullan: yeni uygulama kurulumu, GPUI katman/eşzamanlılık kararı, SQLite göçü, MCP desteği ekleme, stdio sidecar/named pipe/loopback HTTP taşıma kararı, derleme betiği ve release exe üretimi. Kullanma: görsel tasarım, web/panel mimarisi, salt estetik dil."
-version: "v202611020443"
+version: "v202611080142"
 ---
 
 # sp-mimari-masaustu
@@ -16,7 +16,7 @@ Varsayılan mod geliştirmedir; release ve prod kapıları yalnız risk sınıf�
 0.2. Mod: varsayılan geliştirme; release ve prod kapıları yalnız risk sınıfı veya açık yayın isteğiyle yüklenir.
 0.3. Değişmezler: güvenlik, erişilebilirlik, veri bütünlüğü, sır yönetimi ve Türkçe imlâ her modda korunur.
 0.4. Bilgi: sürüm, API ve davranış varsayılmaz; çalışma anında context7 veya resmî kaynaktan doğrulanır; doğrulanamayan bilgi doğrulanmalı etiketiyle verilir.
-0.5. Araç: işe göre seçilir, gerektiğinde hibrit kullanılır; erişim hatasında tanı, basit çözüm, çözülemezse işe başlamadan bildir (sp-sozlesme 1.3, 2.2, §4).
+0.5. Araç: işe göre seçilir, gerektiğinde hibrit kullanılır; erişim hatasında tanı, basit çözüm, çözülemezse işe başlamadan bildir (sp-orkestra 5.1-5.3, 3.4, 4).
 0.6. Kanıt: kanıtsız tamamlandı beyanı yoktur; kabul kapıları yalnız release veya risk tetikte yüklenir.
 
 ## 1. Katman sınırı

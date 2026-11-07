@@ -16,7 +16,7 @@ Tablodaki adlar kurulu beceriler ve bağlanabilir MCP'lerdir; çağrı biçimi r
 
 | Aşama | Birincil | Ne zaman / sınır | Çıktı ve kanıt |
 | --- | --- | --- | --- |
-| Brief ve niyet | brainstorming, sp-sozlesme, research | Kapsam belirsiz, yeni/yeniden tasarım, çok adımlı iş | Onaylı brief, karar notu |
+| Brief ve niyet | brainstorming, sp-orkestra, research | Kapsam belirsiz, yeni/yeniden tasarım, çok adımlı iş | Onaylı brief, karar notu |
 | Sanat yönü | design-taste-frontend, frontend-design, hallmark, ui-ux-pro-max, awesome-design-md, brand-intake, design-system, sp-zen-dizayn | Yeni sayfa, AI-slop kırma, token sistemi, marka dili, Apple-klasik | Yön sheet, design package, ekran |
 | Denetim ve cila | impeccable, emil-design-eng, break-ui | İlk build sonrası denetim, cila, mikro etkileşim, en kötü veri | Puan, bulgu, düzeltme |
 | Metin | brand, insan editör | Ses/ton; ayrı copy becerisi yok | Copy deck, editör kanıtı |
