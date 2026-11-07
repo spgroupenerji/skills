@@ -65,7 +65,7 @@ Tablodaki adlar kurulu beceriler ve bağlanabilir MCP'lerdir; çağrı biçimi r
 
 7.1. Tanı sırası: hedef uygulama/sunucu kapalı mı, bağımlılık eksik mi, ağ mı, yetki/hesap mı, yol veya sürüm uyumsuz mu. Şıklar tek tek ayrılır.
 7.2. Basit çözüm: uygulamayı aç, yalnız gerekli bağımlılığı kur, yerel veya offline alternatife geç. Ücretli hesap zorlanmaz.
-7.3. Tarayıcı MCP'si bağlanmıyorsa tarayıcı açılır; 3B MCP'si için uygulama ve eklenti açılır. Açılmıyorsa manuel doğrulama yapılır ve "doğrulanmalı" işaretlenir; çözülemeyen erişimde işe başlamadan kullanıcıya bildirilir (sp-sozlesme 1.3, 2.2, §4).
+7.3. Tarayıcı MCP'si bağlanmıyorsa tarayıcı açılır; 3B MCP'si için uygulama ve eklenti açılır. Açılmıyorsa manuel doğrulama yapılır ve "doğrulanmalı" işaretlenir; çözülemeyen erişimde işe başlamadan kullanıcıya bildirilir (sp-orkestra 5.1-5.3, 3.4, 4).
 
 ## 8. Hibrit kullanım ve bütçe
 
