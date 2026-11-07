@@ -1,7 +1,7 @@
 ---
 name: sp-mimari-web-spa
 description: "Vite ile derlenen React SPA'nın (istemci yönlendirme) LiteSpeed üzerinde PHP REST API ile mimarisini kurar: dist teslimi, /api/* yönlendirmesi, aynı origin oturum ve CSRF, sözleşme-önce API, süreklilik ve release kapıları. Şu durumlarda kullan: React SPA + PHP API kurulumu, SPA yönlendirme/derin bağlantı sorunu, API sözleşmesi ve dağıtımı. Kullanma: SSR panel, statik/SEO site, salt estetik dil; bu alanlarda yüklenmez."
-version: "v202611020443"
+version: "v202611080135"
 ---
 
 # sp-mimari-web-spa
@@ -17,6 +17,8 @@ Vite ile derlenen React SPA ve LiteSpeed üzerinde PHP REST API mimarisinin söz
 0.4. Bilgi: sürüm, API ve davranış varsayılmaz; çalışma anında context7 veya resmî kaynaktan doğrulanır; doğrulanamayan bilgi "doğrulanmalı" etiketiyle verilir.
 0.5. Araç: işe göre seçilir, gerektiğinde hibrit kullanılır; erişim hatasında tanı (izin, kurulum, indeks, sürüm, yol), basit çözüm, çözülemezse işe başlamadan kullanıcıya bildir (sp-sozlesme 1.3, 2.2, §4).
 0.6. Kanıt: kanıtsız "tamamlandı" yoktur; kabul kapıları yalnız release veya risk tetiklediğinde yüklenir (references/kabul-kapilari.md).
+0.7. Yayın anında: push et; canlı çıktıyı/controller'ı Chrome DevTools ile gerçekten kontrol et; deploy ve webhook yapısı kodu çekmeli, çekmiyorsa yayın kapanmaz.
+0.8. Kimlik: deploy sonrası verilen kalıcı giriş bilgisi yalnız yerel secret deposunda (.env / işletim sistemi kimlik kasası) tutulur; kalıcı bellekte yalnız referansı saklanır; depoya, kitaba, uzağa ve loga yazılmaz; sonraki oturumda tekrar sorulmaz.
 
 ## 1. Kapsam ve sınır
 

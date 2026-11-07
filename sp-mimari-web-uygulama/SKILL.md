@@ -1,7 +1,7 @@
 ---
 name: sp-mimari-web-uygulama
 description: "Oturumlu, rol tabanlı PHP panel uygulamalarının mimarisini kurar: istek yaşam döngüsü, katman sınırları, oturum/yetki/CSRF, SSR teslimi (sabit sürümlü Tailwind tarayıcı motoru, htmx), MySQL veri katmanı, servis ve dağıtım disiplini. Şu durumlarda kullan: yeni panel modülü, oturum ve yetki akışı, htmx kısmi etkileşim. Kullanma: statik tanıtım sitesi/SEO, yalnız estetik dil, yapısal UI tasarımı, Rust masaüstü, Vite+React SPA + PHP API (sp-mimari-web-spa)."
-version: "v202611020443"
+version: "v202611080135"
 ---
 
 # sp-mimari-web-uygulama
@@ -17,6 +17,8 @@ Oturumlu, rol tabanlı PHP panel uygulamalarının mimari sözleşmesi. Varsayı
 0.4. Bilgi: sürüm, API ve davranış varsayılmaz; çalışma anında context7 veya resmî kaynaktan doğrulanır; doğrulanamayan bilgi "doğrulanmalı" etiketiyle verilir.
 0.5. Araç: işe göre seçilir, gerektiğinde hibrit kullanılır; erişim hatasında tanı (izin, kurulum, indeks, sürüm, yol), basit çözüm, çözülemezse işe başlamadan kullanıcıya bildir (sp-sozlesme 1.3, 2.2, §4).
 0.6. Kanıt: kanıtsız "tamamlandı" yoktur; kabul kapıları yalnız release veya risk tetiklediğinde yüklenir (references/kabul-kapilari.md).
+0.7. Yayın anında: push et; canlı çıktıyı/controller'ı Chrome DevTools ile gerçekten kontrol et; deploy ve webhook yapısı kodu çekmeli, çekmiyorsa yayın kapanmaz.
+0.8. Kimlik: deploy sonrası verilen kalıcı giriş bilgisi yalnız yerel secret deposunda (.env / işletim sistemi kimlik kasası) tutulur; kalıcı bellekte yalnız referansı saklanır; depoya, kitaba, uzağa ve loga yazılmaz; sonraki oturumda tekrar sorulmaz.
 
 ## 1. Kapsam ve kimlik
 

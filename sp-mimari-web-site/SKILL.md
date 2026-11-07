@@ -1,7 +1,7 @@
 ---
 name: sp-mimari-web-site
 description: "Statik ve SEO odaklı tanıtım sitelerinin mimarisini tanımlar; barındırma, PHP ortak parçalar, elle yazılmış site.css, varlık ve JS bütçesi, SEO/indeksleme, lead formu güvenliği, opsiyonel MySQL ve release kapılarını kapsar. Tanıtım/landing sitesi kurulumunda, SEO ve Core Web Vitals düzeninde, PHP form ucu ve lead saklamada, site yayına almada kullanılır. Oturumlu panel veya SCADA uygulamasında, yalnız görsel tasarım veya estetik dil talebinde, Rust masaüstünde kullanılmaz."
-version: "v202611020443"
+version: "v202611080135"
 ---
 
 # sp-mimari-web-site
@@ -16,6 +16,8 @@ Herkese açık, oturumsuz, statik öncelikli tanıtım sitesinin mimarisi. Amaç
 0.4. Bilgi: sürüm, API ve davranış varsayılmaz; çalışma anında context7 veya resmî kaynaktan doğrulanır; doğrulanamayan "doğrulanmalı" etiketiyle verilir.
 0.5. Araç: işe göre seçilir, gerektiğinde hibrit kullanılır; erişim hatasında tanı, basit çözüm, çözülemezse işe başlamadan bildir (sp-sozlesme 1.3, 2.2 ve §4).
 0.6. Kanıt: kanıtsız "tamamlandı" yoktur; kabul kapıları yalnız release veya risk tetiklediğinde yüklenir.
+0.7. Yayın anında: push et; canlı çıktıyı/controller'ı Chrome DevTools ile gerçekten kontrol et; deploy ve webhook yapısı kodu çekmeli, çekmiyorsa yayın kapanmaz.
+0.8. Kimlik: deploy sonrası verilen kalıcı giriş bilgisi yalnız yerel secret deposunda (.env / işletim sistemi kimlik kasası) tutulur; kalıcı bellekte yalnız referansı saklanır; depoya, kitaba, uzağa ve loga yazılmaz; sonraki oturumda tekrar sorulmaz.
 
 ## 1. Kapsam ve seçim
 
