@@ -1,7 +1,7 @@
 ---
 name: sp-orkestra
 description: "Şu durumlarda yükle: kullanıcı bir alanı adlandırıp 'yapılması gerekeni yap', 'en üst seviyede yap' veya 'eksiksiz yap' dediğinde; kapsamı ve kalite çıtasını kullanıcı değil ajan belirleyecekse; beceri adıyla çağrıldığında. Tek dosya düzeltmesi, sohbet, çeviri, bilgi sorusu ve acil küçük işlerde yükleme."
-version: "v202611020443"
+version: "v202611080035"
 ---
 
 # sp-orkestra
@@ -13,7 +13,7 @@ Görevi alanın en üst çıtasına derinleştirir, çalışma anındaki beceri 
 0.1. Bu beceri bir planlama değil **tamamlama sözleşmesidir**: çıktı, DoD'si kanıtla eşleşmiş iş ya da gerekçeli `bitmedi` raporudur.
 0.2. Yükleme sınırı: tek dosya düzeltmesi, sohbet, çeviri, bilgi sorusu ve acil küçük işlerde kullanılmaz; kullanıcı açıkça istemedikçe basit işe seremoni bindirilmez.
 0.3. Öncelik: anayasa > sp-sozlesme > bu beceri (yalnız sıra/seçim) > alan becerisi içeriği. Kural ve kanıt sp-sozlesme'de, içerik alan becerisindedir; bu beceri yalnız hangi becerinin hangi sırada çalışacağını belirler.
-0.4. Adım çıktıları sohbete üç blok olarak yazılır: uzman merceği, zincir tablosu, icra direktifi. Kullanıcı sessiz mod isterse yalnız direktif içeride tutulur.
+0.4. Kullanıcıya dönük çıktı kısadır: (a) görev sırasında yalnız sp-sozlesme 2.5 beyan satırları, (b) kapanışta en fazla beş satır: sonuç, değişen yer, doğrulama, kalan risk, sonraki adım. Uzman merceği, kombinasyon tablosu ve direktif iç planda tutulur; kullanıcı isterse veya iş kritikse görünür.
 0.5. **Kök neden:** Belirtiyi kapatan yama iş sayılmaz; borç bırakan seçenek seçilmez. Kök neden çözülmeden kapanış yoktur.
 
 ## 1. Kapı ve sınıflandırma
@@ -35,16 +35,31 @@ Görevi alanın en üst çıtasına derinleştirir, çalışma anındaki beceri 
 ## 3. Kategori tabanlı yetenek haritası
 
 3.1. Statik araç tablosu yoktur; tablo her çalıştırmada canlı katalogdan üretilir. Katalog üç kanaldan okunur: oturum kataloğu (MCP ve beceri listesi), PATH/yerel araçlar, proje yapılandırması.
-3.2. Kategoriler: süreç becerileri, kod zekâsı, doküman doğrulama, tarayıcı/UI doğrulama, hafıza, medya/3B, alan becerileri, alt ajan. Yalnız görevle ilgili kategoriler açılır; açılan kategorinin katalogdaki tüm üyeleri zincire girer, girmeyen çağrılmaz.
+3.2. Kategoriler: süreç becerileri, kod zekâsı, doküman doğrulama, tarayıcı/UI doğrulama, hafıza, medya/3B, alan becerileri, alt ajan. Yalnız görevle ilgili kategoriler açılır; açılan kategorinin tüm üyeleri değerlendirmeye girer, rolü karşılamayan tek satır gerekçeyle dışarıda kalır. Zincire rolü karşılayan en küçük yeterli küme girer; sp-sozlesme 1.10 taban araçları her kombinasyonda yer alır.
 3.3. Yeni araç kuralı: katalogda tanımadığın araç varsa işlevini tek cümleyle yaz, kategoriye ata, ilgiliyse zincire ekle. Yeni araç gövde değişikliği istemez; yalnız yeni kategori doğarsa 3.2 listesi güncellenir.
 3.4. Üç kanıt katmanı: katalogda ad, fiziksel/yapılandırma kaydı, canlı yanıt. Üçü tamamlanmadan araç "var" sayılmaz. Kapalı veya indekssiz araçta sp-sozlesme 2.2 erişim protokolü işletilir; çözülemezse yedek ve tek cümle beyan yazılır.
 3.5. Zincir tablosu en fazla yedi satırdır ve şu sütunları taşır: `Aşama | Sahip | Girdi | Çıktı | Kanıt | Yedek`. Aynı iş iki sahibe verilmez; birbirini tamamlayan araçlar aynı aşamada ayrı kanıt üretir.
 
+3.6. Kombinasyon seçimi: (1) iş türünü belirle (kod/veri/şema, doküman/API, tarayıcı/UI, medya/3B, araştırma, karışık); (2) zorunlu rolleri §3.7'den al; (3) her rolü canlı katalogdan bir araçla eşle (üç kanıt katmanı, 3.4); (4) sp-sozlesme 1.10 taban araçlarını sabit üye yap; (5) rolü karşılamayan adayı gerekçeyle ele; (6) aynı benzersiz kanıtı üreten ikinci aracı ekleme; (7) en az bir bağımsız doğrulayıcı ata; uygulama sahibi kendi işini doğrulamaz; (8) aşama sayısı ≤7; her aşamaya geçme eşiği ve bağlam maliyeti yaz; (9) eşleşmeyen zorunlu rol varsa iş o rolsüz kapanmaz: `doğrulanmalı` + tek satır engel.
+
+3.7. İş türü → zorunlu roller:
+
+| İş türü | Zorunlu roller | Geçme eşiği (örnek) |
+| --- | --- | --- |
+| Kod/veri/şema | keşif, etki/risk, uygulama, değişiklik analizi, bağımsız doğrulama, kapanış | sembol/risk kanıtı + test/lint |
+| Doküman/API | doküman doğrulama; kod işi varsa kod rolleri eklenir | kütüphane kimliği + sürüm + snippet |
+| Tarayıcı/UI | canlı doğrulama, erişilebilirlik, responsive, görsel kanıt | DOM/console/ağ + ekran |
+| Medya/3B | üretim/dönüştürme, format doğrulama | çıktı + format/ölçü |
+| Araştırma | birincil kaynak, çapraz doğrulama, hafıza | kaynak + karşılaştırma |
+| Karışık | birleşim (≤7 aşama) | rol başına ayrı kanıt |
+
+3.8. Kombinasyon icra sözleşmesidir: aşama sahibi çağrılmadan aşama kapanmaz; araç danışılan yan kanal değil, işin kanalıdır. Kombinasyon tablosu iç planda kalır; kullanıcıya 0.4 özeti verilir.
+
 ## 4. Kod işlerinde zorunlu icra
 
-4.1. Kod, veri veya şema işlerinde kod zekâsı kategorisinin tamamı zorunludur: bugün codegraph, trail, graphify, gitnexus; katalogda aynı işlevi gören yeni araç da aynı zorunluluğa girer.
+4.1. Kod, veri veya şema işlerinde kod zekâsı rolleri kombinasyonun zorunlu parçasıdır; sabit araç adı yazılmaz, roller canlı katalogdan doldurulur ve sp-sozlesme 1.10 tabanı korunur.
 4.2. Sıra: keşif → etki/risk → düzenleme → değişiklik analizi → doğrulama. Araçlar yalnız danışılan yan kanal değil, işin yürütüldüğü kanaldır.
-4.3. Kanıtlar devredilemez: bir aracın kanıtı diğerinin yerine geçmez (sp-sozlesme 2.6). Araçların yetmediği yerde manuel tarama yapılabilir; manuel tarama yalnız ek kanıttır.
+4.3. Kanıtlar devredilemez: bir aracın kanıtı diğerinin yerine geçmez (sp-sozlesme 2.6). Tam dosya okuma ve grep serbesttir; araç kanıtını tamamlar, yerine geçmez. Araçların yetmediği yerde manuel tarama ek kanıttır.
 
 ## 5. Doküman kapısı
 
@@ -73,13 +88,17 @@ Görevi alanın en üst çıtasına derinleştirir, çalışma anındaki beceri 
 8.5. İş ancak kullanıcı "en üst seviyede yapılmıştır" diyebiliyorsa kapanır; aksi halde kapanmaz.
 8.6. Geçici yama, ertelenmiş borç veya "sonra düzeltilir" notu bırakılmışsa iş `bitmedi`dir; borç kaydı ve kök neden çözümü yoksa kapanış yoktur.
 
+8.7. Kapanış çıktısı 0.4'e uyar: en fazla beş satır; kanıt satırları kullanılan araç sayısıyla sınırlıdır, ek anlatım yapılmaz. "Bitti" ancak bu satırlar kanıtla doluysa denir.
+
 ## 9. Anti-desenler
 
 | Anti-desen | Neden kötü | Doğrusu |
 | --- | --- | --- |
 | Statik araç tablosu | Katalog değişince ölür | Kategori + canlı keşif |
 | Envanteri ezberden yazmak | Varsayım üretir | Üç kanaldan doğrula |
-| Her aracı çağırmak | Bağlam şişer, çelişki doğar | Yalnız ilgili kategori üyeleri |
+| İlgisiz aracı çağırmak | Token israfı, odak kaybı | Daha iyi alternatifi seç; aynı kanıtı üreten ikinci aracı çağırma |
+| Taban aracı atlamak | Kanıt kaybı | En hafif geçerli sorguyla her görevde çalıştır |
+| Kombinasyon tablosunu sohbete dökmek | Bağlam şişer, odak dağılır | İç planda tut; kapanışta 0.4 özeti |
 | Tek araç kanıtıyla yetinmek | Kanıt devredilemez | Her araç ayrı kanıt |
 | Kimlik ilan etmek | Davranış değiştirmez | Kriter + metrik + dış doğrulama |
 | Planı bitmiş saymak | İş yapılmamış olur | Kanıtlı kapanış |

@@ -25,8 +25,8 @@ SP GROUP projelerinde kullanılan ajan yeteneklerinin (skill) tek deposu. Her ye
 | [`sp-dizayn-web-uygulama`](sp-dizayn-web-uygulama/SKILL.md) | v202610300420 | Panel/uygulama yapısal tasarımı: kabuk, yoğunluk, tipografi, renk/durum, ikon, bileşen davranışı, erişilebilirlik, zero-build teslim |
 | [`sp-dizayn-masaustu`](sp-dizayn-masaustu/SKILL.md) | v202611020443 | GPUI masaüstü yapısal tasarımı: tema/token, ölçü, bileşen/ikon, pencere ve durumlar, hareket, erişilebilirlik |
 | [`sp-zen-dizayn`](sp-zen-dizayn/SKILL.md) | v202611020457 | Apple klasik/ilk iPhone dönemi tasarım felsefesi: sakinlik, az-çok, aktif boşluk, doğal hareket, içeriği öne çıkaran his; yaratıcılığı kısıtlamayan yön |
-| [`sp-orkestra`](sp-orkestra/SKILL.md) | v202611020443 | Görev orkestrasyonu: uzman merceği, canlı katalogdan araç zinciri, zorunlu kod zekâsı araçları, kanıtlı kapanış |
-| [`sp-sozlesme`](sp-sozlesme/SKILL.md) | v202611020443 | Görev başı sözleşme: direktifler, araç disiplini ve kanıtı, erişim etkinleştirme, push/deploy/webhook, kapanış senkronu |
+| [`sp-orkestra`](sp-orkestra/SKILL.md) | v202611080035 | Görev orkestrasyonu: uzman merceği, görev türü → rol → canlı araç kombinasyonu, zorunlu taban (kod/graf/hafıza), bağlam bütçesi, kısa çıktı, kanıtlı kapanış |
+| [`sp-sozlesme`](sp-sozlesme/SKILL.md) | v202611080035 | Görev başı sözleşme: direktifler, zorunlu taban araçlar ve ilgisiz araç tanımı, bağlam bütçesi, araç disiplini ve kanıtı, erişim etkinleştirme, push/deploy/webhook, kapanış senkronu |
 | [`sp-unsplash-gorsel-indirme`](sp-unsplash-gorsel-indirme/SKILL.md) | v202610310029 | Unsplash görsel tedariki: ticari güvenlik kapısı/onay kaydı, API/CLI + unsplash-php/unsplash-js + anahtarsız Chrome/CDP tarayıcı yedeği, hotlink/atıf, SEO adlı WebP/JPG, srcset, credits.json, hız limiti ve hata yönetimi |
 
 Yeni yetenek eklendiğinde bu tabloya satır eklenir. Tablo, depodaki yeteneklerin tek doğruluk kaynağıdır.
@@ -64,8 +64,8 @@ Get-ChildItem -Directory |
 
 Yetenekler `description` alanındaki tetikleyicilere göre otomatik yüklenir; ayrıca bir komut gerekmez. Örnek:
 
-- `sp-sozlesme`: görev başında, kodlama/refaktör/hata ayıklama öncesinde ve "kuralları hatırlat" dendiğinde devreye girer; direktifleri, araç disiplinini ve kapanış senkronunu hatırlatır. Ayrıntı [SKILL.md](sp-sozlesme/SKILL.md) dosyasındadır.
-- `sp-orkestra`: kullanıcı bir alanı adlandırıp "yapılması gerekeni yap / en üst seviyede yap" dediğinde veya beceri adıyla çağrıldığında devreye girer; uzman merceği, canlı araç zinciri ve kanıtlı kapanışı kurar. Ayrıntı [SKILL.md](sp-orkestra/SKILL.md) dosyasındadır.
+- `sp-sozlesme`: görev başında, kodlama/refaktör/hata ayıklama öncesinde ve "kuralları hatırlat" dendiğinde devreye girer; direktifleri, zorunlu taban araçları, ilgisiz araç tanımını, bağlam bütçesini ve kapanış senkronunu hatırlatır. Ayrıntı [SKILL.md](sp-sozlesme/SKILL.md) dosyasındadır.
+- `sp-orkestra`: kullanıcı bir alanı adlandırıp "yapılması gerekeni yap / en üst seviyede yap" dediğinde veya beceri adıyla çağrıldığında devreye girer; uzman merceğini kurar, görev türünü zorunlu rollere ve rolleri canlı katalogdaki araç kombinasyonuna çevirir, kanıtlı kapanışı yönetir. Ayrıntı [SKILL.md](sp-orkestra/SKILL.md) dosyasındadır.
 - `sp-mimari-web-uygulama` + `sp-dizayn-web-uygulama`: yeni panel modülü, oturum/yetki akışı veya panel ekranı tasarımında birlikte yüklenir; mimari ve yapısal tasarımı ayırır.
 - `sp-mimari-web-site` + `sp-dizayn-web-site`: tanıtım/landing sitesi işlerinde mimari ile tasarım/üretim hattını ayırır; panel kapsam dışıdır.
 - `sp-mimari-masaustu` + `sp-dizayn-masaustu`: Rust/GPUI masaüstü uygulamasında mimari (derleme/sürüm dahil) ve arayüz işlerini ayırır.
@@ -92,7 +92,7 @@ DSH yalnız `name` ve `description` alanlarını okur; `description` katalogda 5
 5. Yeteneği yukarıdaki kataloğa alfabetik sıraya göre ekleyin.
 6. Araç kullanım mekaniğini yazma: yalnızca araç adını ve doğrulama hedefini belirt; çağrı protokolünü, fonksiyon adlarını ve parametreleri ajanın çalışma zamanına bırak.
 7. Teslim öncesi Doğrulama bölümündeki komutları çalıştırın.
-8. Beceriye sürüm/API/davranış iddiası, SRI değeri veya EOL tarihi gömmeyin; "çalışma anında context7 veya resmî kaynaktan doğrula" kuralı yazın. Araç seçimi işe göredir; erişim hatasında tanı, basit çözüm, çözülemezse işe başlamadan bildirim kuralını sp-sozlesme 1.3/2.2/§4'e atıfla verin.
+8. Beceriye sürüm/API/davranış iddiası, SRI değeri veya EOL tarihi gömmeyin; "çalışma anında context7 veya resmî kaynaktan doğrula" kuralı yazın. Araç seçimi görev türüne ve role göredir; zorunlu taban araçlarını ve erişim hatasında tanı, basit çözüm, çözülemezse işe başlamadan bildirim kuralını sp-sozlesme 1.2/1.10/2.2/2.7/§4'e atıfla verin.
 
 ## Depo Yapısı
 
