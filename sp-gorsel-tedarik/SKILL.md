@@ -1,7 +1,7 @@
 ---
 name: sp-gorsel-tedarik
 description: "Şu durumlarda yükle: site/uygulama için ticari kullanımı güvenli görsel aranacak, kaynak seçilecek, görsel assets/img altına SEO adlı WebP/JPG indirilecek, lisans/atıf ve renk/kontrast denetlenecek, credits.json ve ticari onay kaydı tutulacak; 'görsel bul/indir', 'stok fotoğraf' istendiğinde ya da Pexels/Pixabay/Unsplash/Openverse/Wikimedia/Met/Artic/Smithsonian/Cooper Hewitt/NASA/Poly Haven/Flickr gerektiğinde. AI görsel üretimi ve keyfî kazıma kapsam dışıdır."
-version: "v202611081740"
+version: "v202611081744"
 ---
 # sp-gorsel-tedarik
 
@@ -76,7 +76,7 @@ Ayrıntı, doğrulanmış alıntılar ve denetim listesi: `references/ticari-guv
 
 | Komut | Ne yapar | Ağ |
 | --- | --- | --- |
-| `kaynaklar` | 10 kaynak, lisans sınıfı, anahtar durumu, Pillow | yok |
+| `kaynaklar` | 12 kaynak, lisans sınıfı, anahtar durumu, Pillow | yok |
 | `ara` | Normalize aday listesi (kimlik, lisans, ticari durum, varyant URL'leri) | 1-2 API |
 | `toplu-ara` | Plan dosyasındaki çoklu varlık için aynı arama | varlık başına 1-2 API |
 | `indir` | Seçilen adayı indirir, dönüştürür, credits.json günceller | 1 ayrıntı + CDN |
