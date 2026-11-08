@@ -1,7 +1,7 @@
 ---
 name: sp-orkestra
 description: "Şu durumlarda yükle: kullanıcı bir alanı adlandırıp 'yapılması gerekeni yap', 'en üst seviyede yap' veya 'eksiksiz yap' dediğinde; kapsamı ve kalite çıtasını kullanıcı değil ajan belirleyecekse; beceri adıyla çağrıldığında. Tek dosya düzeltmesi, sohbet, çeviri, bilgi sorusu ve acil küçük işlerde yükleme."
-version: "v202611080142"
+version: "v202611081749"
 ---
 
 # sp-orkestra
@@ -38,7 +38,7 @@ Görevi alanın en üst çıtasına derinleştirir, çalışma anındaki beceri 
 
 ## 3. Kategori tabanlı yetenek haritası
 
-3.1. Statik araç tablosu yoktur; tablo her çalıştırmada canlı katalogdan üretilir. Katalog üç kanaldan okunur: oturum kataloğu (MCP ve beceri listesi), PATH/yerel araçlar, proje yapılandırması.
+3.1. Statik araç tablosu yoktur; tablo her çalıştırmada canlı katalogdan üretilir. Katalog üç kanaldan okunur: oturum kataloğu (MCP ve beceri listesi), PATH/yerel araçlar, proje yapılandırması. Beceri kataloğu da canlı okunur; sabit beceri sayısı varsayılmaz, sayı gerektiğinde katalogdan sayılır.
 3.2. Kategoriler: süreç becerileri, kod zekâsı, doküman doğrulama, tarayıcı/UI doğrulama, hafıza, medya/3B, alan becerileri, alt ajan. Yalnız görevle ilgili kategoriler açılır; açılan kategorinin tüm üyeleri değerlendirmeye girer, rolü karşılamayan tek satır gerekçeyle dışarıda kalır. Zincire rolü karşılayan en küçük yeterli küme girer; 0.6 taban araçları her kombinasyonda yer alır.
 3.3. Yeni araç kuralı: katalogda tanımadığın araç varsa işlevini tek cümleyle yaz, kategoriye ata, ilgiliyse zincire ekle. Yeni araç gövde değişikliği istemez; yalnız yeni kategori doğarsa 3.2 listesi güncellenir.
 3.4. Üç kanıt katmanı: katalogda ad, fiziksel/yapılandırma kaydı, canlı yanıt. Üçü tamamlanmadan araç "var" sayılmaz. Kapalı veya indekssiz araçta erişim protokolü işletilir: sırayla başlat, indeksle veya senkronize et, kur; her denemeyi komut ve çıkış koduyla kanıtla. Kanıtlı başarısızlıkta iş durmaz: alt kademe araçla ilerle ve yedeği tek cümleyle beyan et.
