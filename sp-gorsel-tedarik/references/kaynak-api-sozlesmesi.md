@@ -1,7 +1,7 @@
 # Kaynak API Sözleşmesi
 
 Doğrulama tarihi: 2026-11-08; resmî doküman + canlı API çağrıları. Kaynak sözleşmeleri değişebilir: yayın öncesi resmî belgeden yeniden doğrula, uygulamada `references/` ile `scripts/tedarik/kaynaklar/` aynı yayında güncellenir.
-Araç ortak kuralları: yalnız HTTPS, açıklayıcı User-Agent (`sp-gorsel-tedarik/1.0 (SP GROUP; info@spgroupenerji.com)`), 3 deneme ve 1-2-4 sn geri çekilme, `Retry-After` desteği, JSON 2 MB / görsel 30 MB üst sınırı, görsel imza doğrulaması, atomik yazma. Test için taban URL `GORSEL_API_TABANI_<KAYNAK>` ile ezilir.
+Araç ortak kuralları: yalnız HTTPS, açıklayıcı User-Agent (`sp-gorsel-tedarik/1.0 (SP GROUP; info@spgroupenerji.com)`), 3 deneme ve 1-2-4 sn geri çekilme, `Retry-After` desteği, JSON 2 MB / görsel 30 MB üst sınırı, görsel imza doğrulaması, atomik yazma. Test için taban URL `GORSEL_API_TABANI_<KAYNAK>` ile, kaynak CDN tabanı `GORSEL_CDN_TABANI_<KAYNAK>` ile ezilir. Kaynak bazlı indirme başlığı adaptörde `indirme_basliklari` ile tanımlanır (ör. AIC `Referer`).
 
 ## Ortam anahtarları
 
@@ -17,6 +17,26 @@ Araç ortak kuralları: yalnız HTTPS, açıklayıcı User-Agent (`sp-gorsel-ted
 Anahtarlar yalnız ortam değişkeni veya proje kökü `.env` üzerinden okunur; çıktıya/loga yazılmaz, API host'u dışına gönderilmez.
 
 ---
+
+## Art Institute of Chicago
+
+- Taban: `https://api.artic.edu/api/v1`; arama `GET /artworks/search`, detay `GET /artworks/{id}`; görsel IIIF `https://www.artic.edu/iiif/2/{image_id}/full/{genislik},/0/default.jpg`.
+- Kimlik: anahtarsız; doküman tek iş parçacığı ve kendini sınırlama ister (sayısal limit yok).
+- Arama parametreleri: `q`, **`query[term][is_public_domain]=true`** (sunucu tarafı süzgeç), `fields`, `limit` (en fazla 100), `page`.
+- Yanıt `data[]`: `id`, `title`, `image_id`, `is_public_domain`, `artist_display`, `department_title`, `thumbnail.width|height`.
+- Lisans: kamu malı eser görselleri CC0; metadata CC0, açıklama metinleri CC-BY 4.0. Yerel indirme serbest.
+- **Kritik:** IIIF görsel ucu `Referer: https://www.artic.edu/` olmadan 403 döner; yalnız izinli genişlikler çalışır (200, 400, 600, 800, 843, 1200, 1686, 3000); araç bu genişliklerden seçip Pillow ile hedefe indirir.
+- Doğrulandı: sunucu tarafı PD süzgeci, IIIF boyut allowlist'i, Referer zorunluluğu, CC0 beyanı (2026-11-08).
+
+## Cooper Hewitt
+
+- Taban: `https://api.cooperhewitt.org`; tek uç GraphQL GET `/?raw&query=<url-encoded GraphQL>`.
+- Kimlik: anahtarsız (kayıt gerekmez; isteğe bağlı erişim anahtarı rate limit'i kaldırır). Varsayılan rate limit sayısı yayımlanmıyor; art arda isteklerde 429 görülebilir.
+- Arama sorgusu: `{ object(general:"<terim>", hasImages:true, size:<n>) { id summary multimedia } }`; detay: `{ object(id:"object-123") { ... } }`.
+- Yanıt `data.object[]`: `id`, `summary.title`, `multimedia[]` → `cc0` (bool), `type` ("image"), `original.url|measurements.dimensions`, `large.url`.
+- Lisans: yalnız `multimedia[].cc0 == true` görseller CC0 kabul edilir; istemci süzgeci. Yerel indirme serbest. Host: `ciim-static-media.s3.us-east-1.amazonaws.com`.
+- CC0 oranı ilk sonuçlarda ~%15'tir; araç istek boyutunu büyütüp süzgeç uygular.
+- Doğrulandı: GraphQL arama/detay, cc0 bayrağı, S3 görselleri, canlı indirme (2026-11-08).
 
 ## Pexels
 

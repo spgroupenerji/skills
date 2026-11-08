@@ -28,9 +28,9 @@ JPEG_GOVDE = b"\xff\xd8\xff\xe0" + b"0" * 240
 HTML_GOVDE = b"<html><body>gecersiz gorsel</body></html>"
 KAYNAK_ADLARI = {
     "pexels", "pixabay", "unsplash", "openverse", "wikimedia",
-    "smithsonian", "met", "nasa", "polyhaven", "flickr",
+    "smithsonian", "met", "artic", "cooperhewitt", "nasa", "polyhaven", "flickr",
 }
-ANAHTARSIZLAR = ("openverse", "wikimedia", "met", "nasa", "polyhaven")
+ANAHTARSIZLAR = ("openverse", "wikimedia", "met", "artic", "cooperhewitt", "nasa", "polyhaven")
 ANAHTARLILAR = ("pexels", "pixabay", "unsplash", "smithsonian", "flickr")
 GIZLI_ORTAMLAR = (
     "PEXELS_API_KEY", "PIXABAY_API_KEY", "UNSPLASH_ACCESS_KEY", "FLICKR_API_KEY",
@@ -54,7 +54,11 @@ class _Isleyici(BaseHTTPRequestHandler):
             anahtar: (deger[0] if len(deger) == 1 else ",".join(deger))
             for anahtar, deger in parse_qs(parca.query).items()
         }
-        self.server.sunucu.kayitlar.append({"yol": parca.path, "sorgu": sorgu})
+        self.server.sunucu.kayitlar.append({
+            "yol": parca.path,
+            "sorgu": sorgu,
+            "basliklar": {anahtar.lower(): deger for anahtar, deger in self.headers.items()},
+        })
         try:
             durum, govde, basliklar = self.server.sunucu.yanit(parca.path, sorgu)
         except Exception:
@@ -114,6 +118,50 @@ class SahteSunucu:
         if isleyici is None:
             return 404, {"hata": f"bilinmeyen yol: {yol}"}, {}
         return isleyici(yol, sorgu)
+
+    def _artic(self, yol: str, sorgu: dict[str, str]) -> tuple[int, Any, dict[str, str]]:
+        if "/iiif/" in yol:
+            return 200, JPEG_GOVDE, {}
+        if yol.rstrip("/").endswith("/artworks/search"):
+            return 200, {"pagination": {"total": 2}, "data": [self._artic_eser("1", True), self._artic_eser("2", False)]}, {}
+        if "/artworks/" in yol:
+            kimlik = yol.rstrip("/").rsplit("/", 1)[-1]
+            return 200, {"data": self._artic_eser(kimlik, kimlik != "2")}, {}
+        return 404, {"hata": "artic yolu"}, {}
+
+    def _artic_eser(self, kimlik: str, kamu: bool) -> dict[str, Any]:
+        return {
+            "id": int(kimlik) if kimlik.isdigit() else 0,
+            "title": "Tablo",
+            "image_id": f"img-{kimlik}",
+            "is_public_domain": kamu,
+            "artist_display": "Sanatci",
+            "department_title": "Prints and Drawings",
+            "thumbnail": {"width": 1600, "height": 1200},
+        }
+
+    def _cooperhewitt(self, yol: str, sorgu: dict[str, str]) -> tuple[int, Any, dict[str, str]]:
+        if "/img/" in yol:
+            return 200, JPEG_GOVDE, {}
+        graphql = sorgu.get("query", "")
+        if "object(id:" in graphql:
+            return 200, {"data": {"object": [self._cooper_nesne("object-1")]}}, {}
+        return 200, {"data": {"object": [self._cooper_nesne("object-1"), self._cooper_nesne("object-2", cc0=False)]}}, {}
+
+    def _cooper_nesne(self, kimlik: str, cc0: bool = True) -> dict[str, Any]:
+        taban = self.gorsel("cooperhewitt", kimlik)
+        return {
+            "id": kimlik,
+            "summary": {"title": "Sandalye"},
+            "multimedia": [{
+                "id": f"media-{kimlik}", "cc0": cc0, "type": "image",
+                "original": {"format": "jpeg", "url": f"{taban}.jpg", "measurements": {"dimensions": [
+                    {"dimension": "width", "units": "pixels", "value": 1600},
+                    {"dimension": "height", "units": "pixels", "value": 1200},
+                ]}},
+                "large": {"format": "jpeg", "url": f"{taban}-large.jpg"},
+            }],
+        }
 
     def _pexels(self, yol: str, sorgu: dict[str, str]) -> tuple[int, Any, dict[str, str]]:
         if "/img/" in yol:
@@ -434,6 +482,9 @@ class GorselTedarikTest(unittest.TestCase):
             "GORSEL_API_TABANI_NASA": f"{taban}/nasa",
             "GORSEL_API_TABANI_POLYHAVEN": f"{taban}/polyhaven",
             "GORSEL_API_TABANI_FLICKR": f"{taban}/flickr/services/rest/",
+            "GORSEL_API_TABANI_ARTIC": f"{taban}/artic",
+            "GORSEL_CDN_TABANI_ARTIC": f"{taban}/artic/iiif",
+            "GORSEL_API_TABANI_COOPERHEWITT": f"{taban}/cooperhewitt",
         }
 
     def ortam(self, anahtarlar: bool = True, ek: dict[str, str] | None = None) -> dict[str, str]:
@@ -499,11 +550,12 @@ class GorselTedarikTest(unittest.TestCase):
             self.assertIn("yerel_indirme", kayit)
         self.assertEqual(self.istekler(), [])
 
-    def test_02_auto_kategori_sanat_met_ve_openverse(self) -> None:
+    def test_02_auto_kategori_sanat_met_ve_artic(self) -> None:
         veri = self.basarili(self.calistir("ara", "--konu", "tablo", "--kategori", "sanat", "--adet", "2", anahtarlar=False))
-        self.assertEqual(veri["kaynaklar"], ["met", "openverse"])
-        self.assertEqual({sonuc["kaynak"] for sonuc in veri["sonuclar"]}, {"met", "openverse"})
+        self.assertEqual(veri["kaynaklar"], ["met", "artic"])
+        self.assertEqual({sonuc["kaynak"] for sonuc in veri["sonuclar"]}, {"met", "artic"})
         self.assertTrue(any("/v1.1/search" in str(kayit["yol"]) for kayit in self.istekler("/met")))
+        self.assertTrue(any("/artworks/search" in str(kayit["yol"]) for kayit in self.istekler("/artic")))
 
     def test_03_pexels_normalize_ve_atif(self) -> None:
         veri = self.basarili(self.calistir("ara", "--kaynak", "pexels", "--konu", "quail", "--adet", "5"))
@@ -757,6 +809,72 @@ class GorselTedarikTest(unittest.TestCase):
         hata = self.hatali(cp, 5)
         self.assertEqual(hata["kod"], 5)
         self.assertEqual(len(self.istekler("/pexels/v1/search")), 3)
+
+
+    def test_27_artic_kamu_mali_filtresi_ve_iiif(self) -> None:
+        veri = self.basarili(self.calistir("ara", "--kaynak", "artic", "--konu", "tablo", "--adet", "3", anahtarlar=False))
+        self.assertTrue(veri["sonuclar"])
+        for sonuc in veri["sonuclar"]:
+            self.assertEqual(sonuc["kaynak"], "artic")
+            self.assertEqual(sonuc["lisans"]["sinif"], "kamu-mali")
+            self.assertNotEqual(sonuc["kimlik"], "2")
+            self.assertIn("/full/", sonuc["gorsel"]["indir"])
+            self.assertIn(",/0/default.jpg", sonuc["gorsel"]["indir"])
+        kayit = self.istekler("/artic")[0]
+        self.assertEqual(kayit["sorgu"].get("query[term][is_public_domain]"), "true")
+        self.assertIn("fields", kayit["sorgu"])
+
+    def test_28_artic_indirme_referer_ve_renk_alani(self) -> None:
+        veri = self.basarili(self.calistir(
+            "indir", "--kaynak", "artic", "--id", "1", "--ad", "aic-tablo",
+            "--genislikler", "640", "--format", "jpg", anahtarlar=False))
+        self.assertEqual(veri["durum"], "indirildi")
+        self.assertTrue((self.kok / veri["dosyalar"][0]["yol"]).is_file())
+        gorsel_istek = next(kayit for kayit in self.sunucu.kayitlar if "/artic/iiif/" in str(kayit["yol"]))
+        self.assertEqual(gorsel_istek["basliklar"].get("referer"), "https://www.artic.edu/")
+        self.assertIn("renk", veri)
+        manifest = self.manifest_oku()
+        self.assertIn("renk", manifest["kayitlar"][0])
+
+    def test_29_renk_kontrast_ve_palet(self) -> None:
+        from tedarik import renk
+        self.assertEqual(renk.kontrast_orani("#ffffff", "#000000"), 21.0)
+        self.assertEqual(renk.hex_coz("#abc"), (170, 187, 204))
+        oneri = renk.metin_onerisi("#111111")
+        self.assertEqual(oneri["renk"], "#ffffff")
+        self.assertTrue(oneri["wcag_aa"])
+        try:
+            import io
+            from PIL import Image
+        except ImportError:
+            self.skipTest("Pillow yok")
+        tampon = io.BytesIO()
+        Image.new("RGB", (8, 8), (200, 30, 40)).save(tampon, format="PNG")
+        analiz = renk.renk_analizi(tampon.getvalue())
+        self.assertEqual(analiz["durum"], "ok")
+        self.assertTrue(analiz["baskin"].startswith("#"))
+        self.assertEqual(len(analiz["palet"]), 1)
+
+    def test_30_artic_kamu_mali_olmayan_reddedilir(self) -> None:
+        cp = self.calistir("indir", "--kaynak", "artic", "--id", "2", "--ad", "kamu-disi", "--klasor", "assets/img", anahtarlar=False)
+        self.assertEqual(cp.returncode, 8, cp.stderr)
+        self.assertIn("kamu malı", cp.stderr)
+
+
+
+    def test_31_cooperhewitt_cc0_suzme_ve_indirme(self) -> None:
+        veri = self.basarili(self.calistir("ara", "--kaynak", "cooperhewitt", "--konu", "chair", "--adet", "2", anahtarlar=False))
+        self.assertTrue(veri["sonuclar"])
+        for sonuc in veri["sonuclar"]:
+            self.assertEqual(sonuc["kaynak"], "cooperhewitt")
+            self.assertEqual(sonuc["lisans"]["sinif"], "kamu-mali")
+            self.assertNotEqual(sonuc["kimlik"], "object-2")
+        indirme = self.basarili(self.calistir(
+            "indir", "--kaynak", "cooperhewitt", "--id", "object-1", "--ad", "ch-sandalye",
+            "--genislikler", "640", "--format", "jpg", anahtarlar=False))
+        self.assertEqual(indirme["durum"], "indirildi")
+        self.assertTrue((self.kok / indirme["dosyalar"][0]["yol"]).is_file())
+
 
 
 if __name__ == "__main__":

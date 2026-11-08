@@ -20,6 +20,8 @@ Telif lisansı temiz olsa bile **kişilik hakkı, marka hakkı ve özel mülk** 
 | Wikimedia Commons | CC0 / PD (süzülür) | Evet | Gerekmez (CC0/PD) | Serbest | Karışık lisans havuzu; yalnız CC0/PD geçer; kişilik hakkı saklı |
 | Smithsonian | CC0 | Evet | Gerekmez (kaynak göstermek faydalı) | Serbest | Yalnız CC0 işaretli medya; logo/marka CC0 dışı; kültürel hassasiyet |
 | The Met | CC0 (kamu malı eser) | Evet | Gerekmez | Serbest | Yalnız `isPublicDomain=true` eserler; telifli eser kullanılmaz |
+| Art Institute of Chicago | CC0 | Evet | Gerekmez | Serbest | Yalnız `is_public_domain=true` eserler; açıklama metinleri CC-BY 4.0 |
+| Cooper Hewitt | CC0 (medya) | Evet | Gerekmez | Serbest | Yalnız `multimedia[].cc0=true` görseller; metadata lisansı doğrulanmalı |
 | NASA | ABD kamu malı | **Koşullu** | Gerekmez; kaynak gösterilir | Serbest | Amblem/logotype kamu malı değil; onay iması yasak; üçüncü taraf telif ve tanınabilir kişi istisnası |
 | Poly Haven | CC0 | Evet | Gerekmez ("Powered by Poly Haven" rica) | Serbest | HTML kazıma yasak, API zorunlu; UA/Referer şart |
 | Flickr | CC0 (9) / PDM (10) | Evet | Gerekmez (CC0/PDM) | Serbest | **Yalnız lisans 9-10**; 7 (Commons) CC lisansı değildir ve ticari garanti vermez; sahibi kaldırma isterse 24 saat içinde cache güncelle |
@@ -34,6 +36,8 @@ Ayrıntılı API/atıf davranışı: `kaynak-api-sozlesmesi.md`.
 - **Openverse:** CC0/PDM filtresi `license=cc0,pdm` ile istenir; her kayıtta `license` alanı yeniden doğrulanır. Kayıt `source`/`provider` alanı orijinal kaynağı gösterir; orijinal kaynağın ticari sınırları ayrıca geçerlidir.
 - **Wikimedia Commons:** Yalnız CC0/PD lisanslı dosyalar kullanılır (`extmetadata.License` = cc0/pd; yedek `LicenseShortName`). Commons'ta CC-BY/CC-BY-SA dosyalar da bulunur; bunlar araç tarafından elenir. Kişi fotoğraflarında kişilik hakkı saklıdır.
 - **Smithsonian:** Yalnız `usage.access == "CC0"` işaretli medya kullanılır; metadata'da CC0 olsa bile nesneye bağlı kültürel hassasiyet/donör kısıtı olabilir. Smithsonian adı/logo ve diğer markalar CC0 kapsamı dışıdır.
+- **Art Institute of Chicago:** Arama sunucu tarafında `is_public_domain=true` ile süzülür; yine de her kayıtta alan yeniden doğrulanır. Görseller IIIF üzerinden CC0; açıklama metinleri CC-BY 4.0 olduğundan uzun alıntılanmaz.
+- **Cooper Hewitt:** Yalnız `cc0=true` işaretli multimedia kullanılır; diğer medya telif riski taşır. Metadata lisansı net değildir (`doğrulanmalı`).
 - **The Met:** Yalnız `isPublicDomain=true` nesneler kullanılır (arama parametresi yok sayıldığı için filtre istemci tarafında yapılır). Eserin kendisi kamu malı olsa da fotoğrafın çekildiği bağlam veya üçüncü taraf hakları istisna olabilir.
 - **NASA:** İçerik genelde ABD'de telifsizdir; fakat **NASA amblemi, logosu ve kimlik işaretleri kamu malı değildir**, onay ima eden kullanım yasaktır, üçüncü taraf telifli görseller ve tanınabilir kişiler istisnadır. Araç NASA'yı `kamu-mali` sayar ama onay kapısında bu riskleri ayrıca denetletir.
 - **Poly Haven:** CC0; API üzerinden indirme serbest, HTML kazıma yasak. Son kullanıcıya gösterimde "Powered by Poly Haven" atfı rica edilir (zorunlu değil).

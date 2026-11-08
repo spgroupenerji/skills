@@ -5,7 +5,7 @@ from __future__ import annotations
 KATEGORI_KAYNAKLARI: dict[str, tuple[str, ...]] = {
     "genel": ("pexels", "pixabay", "openverse", "unsplash", "wikimedia"),
     "kurumsal": ("pexels", "pixabay", "unsplash", "openverse"),
-    "sanat": ("met", "smithsonian", "openverse", "wikimedia"),
+    "sanat": ("met", "artic", "smithsonian", "cooperhewitt", "openverse", "wikimedia"),
     "bilim-uzay": ("nasa", "smithsonian", "openverse"),
     "doku-3b": ("polyhaven", "openverse"),
     "tarih": ("wikimedia", "flickr", "openverse", "smithsonian"),

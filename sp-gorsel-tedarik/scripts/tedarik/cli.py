@@ -9,7 +9,7 @@ import sys
 from pathlib import Path
 from typing import Any
 
-from . import guvenlik, indirici, manifest, yonlendirme
+from . import guvenlik, indirici, manifest, renk, yonlendirme
 from .hata import AracHatasi
 from .kaynaklar import KAYNAKLAR
 from .model import Aday, AramaIstegi
@@ -41,7 +41,7 @@ from .sabitler import (
 
 def _gorunen_ad(ad: str) -> str:
     return {"pexels": "Pexels", "pixabay": "Pixabay", "unsplash": "Unsplash", "openverse": "Openverse",
-            "wikimedia": "Wikimedia Commons", "smithsonian": "Smithsonian", "met": "The Met",
+            "wikimedia": "Wikimedia Commons", "smithsonian": "Smithsonian", "met": "The Met", "artic": "Art Institute of Chicago", "cooperhewitt": "Cooper Hewitt",
             "nasa": "NASA", "polyhaven": "Poly Haven", "flickr": "Flickr"}.get(ad, ad.title())
 
 
@@ -99,6 +99,7 @@ def _aday_dict(aday: Aday, tanim: Any, ticari: dict[str, Any]) -> dict[str, Any]
         "sayfa": aday.sayfa_url,
         "atif_html": indirici.atif_html_uret(aday, _gorunen_ad(tanim.ad), tanim.atif_zorunlu),
         "yerel_indirme": tanim.yerel_indirme,
+        "renk": aday.ek.get("renk") or None,
     }
 
 
@@ -259,6 +260,19 @@ def komut_toplu_ara(ayar: argparse.Namespace) -> dict[str, Any]:
     return {"komut": "toplu-ara", "varliklar": varliklar, "ipucu": "Her varlık için bir aday seç; indir komutunu ayrı çalıştır."}
 
 
+def _renk_hesapla(dosyalar: list[dict[str, Any]]) -> dict[str, Any]:
+    if not dosyalar:
+        return {"durum": "atlandi", "neden": "dosya yok"}
+    buyuk = max(dosyalar, key=lambda dosya: int(dosya["genislik"]))
+    yol = Path(str(buyuk["yol"]))
+    if not yol.is_absolute():
+        yol = Path.cwd() / yol
+    try:
+        return renk.renk_analizi(yol.read_bytes())
+    except OSError as hata:
+        return {"durum": "atlandi", "neden": str(hata)[:120]}
+
+
 def _tetikle_ve_indir(aday: Aday, tanim: Any, ayar: argparse.Namespace) -> dict[str, Any]:
     ticari = guvenlik.ticari_degerlendir(aday)
     guvenlik.kapi(ticari)
@@ -282,11 +296,14 @@ def _tetikle_ve_indir(aday: Aday, tanim: Any, ayar: argparse.Namespace) -> dict[
     onceki = manifest.kayit_bul(manifest_veri, aday.kaynak, str(aday.kimlik))
     ad = manifest.ad_benzersiz(manifest_veri, slug_uret(ayar.ad), aday.kaynak, str(aday.kimlik))
     dosyalar, indirme_uyarilari = indirici.indir(
-        plan, klasor, ad, int(ayar.kalite), bool(ayar.uzerine_yaz), tanim.gorsel_hostlari
+        plan, klasor, ad, int(ayar.kalite), bool(ayar.uzerine_yaz), tanim.gorsel_hostlari,
+        getattr(tanim, "indirme_basliklari", None) or None,
     )
     uyarilar.extend(indirme_uyarilari)
     atif = indirici.atif_html_uret(aday, _gorunen_ad(tanim.ad), tanim.atif_zorunlu)
     kayit = manifest.kayit_uret(aday, ad, dosyalar, atif, ticari, aday.ek.get("lisans_url") or "")
+    renk_verisi = _renk_hesapla(dosyalar)
+    kayit["renk"] = renk_verisi
     if isinstance(onceki, dict):
         kayit["ticari_durum"] = onceki.get("ticari_durum") or kayit["ticari_durum"]
         kayit["ticari_onay"] = onceki.get("ticari_onay") or {}
@@ -303,6 +320,7 @@ def _tetikle_ve_indir(aday: Aday, tanim: Any, ayar: argparse.Namespace) -> dict[
         "srcset": indirici.srcset_uret(dosyalar),
         "img": indirici.img_etiketleri(dosyalar, metin_temizle(aday.baslik, 120) or ad, aday),
         "atif_html": atif,
+        "renk": renk_verisi,
         "credits": {"dosya": (klasor / MANIFEST_ADI).as_posix(), "surum": manifest.MANIFEST_SURUM},
         "ticari": {
             "degerlendirme": ticari,

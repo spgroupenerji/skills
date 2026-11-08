@@ -57,6 +57,8 @@ ISTEMCI_AJANI = "sp-gorsel-tedarik/1.0 (SP GROUP; info@spgroupenerji.com)"
 YEREL_HOSTLAR = frozenset({"127.0.0.1", "localhost", "::1"})
 UTM_UYGULAMA = "sp-gorsel-tedarik"
 
+WCAG_AA_ESIGI = 4.5
+
 GORSEL_BICIM_IMZALARI = {
     "jpg": (b"\xff\xd8\xff",),
     "png": (b"\x89PNG\r\n\x1a\n",),

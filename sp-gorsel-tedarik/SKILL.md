@@ -1,11 +1,11 @@
 ---
 name: sp-gorsel-tedarik
-description: "Şu durumlarda yükle: site/uygulama için ticari kullanımı güvenli görsel aranacak, kaynak seçilecek, görsel assets/img altına SEO adlı WebP/JPG indirilecek, lisans/atıf denetlenecek, credits.json ve ticari onay kaydı tutulacak; 'görsel bul/indir', 'stok fotoğraf', 'ticari güvenli görsel' istendiğinde ya da Pexels/Pixabay/Unsplash/Openverse/Wikimedia/Met/Smithsonian/NASA/Poly Haven/Flickr gerektiğinde. Genel görsel üretimi (AI) ve keyfî kazıma kapsam dışıdır."
-version: "v202611081716"
+description: "Şu durumlarda yükle: site/uygulama için ticari kullanımı güvenli görsel aranacak, kaynak seçilecek, görsel assets/img altına SEO adlı WebP/JPG indirilecek, lisans/atıf ve renk/kontrast denetlenecek, credits.json ve ticari onay kaydı tutulacak; 'görsel bul/indir', 'stok fotoğraf' istendiğinde ya da Pexels/Pixabay/Unsplash/Openverse/Wikimedia/Met/Artic/Smithsonian/Cooper Hewitt/NASA/Poly Haven/Flickr gerektiğinde. AI görsel üretimi ve keyfî kazıma kapsam dışıdır."
+version: "v202611081740"
 ---
 # sp-gorsel-tedarik
 
-Site veya uygulama için ticari kullanımı güvenli görseli 10 kaynaktan bulur, SEO adlı yerel varlığa (WebP/JPG + srcset) dönüştürür, lisans/atıf kaydını ve ticari onay kapısını yönetir. Araç: `scripts/gorsel_tedarik.py` (Python ≥3.10; çekirdek yalnız standart kütüphane, Pillow varsa WebP/boyutlandırma). Sayfa tasarımı, layout ve animasyon kararları ilgili tasarım/mimari becerilerindedir.
+Site veya uygulama için ticari kullanımı güvenli görseli 12 kaynaktan bulur, SEO adlı yerel varlığa (WebP/JPG + srcset) dönüştürür, lisans/atıf kaydını, baskın renk/kontrast analizini ve ticari onay kapısını yönetir. Araç: `scripts/gorsel_tedarik.py` (Python ≥3.10; çekirdek yalnız standart kütüphane, Pillow varsa WebP/boyutlandırma). Sayfa tasarımı, layout ve animasyon kararları ilgili tasarım/mimari becerilerindedir.
 
 ## 0. Değişmez kurallar
 
@@ -19,13 +19,13 @@ Site veya uygulama için ticari kullanımı güvenli görseli 10 kaynaktan bulur
 
 ## 1. Kaynak seçimi (önce plan, sonra tek arama)
 
-Kategoriyi seç; `--kaynak auto` o kategorinin öncelik sırasından ilk iki kullanılabilir kaynağı çağırır. Anahtarsız beş kaynak (openverse, wikimedia, met, nasa, polyhaven) her zaman hazırdır.
+Kategoriyi seç; `--kaynak auto` o kategorinin öncelik sırasından ilk iki kullanılabilir kaynağı çağırır. Anahtarsız yedi kaynak (openverse, wikimedia, met, artic, cooperhewitt, nasa, polyhaven) her zaman hazırdır.
 
 | Kategori (`--kategori`) | Konu | Öncelik sırası |
 | --- | --- | --- |
 | `kurumsal` | Modern iş, ofis, ekip, insan, yaşam tarzı, ürün | pexels → pixabay → unsplash → openverse |
 | `genel` | Nötr nesne, doğa, soyut, genel sahne | pexels → pixabay → openverse → unsplash → wikimedia |
-| `sanat` | Lüks, klasik, editoryal, illüstrasyon, tablo, heykel | met → smithsonian → openverse → wikimedia |
+| `sanat` | Lüks, klasik, editoryal, illüstrasyon, tablo, heykel, tasarım objesi | met → artic → smithsonian → cooperhewitt → openverse → wikimedia |
 | `bilim-uzay` | Uzay, bilim, teknoloji, fütüristik karanlık arka plan | nasa → smithsonian → openverse |
 | `doku-3b` | Yüzey dokusu, stüdyo arka planı, 3B sahne | polyhaven → openverse |
 | `tarih` | Tarihî, belgesel, nadir arşiv | wikimedia → flickr → openverse → smithsonian |
@@ -39,19 +39,21 @@ Kategoriyi seç; `--kaynak auto` o kategorinin öncelik sırasından ilk iki kul
 | Wikimedia Commons | CC0 / PD (süzülür) | kamu-mali | serbest | gerekmez | gerekmez |
 | Smithsonian | CC0 | kamu-mali | serbest | gerekmez | `SI_OPEN_ACCESS_API_KEY` |
 | The Met | CC0 (kamu malı eser) | kamu-mali | serbest | gerekmez | gerekmez |
+| Art Institute of Chicago | CC0 | kamu-mali | serbest | gerekmez | gerekmez |
+| Cooper Hewitt | CC0 (yalnız cc0 medya) | kamu-mali | serbest | gerekmez | gerekmez |
 | NASA | ABD kamu malı (amblem istisnası) | kamu-mali | serbest | gerekmez, kaynak gösterilir | gerekmez |
 | Poly Haven | CC0 | kamu-mali | serbest | gerekmez | gerekmez |
 | Flickr | CC0 / PDM (yalnız 9-10) | kamu-mali | serbest | gerekmez | `FLICKR_API_KEY` |
 
-Sıfır telif riski gerekiyorsa yalnız `kamu-mali` sınıfı seç (openverse, met, smithsonian, nasa, polyhaven, wikimedia, flickr-9/10). Modern insan/ofis fotoğrafı gerekiyorsa Pexels/Pixabay/Unsplash kaçınılmazdır; onay kapısı bu yüzden zorunludur.
+Sıfır telif riski gerekiyorsa yalnız `kamu-mali` sınıfı seç (openverse, met, artic, smithsonian, cooperhewitt, nasa, polyhaven, wikimedia, flickr-9/10). Modern insan/ofis fotoğrafı gerekiyorsa Pexels/Pixabay/Unsplash kaçınılmazdır; onay kapısı bu yüzden zorunludur.
 
 ## 2. İş akışı (token bütçeli)
 
 0. **Plan (baştan):** her görsel için tek satır — bölüm, İngilizce somut konu, kategori, hedef genişlik, gerçekten gerekli mi. Plan yoksa arama yapılmaz.
 1. **Kaynak durumu (oturumda bir kez):** `python scripts/gorsel_tedarik.py kaynaklar` — anahtar var/yok, Pillow var mı. Ağ isteği yok.
 2. **Tek arama:** `python scripts/gorsel_tedarik.py ara --konu "<İngilizce somut terim>" --kategori <kategori> --adet 6 --yon landscape --min-genislik 1600`. Varsayılan `--kaynak auto` iki kaynak dener; yetmezse en fazla bir ek arama yapılır (görsel başına toplam 2 arama).
-3. **Seç:** önce lisans sınıfı (kamu-mali üstün), sonra `ticari.durum` (`engelli` yok; `manuel_dogrulama_gerekli` ise görsel denetim zorunlu), retina için hedef genişliğin en az 2 katı, metin için negatif alan, renk/ton uyumu, `baslik` bağlam uyumu. Aynı görseli tekrar indirme; `credits.json` çakışmasını kontrol et.
-4. **İndir:** `python scripts/gorsel_tedarik.py indir --kaynak pexels --id 123 --ad "hakkimizda-ekip" --genislikler 640,960,1440 --format webp`. Çıktıdaki `dosyalar`, `srcset`, `img`, `atif_html`, `ticari` alanlarını kullan.
+3. **Seç:** önce lisans sınıfı (kamu-mali üstün), sonra `ticari.durum` (`engelli` yok; `manuel_dogrulama_gerekli` ise görsel denetim zorunlu), retina için hedef genişliğin en az 2 katı, metin için negatif alan, `renk` ipucu (Pexels/Unsplash) ile marka rengi/ton uyumu, `baslik` bağlam uyumu. Aynı görseli tekrar indirme; `credits.json` çakışmasını kontrol et.
+4. **İndir:** `python scripts/gorsel_tedarik.py indir --kaynak pexels --id 123 --ad "hakkimizda-ekip" --genislikler 640,960,1440 --format webp`. Çıktıdaki `dosyalar`, `srcset`, `img`, `atif_html`, `renk` (baskın/palet + WCAG metin önerisi), `ticari` alanlarını kullan; `renk.metin.wcag_aa` false ise metni koyu/açık katmanla düzelt.
 5. **Ticari onay (zorunlu):** indirilen görseli `read_image` ile aç; kişi/yüz, logo/marka, sanat eseri, özel mülk, hassas içerik yoksa `onayla --karar uygun --onaylayan "<ad>" --not "<denetim notu>"`; varsa `--karar uygun-degil` ve görseli kullanma, yeni aday seç.
 6. **HTML'e ekle:** `img` alanındaki `src`/`srcset`/`width`/`height`/`alt` nitelikleri + `atif_html` paragrafı (bölüm 5).
 7. **Kapat:** `denetle` ile eksik dosya ve onaysız kayıt kontrolü; sonucu kullanıcıya tek satır bildir.
@@ -68,7 +70,7 @@ Sıfır telif riski gerekiyorsa yalnız `kamu-mali` sınıfı seç (openverse, m
 | `serbest-ticari` | Ücretsiz ticari özel lisans | Pexels, Pixabay, Unsplash | Serbest; satış/redağıtım ve onay iması yasakları geçerli |
 | `kosullu` | Atıf/paylaşım şartlı veya belirsiz | CC-BY, CC-BY-SA, Flickr-7, GFDL | Araç döndürmez; varsayılan kullanılmaz |
 
-Ayrıntı, doğrulanmış alıntılar ve denetim listesi: `references/ticari-guvenlik.md`. API uçları, parametreler ve hız limitleri: `references/kaynak-api-sozlesmesi.md`.
+Ayrıntı, doğrulanmış alıntılar ve denetim listesi: `references/ticari-guvenlik.md`. API uçları, parametreler ve hız limitleri: `references/kaynak-api-sozlesmesi.md`. Yeni kaynak/AI/işleme adaylarının kabul-red kararları: `references/ek-api-envanteri.md`.
 
 ## 4. Komut sözleşmesi
 
@@ -108,7 +110,7 @@ Ayrıntı, doğrulanmış alıntılar ve denetim listesi: `references/ticari-guv
 | 2 | Kullanım hatası | `--help`; bayrak değerlerini kontrol et |
 | 3 | Anahtar yok/geçersiz | `.env` veya ortam değişkenini düzelt; anahtarı paylaşma; `kaynaklar` ile durumu gör |
 | 4 | Sonuç yok | İngilizce/somut terim, `--min-genislik` düşür, `--sayfa` artır, kategori değiştir |
-| 5 | API/ağ/hız limiti | Araç 1-2-4 sn ile 3 kez dener; 429'da bekle; anahtarsız kaynaklara düş |
+| 5 | API/ağ/hız limiti | Araç 1-2-4 sn ile 3 kez dener; 429'da bekle; anahtarsız kaynaklara düş. AIC IIIF 403 ise istek `Referer` başlığı olmadan gitmiştir; araç ekler, proxy araya giriyorsa düzelt |
 | 6 | Doğrulama | Bozuk manifest otomatik yedeklenir; görsel imzası/URL kontrolü; `denetle` çalıştır |
 | 7 | Tetikleyici başarısız | Görsel indirilmedi (Unsplash API kuralı); tekrar dene |
 | 8 | Ticari risk / hotlink | Görsel indirilmedi; engelli adayı kullanma; Unsplash'ta hotlink kullan veya `--yerel-kabul` kararını bilinçli ver |
@@ -116,14 +118,14 @@ Ayrıntı, doğrulanmış alıntılar ve denetim listesi: `references/ticari-guv
 
 ## 7. Test ve bakım
 
-- Zorunlu test: `python scripts/test_gorsel_tedarik.py` — ağsız ve anahtarsız çalışır; tüm testler `OK` dönmelidir. Testler geçmeden davranış değişikliği yayınlanmaz.
-- Canlı duman (anahtar gerekmez): `python scripts/gorsel_tedarik.py ara --kaynak openverse --konu "texture" --adet 2` ve `--kaynak met --konu "sunflowers" --adet 2`.
+- Zorunlu test: `python scripts/test_gorsel_tedarik.py` — ağsız ve anahtarsız çalışır; 31 test `OK` dönmelidir. Testler geçmeden davranış değişikliği yayınlanmaz.
+- Canlı duman (anahtar gerekmez): `ara --kaynak openverse --konu "texture" --adet 2`, `ara --kaynak artic --konu painting --adet 2`, `ara --kaynak cooperhewitt --konu chair --adet 2`.
 - Değişiklikte sürüm damgası (`vYYYYMMDDHHMM`), README katalog satırı ve `references/` eşitlenir; gerçek anahtar/kişisel veri eklenmez.
 - Kaynak sözleşmesi değişirse önce `references/kaynak-api-sozlesmesi.md`, sonra ilgili adaptör güncellenir; ikisi aynı yayında olur.
 
 ## 8. Sınırlar
 
-- Yalnız bu 10 lisanslı kaynaktan tedarik; AI görsel üretimi, keyfî web kazıma, telifsiz olmayan kaynaklar kapsam dışıdır.
+- Yalnız bu 12 lisanslı kaynaktan tedarik; AI görsel üretimi, keyfî web kazıma, telifsiz olmayan kaynaklar kapsam dışıdır. İkon/3B varlık ve AI yüz/NSFW denetimi ayrı hat açılmadan eklenmez (gerekçeler: `references/ek-api-envanteri.md`).
 - Editoryal (haber/eleştiri) kullanım bu aracın kapsamı dışıdır; ticari güvenlik varsayılan ve tek moddur.
 - Hukuki değerlendirme ve kişilik/marka izinleri kullanıcıya aittir; araç heuristik + görsel denetim kaydı üretir, garanti vermez.
 - Tasarım/layout/animasyon kararları tasarım ve mimari becerilerindedir.

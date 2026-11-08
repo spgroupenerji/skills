@@ -56,6 +56,9 @@ def plan_olustur(
         if varyant.genislik and varyant.genislik < genislik:
             hedef_genislik = varyant.genislik
             uyarilar.append(f"{genislik}px kaynakta yok; {varyant.genislik}px kullanıldı.")
+        if not cevirebilir and varyant.genislik > hedef_genislik:
+            hedef_genislik = varyant.genislik
+            uyarilar.append(f"Pillow yok: {genislik}px'e küçültülemedi; {varyant.genislik}px kullanıldı.")
         hedef_bicim = bicim
         if not cevirebilir and varyant.bicim != bicim:
             hedef_bicim = varyant.bicim
@@ -68,10 +71,10 @@ def plan_olustur(
     return plan, _tekille(uyarilar)
 
 
-def _govde_indir(url: str, gorsel_hostlari: tuple[str, ...]) -> bytes:
+def _govde_indir(url: str, gorsel_hostlari: tuple[str, ...], basliklar: dict[str, str] | None = None) -> bytes:
     if not host_guvenli(url, gorsel_hostlari):
         raise AracHatasi(CIKIS_DOGRULAMA, "Görsel URL'si izinli host'larda değil.", url)
-    govde, _ = ikili_istek(url, None, azami_bayt=AZAMI_GORSEL_BAYT)
+    govde, _ = ikili_istek(url, basliklar, azami_bayt=AZAMI_GORSEL_BAYT)
     gorsel_dogrula(govde)
     return govde
 
@@ -118,6 +121,7 @@ def indir(
     kalite: int,
     uzerine_yaz: bool,
     gorsel_hostlari: tuple[str, ...],
+    basliklar: dict[str, str] | None = None,
 ) -> tuple[list[dict[str, Any]], list[str]]:
     """Planı indirir, dönüştürür ve dosya bilgilerini döndürür."""
     uyarilar: list[str] = []
@@ -133,7 +137,7 @@ def indir(
             continue
         govde = onbellek.get(varyant.url)
         if govde is None:
-            govde = _govde_indir(varyant.url, gorsel_hostlari)
+            govde = _govde_indir(varyant.url, gorsel_hostlari, basliklar)
             onbellek[varyant.url] = govde
         ham, bicim, genislik, yukseklik = gorsel_isle(govde, hedef_bicim, hedef_genislik, kalite, varyant)
         if bicim != _uzanti(hedef_bicim):

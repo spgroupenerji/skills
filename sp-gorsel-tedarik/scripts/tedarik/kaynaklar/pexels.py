@@ -56,6 +56,7 @@ class PexelsKaynak:
             fotografci=str(alan(foto, "photographer", "")),
             profil_url=str(alan(foto, "photographer_url", "")),
             risk_metni=metin_temizle(alan(foto, "alt", ""), 240),
+            ek={"renk": str(alan(foto, "avg_color", "")).strip() or None},
         )
 
     def ara(self, istek: AramaIstegi, anahtar: str | None, taban: str) -> list[Aday]:

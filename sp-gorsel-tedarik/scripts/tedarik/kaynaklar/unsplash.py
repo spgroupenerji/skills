@@ -91,6 +91,7 @@ class UnsplashKaynak:
         ek = {
             "atif_html": _atif_html(fotografci, profil),
             "tetik_url": _tetik_url(str(alan(baglantilar, "download_location", "")), anahtar),
+            "renk": str(alan(foto, "color", "")).strip() or None,
         }
         return Aday(
             kaynak=self.ad,

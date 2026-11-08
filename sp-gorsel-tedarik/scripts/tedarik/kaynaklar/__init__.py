@@ -4,6 +4,8 @@ from __future__ import annotations
 
 from typing import Any
 
+from .artic import ArticKaynak
+from .cooperhewitt import CooperHewittKaynak
 from .flickr import FlickrKaynak
 from .met import MetKaynak
 from .nasa import NasaKaynak
@@ -25,6 +27,8 @@ KAYNAKLAR: dict[str, Any] = {
         WikimediaKaynak(),
         SmithsonianKaynak(),
         MetKaynak(),
+        ArticKaynak(),
+        CooperHewittKaynak(),
         NasaKaynak(),
         PolyHavenKaynak(),
         FlickrKaynak(),
