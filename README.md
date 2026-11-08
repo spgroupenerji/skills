@@ -26,7 +26,7 @@ SP GROUP projelerinde kullanılan ajan yeteneklerinin (skill) tek deposu. Her ye
 | [`sp-dizayn-masaustu`](sp-dizayn-masaustu/SKILL.md) | v202611080142 | GPUI masaüstü yapısal tasarımı: tema/token, ölçü, bileşen/ikon, pencere ve durumlar, hareket, erişilebilirlik |
 | [`sp-zen-dizayn`](sp-zen-dizayn/SKILL.md) | v202611020457 | Apple klasik/ilk iPhone dönemi tasarım felsefesi: sakinlik, az-çok, aktif boşluk, doğal hareket, içeriği öne çıkaran his; yaratıcılığı kısıtlamayan yön |
 | [`sp-orkestra`](sp-orkestra/SKILL.md) | v202611080142 | Görev orkestrasyonu: uzman merceği, görev türü → rol → canlı araç kombinasyonu, zorunlu taban (kod/graf/hafıza), bağlam bütçesi, kısa çıktı, kanıtlı kapanış |
-| [`sp-unsplash-gorsel-indirme`](sp-unsplash-gorsel-indirme/SKILL.md) | v202610310029 | Unsplash görsel tedariki: ticari güvenlik kapısı/onay kaydı, API/CLI + unsplash-php/unsplash-js + anahtarsız Chrome/CDP tarayıcı yedeği, hotlink/atıf, SEO adlı WebP/JPG, srcset, credits.json, hız limiti ve hata yönetimi |
+| [`sp-gorsel-tedarik`](sp-gorsel-tedarik/SKILL.md) | v202611081716 | 10 ticari güvenli kaynaktan görsel tedarik: kategori yönlendirme, lisans sınıfı ve ticari onay kapısı, kaynak API/kota yönetimi, SEO adlı yerel WebP/JPG + srcset, credits.json denetimi |
 
 Yeni yetenek eklendiğinde bu tabloya satır eklenir. Tablo, depodaki yeteneklerin tek doğruluk kaynağıdır.
 
@@ -69,6 +69,7 @@ Yetenekler `description` alanındaki tetikleyicilere göre otomatik yüklenir; a
 - `sp-mimari-masaustu` + `sp-dizayn-masaustu`: Rust/GPUI masaüstü uygulamasında mimari (derleme/sürüm dahil) ve arayüz işlerini ayırır.
 - `sp-mimari-web-spa` + `sp-dizayn-web-uygulama`: Vite + React SPA + PHP API hedefinde mimari ve yapısal tasarımı ayırır; SSR zero-build panel hedefiyle karıştırılmaz.
 - `sp-zen-dizayn`: Apple'ın klasik dönem hissini felsefe olarak yükler; tasarımı bu yöne çeker, yaratıcılığı kısıtlamaz. Yapısal/teknik uygulama istendiğinde platform becerileri kullanılır. Ayrıntı [SKILL.md](sp-zen-dizayn/SKILL.md) dosyasındadır.
+- `sp-gorsel-tedarik`: site/uygulama için ticari kullanımı güvenli görseli 10 kaynaktan seçer, yerel varlık üretir ve lisans/onay kaydını tutar; site tasarımıyla birlikte yüklenir. Ayrıntı [SKILL.md](sp-gorsel-tedarik/SKILL.md) dosyasındadır.
 
 ## Yeni Yetenek Ekleme
 
