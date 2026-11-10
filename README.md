@@ -19,14 +19,14 @@ SP GROUP projelerinde kullanılan ajan yeteneklerinin (skill) tek deposu. Her ye
 | Yetenek | Sürüm | Kapsam |
 | --- | --- | --- |
 | [`sp-mimari-web-site`](sp-mimari-web-site/SKILL.md) | v202611080142 | Statik/SEO tanıtım sitesi mimarisi: barındırma, elle yazılmış site.css, varlık/JS bütçesi, SEO, lead formu güvenliği, opsiyonel MySQL, sinematik JS istisnası, release kapıları |
-| [`sp-dizayn-web-site`](sp-dizayn-web-site/SKILL.md) | v202611080144 | Herkese açık siteler için en üst seviye tasarım: ziyaretçi işi, sanat yönü, insan dili metin, görsel/video/ses üretimi, sinematik scroll ve 3B/WebGL, araç zinciri, zero-build site.css ve ölçülebilir kalite kapıları |
+| [`sp-dizayn-web-site`](sp-dizayn-web-site/SKILL.md) | v202611100728 | Herkese açık siteler için en üst seviye tasarım: ziyaretçi işi, sanat yönü, insan dili metin, görsel/video/ses üretimi, sinematik scroll ve 3B/WebGL, araç zinciri, zero-build site.css ve ölçülebilir kalite kapıları |
 | [`sp-mimari-web-uygulama`](sp-mimari-web-uygulama/SKILL.md) | v202611080142 | Oturumlu PHP panel mimarisi: istek yaşam döngüsü, katman sınırları, oturum/yetki/CSRF, SSR + Tailwind tarayıcı motoru + htmx, MySQL, servis, dağıtım |
 | [`sp-mimari-web-spa`](sp-mimari-web-spa/SKILL.md) | v202611080142 | Vite + React SPA + LiteSpeed PHP API mimarisi: dist teslimi, /api/* PHP + SPA fallback, same-origin oturum/CSRF, sözleşme-önce API, mevcut DB/deploy sürekliliği, npm/CDN ayrımı |
 | [`sp-mimari-masaustu`](sp-mimari-masaustu/SKILL.md) | v202611080142 | Rust/GPUI masaüstü mimarisi: katman, bağımlılık, eşzamanlılık, davranış, SQLite, MCP sunucu desteği (sidecar/named pipe, loopback HTTP, araç, UI köprüsü, güvenlik), paketleme ve derleme/sürüm artefaktı |
 | [`sp-dizayn-web-uygulama`](sp-dizayn-web-uygulama/SKILL.md) | v202610300420 | Panel/uygulama yapısal tasarımı: kabuk, yoğunluk, tipografi, renk/durum, ikon, bileşen davranışı, erişilebilirlik, zero-build teslim |
 | [`sp-dizayn-masaustu`](sp-dizayn-masaustu/SKILL.md) | v202611080142 | GPUI masaüstü yapısal tasarımı: tema/token, ölçü, bileşen/ikon, pencere ve durumlar, hareket, erişilebilirlik |
 | [`sp-zen-dizayn`](sp-zen-dizayn/SKILL.md) | v202611020457 | Apple klasik/ilk iPhone dönemi tasarım felsefesi: sakinlik, az-çok, aktif boşluk, doğal hareket, içeriği öne çıkaran his; yaratıcılığı kısıtlamayan yön |
-| [`sp-orkestra`](sp-orkestra/SKILL.md) | v202611081749 | Görev orkestrasyonu: uzman merceği, görev türü → rol → canlı araç kombinasyonu, zorunlu taban (kod/graf/hafıza), bağlam bütçesi, kısa çıktı, kanıtlı kapanış |
+| [`sp-orkestra`](sp-orkestra/SKILL.md) | v202611100728 | Görev orkestrasyonu: uzman merceği, görev türü → rol → canlı araç kombinasyonu, zorunlu taban agents-tr kataloğundan okunur (kod/graf/hafıza), bağlam bütçesi, kısa çıktı, kanıtlı kapanış |
 | [`sp-gorsel-tedarik`](sp-gorsel-tedarik/SKILL.md) | v202611081749 | kaynak kayıt defterindeki ticari güvenli kaynaklardan görsel tedarik: kategori yönlendirme, lisans sınıfı ve ticari onay kapısı, kaynak API/kota yönetimi, SEO adlı yerel WebP/JPG + srcset, baskın renk/WCAG kontrast analizi, credits.json denetimi ve ek API kabul-red envanteri |
 
 Yeni yetenek eklendiğinde bu tabloya satır eklenir; sabit bir beceri sayısı varsayılmaz. Tablo, depodaki `SKILL.md` dizinlerinden türetilen canlı katalogdur; kurulum ve doğrulama sayıyı çalışma anında okur.

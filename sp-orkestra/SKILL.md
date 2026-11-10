@@ -1,7 +1,7 @@
 ---
 name: sp-orkestra
 description: "Şu durumlarda yükle: kullanıcı bir alanı adlandırıp 'yapılması gerekeni yap', 'en üst seviyede yap' veya 'eksiksiz yap' dediğinde; kapsamı ve kalite çıtasını kullanıcı değil ajan belirleyecekse; beceri adıyla çağrıldığında. Tek dosya düzeltmesi, sohbet, çeviri, bilgi sorusu ve acil küçük işlerde yükleme."
-version: "v202611081749"
+version: "v202611100728"
 ---
 
 # sp-orkestra
@@ -16,7 +16,7 @@ Görevi alanın en üst çıtasına derinleştirir, çalışma anındaki beceri 
 0.4. Kullanıcıya dönük çıktı kısadır: (a) görev sırasında yalnız 7.2 beyan satırları, (b) kapanışta en fazla beş satır: sonuç, değişen yer, doğrulama, kalan risk, sonraki adım. Uzman merceği, kombinasyon tablosu ve direktif iç planda tutulur; kullanıcı isterse veya iş kritikse görünür.
 0.5. **Kök neden:** Belirtiyi kapatan yama iş sayılmaz; borç bırakan seçenek seçilmez. Kök neden çözülmeden kapanış yoktur.
 
-0.6. Zorunlu taban her görevde çalışır: kod zekâsı (codegraph, gitnexus, graphify, trail), graf (gitnexus, graphify), hafıza/bağlam (claude-mem, context-mode). Her biri en hafif geçerli sorguyla ve kendi benzersiz kanıtı için çağrılır; atlanmaz.
+0.6. Zorunlu taban her görevde çalışır: kod zekâsı ve graf (keşif/etki, semantik düzenleme, framework grafiği) ile hafıza/bağlam. Zorunlu araç kümesi agents-tr zorunlu kataloğundan okunur: kod zekâsı ripwire, serena, trace-mcp; hafıza/bağlam claude-mem, context-mode. Alternatif havuzdaki araç (gitnexus, codegraph, graphify, trail-code) zorunlu sayılmaz. Her biri en hafif geçerli sorguyla ve kendi benzersiz kanıtı için çağrılır; atlanmaz.
 
 0.7. Diğer araçlar yalnız görev rolü gerektiriyorsa çağrılır. İlgisiz araç: daha iyi alternatifi varken kullanılan, benzersiz kanıt katmayan, token tüketimini gereksiz artıran yinelenen veya zayıf varyanttır; çağrılmaz.
 
@@ -38,10 +38,10 @@ Görevi alanın en üst çıtasına derinleştirir, çalışma anındaki beceri 
 
 ## 3. Kategori tabanlı yetenek haritası
 
-3.1. Statik araç tablosu yoktur; tablo her çalıştırmada canlı katalogdan üretilir. Katalog üç kanaldan okunur: oturum kataloğu (MCP ve beceri listesi), PATH/yerel araçlar, proje yapılandırması. Beceri kataloğu da canlı okunur; sabit beceri sayısı varsayılmaz, sayı gerektiğinde katalogdan sayılır.
+3.1. Statik araç tablosu yoktur; tablo her çalıştırmada canlı katalogdan üretilir. Katalog dört kanaldan okunur: oturum kataloğu (MCP ve beceri listesi), PATH/yerel araçlar, proje yapılandırması, agents-tr zorunlu/alternatif kataloğu (zorunluluk statüsünün tek kaynağı). Beceri kataloğu da canlı okunur; sabit beceri sayısı varsayılmaz, sayı gerektiğinde katalogdan sayılır.
 3.2. Kategoriler: süreç becerileri, kod zekâsı, doküman doğrulama, tarayıcı/UI doğrulama, hafıza, medya/3B, alan becerileri, alt ajan. Yalnız görevle ilgili kategoriler açılır; açılan kategorinin tüm üyeleri değerlendirmeye girer, rolü karşılamayan tek satır gerekçeyle dışarıda kalır. Zincire rolü karşılayan en küçük yeterli küme girer; 0.6 taban araçları her kombinasyonda yer alır.
 3.3. Yeni araç kuralı: katalogda tanımadığın araç varsa işlevini tek cümleyle yaz, kategoriye ata, ilgiliyse zincire ekle. Yeni araç gövde değişikliği istemez; yalnız yeni kategori doğarsa 3.2 listesi güncellenir.
-3.4. Üç kanıt katmanı: katalogda ad, fiziksel/yapılandırma kaydı, canlı yanıt. Üçü tamamlanmadan araç "var" sayılmaz. Kapalı veya indekssiz araçta erişim protokolü işletilir: sırayla başlat, indeksle veya senkronize et, kur; her denemeyi komut ve çıkış koduyla kanıtla. Kanıtlı başarısızlıkta iş durmaz: alt kademe araçla ilerle ve yedeği tek cümleyle beyan et.
+3.4. Üç kanıt katmanı: katalogda ad, fiziksel/yapılandırma kaydı, canlı yanıt. Üçü tamamlanmadan araç "var" sayılmaz. Kapalı veya indekssiz araçta erişim protokolü işletilir: sırayla başlat, indeksle veya senkronize et, kur; her denemeyi komut ve çıkış koduyla kanıtla. Kanıtlı başarısızlıkta iş durmaz: alt kademe araçla ilerle ve yedeği tek cümleyle beyan et. Erişim protokolü zorunlu kümede işletilir; alternatif havuzdaki araç zorunlu sayılmaz, yalnız rolü karşılayan zorunlu araç kanıtlı biçimde erişilemezse kurulur.
 3.5. Zincir tablosu en fazla yedi satırdır ve şu sütunları taşır: `Aşama | Sahip | Girdi | Çıktı | Kanıt | Yedek`. Aynı iş iki sahibe verilmez; birbirini tamamlayan araçlar aynı aşamada ayrı kanıt üretir.
 
 3.6. Kombinasyon seçimi: (1) iş türünü belirle (kod/veri/şema, doküman/API, tarayıcı/UI, medya/3B, araştırma, karışık); (2) zorunlu rolleri §3.7'den al; (3) her rolü canlı katalogdan bir araçla eşle (üç kanıt katmanı, 3.4); (4) 0.6 taban araçlarını sabit üye yap; (5) rolü karşılamayan adayı gerekçeyle ele; (6) aynı benzersiz kanıtı üreten ikinci aracı ekleme; (7) en az bir bağımsız doğrulayıcı ata; uygulama sahibi kendi işini doğrulamaz; (8) aşama sayısı ≤7; her aşamaya geçme eşiği ve bağlam maliyeti yaz; (9) eşleşmeyen zorunlu rol varsa iş o rolsüz kapanmaz: `doğrulanmalı` + tek satır engel.

@@ -49,7 +49,7 @@ Tablodaki adlar kurulu beceriler ve bağlanabilir MCP'lerdir; çağrı biçimi r
 | chrome-devtools | DOM, konsol, ağ, ekran, trace, Lighthouse | Canlı çıktı, ölçüm | Bağlı değilse manuel tarayıcı |
 | blender | 3B sahne ve varlık üretimi/incelemesi | Sahne, ekran | Uygulama ve eklenti açık değilse kullanılamaz |
 | context7 | Kütüphane API ve sürüm doğrulaması | Kaynak snippet | Resmî doküman önceliklidir |
-| codegraph / gitnexus | Kod yapısı, etki, süreç | Sembol, risk | Yalnız site kodu varsa |
+| ripwire / serena / trace-mcp | Kod yapısı, etki, süreç | Sembol, risk | Yalnız site kodu varsa |
 | markitdown | Ofis/ikili belgeyi Markdown'a çevirme | Dönüşüm | Medya üretmez |
 | sequential-thinking | Karmaşık karar ve plan | Karar kaydı | Kanıt değil, akıl yürütme yardımı |
 
