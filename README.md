@@ -26,7 +26,7 @@ SP GROUP projelerinde kullanılan ajan yeteneklerinin (skill) tek deposu. Her ye
 | [`sp-dizayn-web-uygulama`](sp-dizayn-web-uygulama/SKILL.md) | v202610300420 | Panel/uygulama yapısal tasarımı: kabuk, yoğunluk, tipografi, renk/durum, ikon, bileşen davranışı, erişilebilirlik, zero-build teslim |
 | [`sp-dizayn-masaustu`](sp-dizayn-masaustu/SKILL.md) | v202611080142 | GPUI masaüstü yapısal tasarımı: tema/token, ölçü, bileşen/ikon, pencere ve durumlar, hareket, erişilebilirlik |
 | [`sp-zen-dizayn`](sp-zen-dizayn/SKILL.md) | v202611020457 | Apple klasik/ilk iPhone dönemi tasarım felsefesi: sakinlik, az-çok, aktif boşluk, doğal hareket, içeriği öne çıkaran his; yaratıcılığı kısıtlamayan yön |
-| [`sp-orkestra`](sp-orkestra/SKILL.md) | v202611100728 | Görev orkestrasyonu: uzman merceği, görev türü → rol → canlı araç kombinasyonu, zorunlu taban agents-tr kataloğundan okunur (kod/graf/hafıza), bağlam bütçesi, kısa çıktı, kanıtlı kapanış |
+| [`sp-orkestra`](sp-orkestra/SKILL.md) | v202611140544 | Görev orkestrasyonu: uzman merceği, görev türü → rol → canlı araç kombinasyonu, zorunlu taban agents-tr kataloğundan okunur (kod/graf/hafıza), bağlam bütçesi, kısa çıktı, kanıtlı kapanış |
 | [`sp-gorsel-tedarik`](sp-gorsel-tedarik/SKILL.md) | v202611081749 | kaynak kayıt defterindeki ticari güvenli kaynaklardan görsel tedarik: kategori yönlendirme, lisans sınıfı ve ticari onay kapısı, kaynak API/kota yönetimi, SEO adlı yerel WebP/JPG + srcset, baskın renk/WCAG kontrast analizi, credits.json denetimi ve ek API kabul-red envanteri |
 
 Yeni yetenek eklendiğinde bu tabloya satır eklenir; sabit bir beceri sayısı varsayılmaz. Tablo, depodaki `SKILL.md` dizinlerinden türetilen canlı katalogdur; kurulum ve doğrulama sayıyı çalışma anında okur.
