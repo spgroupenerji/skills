@@ -1,7 +1,7 @@
 ---
 name: sp-dizayn-masaustu
 description: "GPUI masaüstü arayüzünün yapısal tasarımını tanımlar: tema token disiplini, ölçü/boşluk/tipografi, platform bileşen ve ikon kataloğu, pencere/yerleşim durumları, hareket, erişilebilirlik ve Türkçe imlâ. Şu durumlarda kullan: GPUI arayüzü kurarken, masaüstü pencere/panel yerleşimi tasarlarken, bileşen durumlarını belirlerken. Kullanma: yalnız estetik dil tarifi istendiğinde (sp-zen-dizayn), yalnız Rust mimarisi veya paketleme işi olduğunda; bu alanlar başka becerilerindir."
-version: "v202611080142"
+version: "v202611140552"
 ---
 
 # sp-dizayn-masaustu
@@ -14,7 +14,7 @@ GPUI masaüstü arayüzünün yapısal tasarımı: tema token disiplini, ölçü
 0.2. Mod: varsayılan geliştirme; release/prod kapıları yalnız risk sınıfı veya açık yayın isteğiyle yüklenir.
 0.3. Değişmezler: güvenlik, erişilebilirlik, veri bütünlüğü, sır yönetimi ve Türkçe imlâ her modda korunur.
 0.4. Bilgi: sürüm/API/davranış varsayılmaz; çalışma anında context7 veya resmî kaynaktan doğrulanır; doğrulanamayan "doğrulanmalı" etiketiyle verilir.
-0.5. Araç: işe göre seçilir, gerektiğinde hibrit kullanılır; erişim hatasında tanı → basit çözüm → çözülemezse işe başlamadan bildir (sp-orkestra 5.1-5.3, 3.4).
+0.5. Araç: işe göre seçilir, gerektiğinde hibrit kullanılır; erişim hatasında tanı → basit çözüm → çözülemezse işe başlamadan bildir (sp-orkestra 3.4).
 0.6. Kanıt: kanıtsız "tamamlandı" yok; kabul kapıları yalnız release/risk tetikte yüklenir (kanıt ve kapanış: sp-orkestra 7.2-7.5, 8).
 
 ## 1. Kapsam ve öncelik

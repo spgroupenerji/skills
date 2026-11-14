@@ -1,7 +1,7 @@
 ---
 name: sp-orkestra
 description: "Şu durumlarda yükle: kullanıcı bir alanı adlandırıp 'yapılması gerekeni yap', 'en üst seviyede yap' veya 'eksiksiz yap' dediğinde; kapsamı ve kalite çıtasını kullanıcı değil ajan belirleyecekse; beceri adıyla çağrıldığında. Tek dosya düzeltmesi, sohbet, çeviri, bilgi sorusu ve acil küçük işlerde yükleme."
-version: "v202611140544"
+version: "v202611140552"
 ---
 
 # sp-orkestra
@@ -16,7 +16,7 @@ Görevi alanın en üst çıtasına derinleştirir, çalışma anındaki beceri 
 0.4. Kullanıcıya dönük çıktı kısadır: (a) görev sırasında yalnız 7.2 beyan satırları, (b) kapanışta en fazla beş satır: sonuç, değişen yer, doğrulama, kalan risk, sonraki adım. Uzman merceği, kombinasyon tablosu ve direktif iç planda tutulur; kullanıcı isterse veya iş kritikse görünür.
 0.5. **Kök neden:** Belirtiyi kapatan yama iş sayılmaz; borç bırakan seçenek seçilmez. Kök neden çözülmeden kapanış yoktur.
 
-0.6. Zorunlu taban her görevde çalışır ve iki rol taşır: kod zekâsı/graf (keşif, etki, semantik düzenleme) ile hafıza/bağlam. Üyelik burada yazılmaz; zorunlu ve alternatif küme yalnız agents-tr kataloğundan okunur (§3.1). Rolü karşılayan üye, §3.4'teki kanıtlı erişim engeli olmadan atlanmaz; her üye en hafif geçerli sorguyla ve yalnız kendi benzersiz kanıtı için çağrılır.
+0.6. Dört taban rol her görevde çalışır (anayasa §4.10 ile aynı): keşif/etki, hafıza, bağlam sıkıştırma, doküman doğrulama. Her rol en hafif geçerli sorguyla ve yalnız kendi benzersiz kanıtı için çağrılır. Roller kurulu katalogdan karşılanır (§3.1); araç adı ezberlenmez; beceri tek başına kurulduğunda da çalışır. Rolün kurulu karşılığı yoksa §3.4 işletilir, onaysız alt kademeye düşülmez. Görev türünün ek zorunlu rolleri §3.7'den eklenir.
 
 0.7. Diğer araçlar yalnız görev rolü gerektiriyorsa çağrılır. İlgisiz araç: daha iyi alternatifi varken kullanılan, benzersiz kanıt katmayan, token tüketimini gereksiz artıran yinelenen veya zayıf varyanttır; çağrılmaz.
 
@@ -38,20 +38,20 @@ Görevi alanın en üst çıtasına derinleştirir, çalışma anındaki beceri 
 
 ## 3. Kategori tabanlı yetenek haritası
 
-3.1. Statik araç tablosu yoktur; tablo her çalıştırmada canlı katalogdan üretilir. Katalog dört kanaldan okunur: oturum kataloğu (MCP ve beceri listesi), PATH/yerel araçlar, proje yapılandırması, agents-tr zorunlu/alternatif kataloğu (zorunluluk statüsünün tek kaynağı). Beceri kataloğu da canlı okunur; sabit beceri sayısı varsayılmaz, sayı gerektiğinde katalogdan sayılır. Üyelik hiçbir maddede tekrar yazılmaz; bu belge yalnız rolü ve kanıt eşiğini tanımlar.
+3.1. Statik araç tablosu yoktur; tablo her çalıştırmada kurulu katalogdan üretilir. Katalog üç kanaldan okunur: oturum kataloğu (MCP ve beceri listesi), PATH/yerel araçlar, proje yapılandırması. Ortamda agents-tr kataloğu varsa zorunluluk sırası oradan okunur; yokluğu beceriyi durdurmaz, rol kurulu araçla karşılanır. Beceri kataloğu da canlı okunur; sabit beceri sayısı varsayılmaz. Üyelik hiçbir maddede tekrar yazılmaz; bu belge yalnız rolü ve kanıt eşiğini tanımlar.
 3.2. Kategoriler: süreç becerileri, kod zekâsı, doküman doğrulama, tarayıcı/UI doğrulama, hafıza, medya/3B, alan becerileri, alt ajan. Yalnız görevle ilgili kategoriler açılır; açılan kategorinin tüm üyeleri değerlendirmeye girer, rolü karşılamayan tek satır gerekçeyle dışarıda kalır. Zincire rolü karşılayan en küçük yeterli küme girer; 0.6 taban rolleri her kombinasyonda yer alır.
 3.3. Yeni araç kuralı: katalogda tanımadığın araç varsa işlevini tek cümleyle yaz, kategoriye ata, ilgiliyse zincire ekle. Yeni araç gövde değişikliği istemez; yalnız yeni kategori doğarsa 3.2 listesi güncellenir.
-3.4. Üç kanıt katmanı: katalogda ad, fiziksel/yapılandırma kaydı, canlı yanıt. Üçü tamamlanmadan araç "var" sayılmaz. Kapalı veya indekssiz araçta erişim protokolü işletilir: sırayla başlat, indeksle veya senkronize et, kur; her denemeyi komut ve çıkış koduyla kanıtla. Kanıtlı başarısızlıkta iş durmaz: alt kademe araçla ilerle ve yedeği tek cümleyle beyan et. Erişim protokolü yalnız katalogda zorunlu işaretli kümede işletilir; alternatif havuz zorunlu sayılmaz ve yalnız rolü karşılayan zorunlu üye kanıtlı biçimde erişilemezse devreye girer.
+3.4. Üç kanıt katmanı: katalogda ad, fiziksel/yapılandırma kaydı, canlı yanıt. Üçü tamamlanmadan araç "var" sayılmaz. Rol boşluğunda erişim protokolü işletilir: sırayla başlat, indeksle veya senkronize et, kur; her denemeyi komut ve çıkış koduyla kanıtla. Onarım kullanıcı kararı gerektiriyorsa tek cümleyle söyle ve iste; onaysız alt kademeye düşülmez ve manuel okuma araca ikame edilmez (anayasa §4.8). Rol kapanmıyorsa iş `doğrulanmalı` ve tek satır engelle bildirilir.
 3.5. Zincir tablosu en fazla yedi satırdır ve şu sütunları taşır: `Aşama | Sahip | Girdi | Çıktı | Kanıt | Yedek`. Aynı iş iki sahibe verilmez; birbirini tamamlayan araçlar aynı aşamada ayrı kanıt üretir.
 
-3.6. Kombinasyon seçimi: (1) iş türünü belirle (kod/veri/şema, doküman/API, tarayıcı/UI, medya/3B, araştırma, karışık); (2) zorunlu rolleri §3.7'den al; (3) her rolü canlı katalogdan bir araçla eşle (üç kanıt katmanı, 3.4); (4) 0.6 taban araçlarını sabit üye yap; (5) rolü karşılamayan adayı gerekçeyle ele; (6) aynı benzersiz kanıtı üreten ikinci aracı ekleme; (7) en az bir bağımsız doğrulayıcı ata; uygulama sahibi kendi işini doğrulamaz; (8) aşama sayısı ≤7; her aşamaya geçme eşiği ve bağlam maliyeti yaz; (9) eşleşmeyen zorunlu rol varsa iş o rolsüz kapanmaz: `doğrulanmalı` + tek satır engel.
+3.6. Kombinasyon seçimi: (1) iş türünü belirle (kod/veri/şema, doküman/API, tarayıcı/UI, medya/3B, araştırma, karışık); (2) zorunlu rolleri §3.7'den al; (3) her rolü canlı katalogdan bir araçla eşle (üç kanıt katmanı, 3.4); (4) 0.6 taban rollerini sabit üye yap; (5) rolü karşılamayan adayı gerekçeyle ele; (6) aynı benzersiz kanıtı üreten ikinci aracı ekleme; (7) en az bir bağımsız doğrulayıcı ata; uygulama sahibi kendi işini doğrulamaz; (8) aşama sayısı ≤7; her aşamaya geçme eşiği ve bağlam maliyeti yaz; (9) eşleşmeyen zorunlu rol varsa iş o rolsüz kapanmaz: `doğrulanmalı` + tek satır engel.
 
 3.7. İş türü → zorunlu roller:
 
 | İş türü | Zorunlu roller | Geçme eşiği (örnek) |
 | --- | --- | --- |
 | Kod/veri/şema | keşif, etki/risk, uygulama, değişiklik analizi, bağımsız doğrulama, kapanış | sembol/risk kanıtı + test/lint |
-| Doküman/API | doküman doğrulama (context7); kod işi varsa kod rolleri eklenir | kütüphane kimliği + sürüm + snippet |
+| Doküman/API | doküman doğrulama; kod işi varsa kod rolleri eklenir | kütüphane kimliği + sürüm + snippet |
 | Tarayıcı/UI | canlı doğrulama, erişilebilirlik, responsive, görsel kanıt | DOM/console/ağ + ekran |
 | Medya/3B | üretim/dönüştürme, format doğrulama | çıktı + format/ölçü |
 | Araştırma | birincil kaynak, çapraz doğrulama, hafıza | kaynak + karşılaştırma |
@@ -67,10 +67,10 @@ Görevi alanın en üst çıtasına derinleştirir, çalışma anındaki beceri 
 
 ## 5. Doküman kapısı
 
-5.1. API, parametre, sürüm veya framework davranışı iddiası varsa icradan önce context7'den ilgili yapı ve bölüm öğrenilir; context7 yoksa resmî doküman; ikisi de yoksa iddia `doğrulanmalı` olur ve icra ona dayanamaz.
+5.1. API, parametre, sürüm veya framework davranışı iddiası varsa icradan önce kurulu doküman doğrulama aracından ilgili yapı ve bölüm öğrenilir; araç yoksa resmî doküman; ikisi de yoksa iddia `doğrulanmalı` olur ve icra ona dayanamaz.
 5.2. Doküman doğrulaması yapılmadan "şöyle çalışıyor" diye yazılan her cümle varsayımdır; varsayım üzerine kod yazılmaz.
 
-5.3. context7 bu becerinin zorunlu doküman kanalıdır: sürüm, API, parametre veya framework davranışı iddiası olan her görevde kombinasyonun doküman doğrulama rolünü üstlenir; halüsinasyonu kapatmak için varsayım yerine doğrulanmış kaynak kullanılır.
+5.3. Doküman doğrulama rolü, sürüm, API veya parametre iddiası olan her görevde çalışmanın zorunlu üyesidir; tek bir araca kilitlenmez, ortamda kurulu kanaldan karşılanır. Halüsinasyonu kapatmak için varsayım yerine doğrulanmış kaynak kullanılır.
 
 ## 6. İcra direktifi
 

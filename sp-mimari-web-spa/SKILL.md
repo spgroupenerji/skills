@@ -1,7 +1,7 @@
 ---
 name: sp-mimari-web-spa
 description: "Vite ile derlenen React SPA'nın (istemci yönlendirme) LiteSpeed üzerinde PHP REST API ile mimarisini kurar: kök yayını (derleme çıktısı depo kökünde, kaynak spa/ altında), GitHub kancasıyla git çekme dağıtımı, /api/* yönlendirmesi, aynı origin oturum ve CSRF, sözleşme-önce API, süreklilik ve release kapıları. Şu durumlarda kullan: React SPA + PHP API kurulumu, SPA yönlendirme/derin bağlantı sorunu, API sözleşmesi ve dağıtımı. Kullanma: SSR panel, statik/SEO site, salt estetik dil; bu alanlarda yüklenmez."
-version: "v202611140500"
+version: "v202611140552"
 ---
 
 # sp-mimari-web-spa
@@ -9,13 +9,13 @@ version: "v202611140500"
 Vite ile derlenen React SPA ve LiteSpeed üzerinde PHP REST API mimarisinin sözleşmesi: istemci yönlendirme, kökten yayınlanan derlenmiş dosyalar ve git kancasıyla otomatik dağıtım, aynı origin güvenlik, sözleşme-önce API ve mevcut sistemle süreklilik. Varsayılan mod geliştirmedir; güvenlik, erişilebilirlik, veri bütünlüğü ve sır yönetimi her modda değişmezdir.
 
 ## 0. Ortak çalışma ilkeleri
-> Kaynak: anayasa; ortak blok, bilinçli kopya. Süreç ve araç ayrıntısı: sp-orkestra 5.1-5.3, 3.4 ve 4.
+> Kaynak: anayasa; ortak blok, bilinçli kopya. Süreç ve araç ayrıntısı: sp-orkestra 3.4 ve 4.
 
 0.1. Öncelik: kullanıcının güncel yazılı talimatı > anayasa > bu beceri > model genel bilgisi. Çelişkide üstteki kaynak kazanır.
 0.2. Mod: varsayılan geliştirmedir; release/prod kapıları yalnız risk sınıfı (oturum, API sözleşmesi, env/secret, yönlendirme, dağıtım) veya açık yayın isteğiyle yüklenir.
 0.3. Değişmezler: güvenlik, erişilebilirlik, veri bütünlüğü, sır yönetimi ve Türkçe imlâ her modda korunur; hız veya token için kısaltılmaz.
 0.4. Bilgi: sürüm, API ve davranış varsayılmaz; çalışma anında context7 veya resmî kaynaktan doğrulanır; doğrulanamayan bilgi "doğrulanmalı" etiketiyle verilir.
-0.5. Araç: işe göre seçilir, gerektiğinde hibrit kullanılır; erişim hatasında tanı (izin, kurulum, indeks, sürüm, yol), basit çözüm, çözülemezse işe başlamadan kullanıcıya bildir (sp-orkestra 5.1-5.3, 3.4, 4).
+0.5. Araç: işe göre seçilir, gerektiğinde hibrit kullanılır; erişim hatasında tanı (izin, kurulum, indeks, sürüm, yol), basit çözüm, çözülemezse işe başlamadan kullanıcıya bildir (sp-orkestra 3.4, 4).
 0.6. Kanıt: kanıtsız "tamamlandı" yoktur; kabul kapıları yalnız release veya risk tetiklediğinde yüklenir (references/kabul-kapilari.md).
 0.7. Yayın anında: çıktıyı depo köküne üret, commit'le, push'la; GitHub kancası `git merge --ff-only` ile çeker; canlıyı Chrome DevTools ile kontrol et; kanca çekmiyorsa yayın kapanmaz (references/webhook-dagitim.md).
 0.8. Kimlik: deploy sonrası verilen kalıcı giriş bilgisi yalnız yerel secret deposunda (.env / işletim sistemi kimlik kasası) tutulur; kalıcı bellekte yalnız referansı saklanır; depoya, kitaba, uzağa ve loga yazılmaz; sonraki oturumda tekrar sorulmaz.
@@ -126,7 +126,7 @@ Vite ile derlenen React SPA ve LiteSpeed üzerinde PHP REST API mimarisinin söz
 ## 9. Sınır ve references
 
 9.1. Sınır: bu beceri SPA ve PHP API mimarisini bağlar; SSR panel, statik site ve salt estetik dil kapsam dışıdır.
-9.2. Aynı hüküm başka beceride varsa oraya atıf verilir; süreç ve araç disiplini sp-orkestra 5.1-5.3, 3.4 ve 4'tedir.
+9.2. Aynı hüküm başka beceride varsa oraya atıf verilir; süreç ve araç disiplini sp-orkestra 3.4 ve 4'tedir.
 9.3. Yapısal UI ve erişilebilirlik sp-dizayn-web-uygulama, estetik dil sp-zen-dizayn alanındadır; teslim mekaniğinde bu beceri önceliklidir.
 9.4. References:
 - references/vite-derleme.md

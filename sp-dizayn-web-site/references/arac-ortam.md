@@ -49,7 +49,7 @@ Tablodaki adlar kurulu beceriler ve bağlanabilir MCP'lerdir; çağrı biçimi r
 | chrome-devtools | DOM, konsol, ağ, ekran, trace, Lighthouse | Canlı çıktı, ölçüm | Bağlı değilse manuel tarayıcı |
 | blender | 3B sahne ve varlık üretimi/incelemesi | Sahne, ekran | Uygulama ve eklenti açık değilse kullanılamaz |
 | context7 | Kütüphane API ve sürüm doğrulaması | Kaynak snippet | Resmî doküman önceliklidir |
-| ripwire / serena / trace-mcp | Kod yapısı, etki, süreç | Sembol, risk | Yalnız site kodu varsa |
+| kurulu kod zekâsı MCP'si | Kod yapısı, etki, süreç | Sembol, risk | Yalnız site kodu varsa |
 | markitdown | Ofis/ikili belgeyi Markdown'a çevirme | Dönüşüm | Medya üretmez |
 | sequential-thinking | Karmaşık karar ve plan | Karar kaydı | Kanıt değil, akıl yürütme yardımı |
 
@@ -65,7 +65,7 @@ Tablodaki adlar kurulu beceriler ve bağlanabilir MCP'lerdir; çağrı biçimi r
 
 7.1. Tanı sırası: hedef uygulama/sunucu kapalı mı, bağımlılık eksik mi, ağ mı, yetki/hesap mı, yol veya sürüm uyumsuz mu. Şıklar tek tek ayrılır.
 7.2. Basit çözüm: uygulamayı aç, yalnız gerekli bağımlılığı kur, yerel veya offline alternatife geç. Ücretli hesap zorlanmaz.
-7.3. Tarayıcı MCP'si bağlanmıyorsa tarayıcı açılır; 3B MCP'si için uygulama ve eklenti açılır. Açılmıyorsa manuel doğrulama yapılır ve "doğrulanmalı" işaretlenir; çözülemeyen erişimde işe başlamadan kullanıcıya bildirilir (sp-orkestra 5.1-5.3, 3.4, 4).
+7.3. Tarayıcı MCP'si bağlanmıyorsa tarayıcı açılır; 3B MCP'si için uygulama ve eklenti açılır. Açılmıyorsa manuel doğrulama yapılır ve "doğrulanmalı" işaretlenir; çözülemeyen erişimde işe başlamadan kullanıcıya bildirilir (sp-orkestra 3.4, 4).
 
 ## 8. Hibrit kullanım ve bütçe
 

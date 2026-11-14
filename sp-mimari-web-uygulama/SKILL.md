@@ -1,7 +1,7 @@
 ---
 name: sp-mimari-web-uygulama
 description: "Oturumlu, rol tabanlı PHP panel uygulamalarının mimarisini kurar: istek yaşam döngüsü, katman sınırları, oturum/yetki/CSRF, SSR teslimi (sabit sürümlü Tailwind tarayıcı motoru, htmx), MySQL veri katmanı, servis ve dağıtım disiplini. Şu durumlarda kullan: yeni panel modülü, oturum ve yetki akışı, htmx kısmi etkileşim. Kullanma: statik tanıtım sitesi/SEO, yalnız estetik dil, yapısal UI tasarımı, Rust masaüstü, Vite+React SPA + PHP API (sp-mimari-web-spa)."
-version: "v202611080142"
+version: "v202611140552"
 ---
 
 # sp-mimari-web-uygulama
@@ -9,13 +9,13 @@ version: "v202611080142"
 Oturumlu, rol tabanlı PHP panel uygulamalarının mimari sözleşmesi. Varsayılan mod geliştirmedir: derleme yok, her mikro değişiklikte tam kapı yok; güvenlik, erişilebilirlik, veri bütünlüğü ve sır yönetimi her modda değişmezdir. Statik site mimarisi, estetik dil ve yapısal UI tasarımı kapsam dışıdır; yapısal tasarım sp-dizayn-web-uygulama, estetik dil sp-zen-dizayn alanındadır.
 
 ## 0. Ortak çalışma ilkeleri
-> Kaynak: anayasa; ortak blok, bilinçli kopya. Süreç ve araç ayrıntısı: sp-orkestra 5.1-5.3, 3.4 ve 4.
+> Kaynak: anayasa; ortak blok, bilinçli kopya. Süreç ve araç ayrıntısı: sp-orkestra 3.4 ve 4.
 
 0.1. Öncelik: kullanıcının güncel yazılı talimatı > anayasa > bu beceri > model genel bilgisi. Çelişkide üstteki kaynak kazanır.
 0.2. Mod: varsayılan geliştirmedir; release/prod kapıları yalnız risk sınıfı (oturum, şema, sır, dağıtım) veya açık yayın isteğiyle yüklenir.
 0.3. Değişmezler: güvenlik, erişilebilirlik, veri bütünlüğü, sır yönetimi ve Türkçe imlâ her modda korunur; hız veya token için kısaltılmaz.
 0.4. Bilgi: sürüm, API ve davranış varsayılmaz; çalışma anında context7 veya resmî kaynaktan doğrulanır; doğrulanamayan bilgi "doğrulanmalı" etiketiyle verilir.
-0.5. Araç: işe göre seçilir, gerektiğinde hibrit kullanılır; erişim hatasında tanı (izin, kurulum, indeks, sürüm, yol), basit çözüm, çözülemezse işe başlamadan kullanıcıya bildir (sp-orkestra 5.1-5.3, 3.4, 4).
+0.5. Araç: işe göre seçilir, gerektiğinde hibrit kullanılır; erişim hatasında tanı (izin, kurulum, indeks, sürüm, yol), basit çözüm, çözülemezse işe başlamadan kullanıcıya bildir (sp-orkestra 3.4, 4).
 0.6. Kanıt: kanıtsız "tamamlandı" yoktur; kabul kapıları yalnız release veya risk tetiklediğinde yüklenir (references/kabul-kapilari.md).
 0.7. Yayın anında: push et; canlı çıktıyı/controller'ı Chrome DevTools ile gerçekten kontrol et; deploy ve webhook yapısı kodu çekmeli, çekmiyorsa yayın kapanmaz.
 0.8. Kimlik: deploy sonrası verilen kalıcı giriş bilgisi yalnız yerel secret deposunda (.env / işletim sistemi kimlik kasası) tutulur; kalıcı bellekte yalnız referansı saklanır; depoya, kitaba, uzağa ve loga yazılmaz; sonraki oturumda tekrar sorulmaz.
@@ -113,7 +113,7 @@ Oturumlu, rol tabanlı PHP panel uygulamalarının mimari sözleşmesi. Varsayı
 ## 9. Sınır ve kabul kapısı
 
 9.1. Sınır: bu beceri panel mimarisini bağlar; statik site mimarisi, estetik dil ve yapısal UI tasarımı kapsam dışıdır.
-9.2. Aynı hüküm başka beceride varsa oraya atıf verilir; kopya hüküm üretilmez; süreç ve araç disiplini sp-orkestra 5.1-5.3, 3.4 ve 4'tedir.
+9.2. Aynı hüküm başka beceride varsa oraya atıf verilir; kopya hüküm üretilmez; süreç ve araç disiplini sp-orkestra 3.4 ve 4'tedir.
 9.3. Release kapıları references/kabul-kapilari.md içindedir; her kapı komut veya araç, beklenen sonuç ve tarihle kayda geçer.
 9.4. Geliştirme hızlı kontrolü: değişen PHP dosyalarında php -l, statik grep seti, Chrome DevTools Console/Network/Accessibility; bu kontrol tam ölçüm değildir.
 
