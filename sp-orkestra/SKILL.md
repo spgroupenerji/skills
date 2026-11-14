@@ -1,7 +1,7 @@
 ---
 name: sp-orkestra
 description: "Şu durumlarda yükle: kullanıcı bir alanı adlandırıp 'yapılması gerekeni yap', 'en üst seviyede yap' veya 'eksiksiz yap' dediğinde; kapsamı ve kalite çıtasını ajan belirleyecekse; beceri adıyla çağrıldığında. Hafif bölümü her görevde ucuzdur ve anayasal hatırlatıcı olarak çalışır; ağır bölümü yalnız kod/veri/şema, çok adımlı veya kritik işte açılır. Tek dosya düzeltmesi, sohbet, çeviri ve bilgi sorusunda yükleme."
-version: "v202611140649"
+version: "v202611140651"
 ---
 
 # sp-orkestra
@@ -10,8 +10,8 @@ Görevi, kurulu araçların en yüksek kanıt verimiyle bitirir; anayasal kısı
 
 ## 0. İki mod
 
-0.1. Hafif mod her görevde çalışır: §1 hatırlatıcı, §2 sıra, §3 seçim. Maliyeti sabittir; görev başına tek sınıflandırma satırıdır.
-0.2. Ağır mod yalnız şu işlerde açılır: kod, veri veya şema dokunuyorsa; üçten fazla dosya değişecekse; iş kritik sınıftaysa; kullanıcı açıkça isterse. Ağır mod §4'te açılır.
+0.1. Hafif mod, beceri yüklendiği her görevde çalışır: §1 hatırlatıcı, §2 sıra, §3 seçim. Maliyeti sabittir; görev başına tek sınıflandırma satırıdır.
+0.2. Ağır mod yalnız şu işlerde açılır: risk sınıfı orta veya kritikse, üçten fazla dosya değişecekse, iş çok adımlıysa veya kullanıcı açıkça isterse. Tek dosyalık basit düzeltme hafif modda yürür; kanıt yükümlülüğü yine §6'dadır.
 0.3. Risk sınıfı: basit (1-2 dosya, yıkıcı işlem yok), orta (3+ dosya veya servis/akış değişikliği), kritik (auth, para, göç/şema, silme, kişisel veri, public API, production, sır, geri dönüşü zor iş, mimari revizyon).
 0.4. Öncelik: kullanıcının güncel yazılı talimatı > anayasa > bu beceri (yalnız sıra ve seçim) > alan becerisi içeriği.
 0.5. Kök neden: belirtiyi kapatan yama iş sayılmaz; borç bırakan seçenek seçilmez.
