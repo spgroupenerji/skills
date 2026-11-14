@@ -17,12 +17,12 @@
 2.4. Tarayıcı kontrolü Chrome DevTools ile yapılır: Console hatasızlığı, Network 4xx/5xx, erişilebilirlik sekmesi.
 2.5. Hızlı kontrol tam ölçüm değildir; release kanıtı yerine geçmez.
 
-## 3. Release — build ve dist
+## 3. Release — build ve kök yayın
 
-3.1. Lockfile'a göre kurulum ve npm run build temizdir: hata ve uyarı yoktur.
-3.2. dist Node gerektirmez; statik sunucudan servis edilerek doğrulanır.
+3.1. Lockfile'a göre kurulum ve `npm run yayin` temizdir: hata ve uyarı yoktur; ikinci çalıştırma çalışma ağacında fark bırakmaz.
+3.2. Kök çıktı Node gerektirmez; statik sunucudan servis edilerek doğrulanır ve commit'te bulunur.
 3.3. Bundle bütçesi ölçülmüş ve aşılmamıştır; sonuç kayıtlıdır.
-3.4. dist içinde secret, ortam dosyası izi, kaynak haritası ve dev aracı yoktur; CDN referansı yoktur.
+3.4. Kök çıktıda (`index.html`, `varlik/`) secret, ortam dosyası izi, kaynak haritası ve dev aracı yoktur; CDN referansı yoktur.
 3.5. lockfile değişmişse gerekçe ve bağımlılık denetimi kaydı vardır.
 
 ## 4. Release — yönlendirme ve güvenlik
@@ -37,13 +37,15 @@
 
 ## 5. Release — süreklilik ve dağıtım
 
-5.1. Mevcut veritabanı ve deploy/ hattı kullanılmıştır; ikinci hat kurulmamıştır.
+5.1. Mevcut veritabanı ve deploy/ hattı (GitHub kancası, `git merge --ff-only`) kullanılmıştır; ikinci hat kurulmamıştır.
 5.2. Göçler numaralı ve geriye dönük uyumludur; yedek ve onay kayıtlıdır.
 5.3. Ön ve son smoke listesi çalıştırılmış; sonuçlar kayıtlıdır.
-5.4. Rollback hedefi (önceki dist ve önceki API commit'i) kayıtlıdır.
+5.4. Rollback hedefi önceki yayın commit'idir; `git revert` + push adımı kayıtlıdır.
 5.5. Smoke başarısızlığında rollback adımı uygulanmış veya release kapatılmıştır.
-5.6. Dağıtım sonrası OPcache temizliği ve sağlık kontrolü kayıtlıdır.
+5.6. Dağıtım sonrası OPcache temizliği (kanca birleştirmesi) ve sağlık kontrolü kayıtlıdır.
 5.7. Bilgi/hakkında sayfasındaki sürüm damgası `vYYYYMMDDHHMM` biçimindedir; release kaydı ve aynı adlı tag ile birebir aynıdır.
+5.8. Kanca imzası doğrulanmıştır: ping `pong` döner, push 202 alır ve `log/deploy.log` kaydı düşer; canlı commit push edilen commit'tir.
+5.9. `DEPLOY_WEBHOOK_SECRET` sunucuda tanımlıdır; tanımsızken kanca 503 döner ve dağıtım yapılmaz.
 
 ## 6. Kanıt biçimi
 

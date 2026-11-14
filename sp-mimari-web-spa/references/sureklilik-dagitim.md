@@ -4,7 +4,7 @@
 
 ## 1. Süreklilik ilkeleri
 
-1.1. Mevcut MySQL veritabanı ve mevcut deploy/ mekanizması korunur; yerine ikinci dağıtım hattı kurulmaz.
+1.1. Mevcut MySQL veritabanı ve mevcut deploy/ mekanizması (GitHub kancası + `git merge --ff-only`) korunur; yerine ikinci dağıtım hattı kurulmaz.
 1.2. Mevcut oturum ve API sözleşmeleriyle uyum gözetilir; SPA ikinci kimlik sistemi veya ikinci API katmanı kurmaz.
 1.3. Mevcut yapılandırma ve ortam düzeni kullanılır; yeni anahtarlar belgelenir.
 1.4. Değişiklikler eklemeli ve geri alınabilir olur; mevcut veri korunur.
@@ -20,18 +20,19 @@
 
 ## 3. Dağıtım
 
-3.1. Sıra: temiz build, dist artefaktı, önceki sürümü yedekle, yeni dist'i yerleştir, PHP değişikliğini mevcut hatla uygula, smoke.
-3.2. dist atomik geçer: yeni sürüm ayrı dizinde hazırlanır ve geçiş tek adımda yapılır veya sembolik bağlantıyla çevrilir.
-3.3. Önceki dist ve önceki API commit'i rollback hedefi olarak kaydedilir; kayıtsız dağıtım reddedilir.
-3.4. Ortam dosyası ve kullanıcı verileri dağıtımda ezilmez; yükleme dizini kapsam dışıdır.
-3.5. Dağıtım sırasında elle SQL çalıştırılmaz; şema hattan uygulanır.
-3.6. Dağıtım sonrası PHP OPcache temizlenir ve sağlık kontrolü yapılır.
+3.1. Sıra: `npm run yayin`, kök çıktı diff kontrolü, commit (kaynak + çıktı), push, GitHub kancası, `git merge --ff-only`, smoke.
+3.2. Atomiklik commit düzeyindedir: kaynak ve yayın çıktısı aynı commit'te gider; sunucu ikisini tek birleştirmeyle alır. Ayrı dizin veya sembolik bağlantıyla geçiş yoktur.
+3.3. Rollback hedefi önceki yayın commit'idir; `git revert` + push, kanca geri çeker; sunucuda elle dosya geri alınmaz.
+3.4. Yayınlanmış geçmiş yeniden yazılmaz; force-push ve rebase yasaktır, sunucu yalnız ileri sarımlı birleştirir.
+3.5. Canlı dizin elle düzenlenmez; ortam dosyası ve kullanıcı verileri dağıtımda ezilmez; `uploads/` kapsam dışıdır ve kanca öncesi `_yedek` arşiviyle korunur.
+3.6. Dağıtım sırasında elle SQL çalıştırılmaz; şema hattan uygulanır.
+3.7. Dağıtım sonrası PHP OPcache temizlenir (kanca birleştirme sonrası) ve sağlık kontrolü yapılır.
 
 ## 4. Smoke ve rollback
 
-4.1. Ön smoke: build temizliği, sözleşme testleri, dist statik taraması, bundle bütçesi.
+4.1. Ön smoke: build temizliği, sözleşme testleri, kök yayın statik taraması, bundle bütçesi, ikinci çalıştırmada idempotent fark kontrolü.
 4.2. Son smoke: derin bağlantı 200, /api/* PHP yanıtı, oturumsuz korumalı uç 401, CSRF'siz POST 403, giriş ve bir listeleme akışı, eksik varlık 404.
-4.3. Smoke başarısızsa rollback: önceki dist'e dön, gerekirse önceki API commit'ine dön; veri göçü geriye dönük uyumluysa veri geri alınmaz.
+4.3. Smoke başarısızsa rollback: yayın commit'ini `git revert` ile geri al ve push et; kanca çeker; veri göçü geriye dönük uyumluysa veri geri alınmaz.
 4.4. Rollback adımı yazılıdır ve tatbikatla doğrulanır; sözlü tarif yeterli değildir.
 4.5. Sonuçlar release kaydına yazılır; başarısız smoke release'i kapatır.
 

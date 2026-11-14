@@ -18,6 +18,7 @@
 2.4. PHP işleyicisi /api yoluna bağlanır; API dışına PHP çalıştırma izni verilmez.
 2.5. Sunucu yapılandırması sürüm kontrolündedir; elle panel değişikliği kayda geçer.
 2.6. LiteSpeed'in Apache uyumlu kuralları kullanılır; davranış sürüme göre varsayılmaz, gerçek istekle doğrulanır.
+2.7. Kaynak dizini `spa/` ve `deploy/.env` gibi çalışma dosyaları HTTP'ye kapalıdır; kökte yalnız yayın çıktısı servis edilir.
 
 ## 3. Önbellek ve başlıklar
 

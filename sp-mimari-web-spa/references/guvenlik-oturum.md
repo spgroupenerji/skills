@@ -38,11 +38,11 @@
 ## 5. Secret ve tedarik zinciri
 
 5.1. Secret istemci paketine girmez; build-time ortam değişkenleri yalnız kamuya açık değerleri taşır.
-5.2. API anahtarları ve veritabanı parolaları PHP tarafında ortam değişkeninden gelir; depoya ve dist'e yazılmaz.
+5.2. API anahtarları ve veritabanı parolaları PHP tarafında ortam değişkeninden gelir; depoya ve yayın çıktısına yazılmaz.
 5.3. lockfile sürüm kontrolündedir; kurulum lockfile'a göre yapılır; sürümler pinlidir.
 5.4. CDN veya doğrulanmamış kaynaktan script, stil, font yüklenmez.
 5.5. Yeni bağımlılık gerekçelenir ve denetlenir; bilinen kritik açık varken release yapılmaz.
-5.6. dist içinde secret, token ve ortam dosyası izi bulunmaz; release öncesi statik tarama yapılır.
+5.6. Yayın çıktısında (kök `index.html`, `varlik/`) secret, token ve ortam dosyası izi bulunmaz; release öncesi statik tarama yapılır.
 
 ## 6. Release başlıkları
 
