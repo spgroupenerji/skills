@@ -35,14 +35,18 @@
 4.5. Hassas uçlarda hız sınırı ve denetim kaydı vardır; denetim yazımı başarısızsa işlem tamamlanmaz.
 4.6. Parola, token ve kişisel veri loglarda maskelenir.
 
-## 5. Secret ve tedarik zinciri
+## 5. Secret, dosya sistemi sınırı ve tedarik zinciri
 
 5.1. Secret istemci paketine girmez; build-time ortam değişkenleri yalnız kamuya açık değerleri taşır.
 5.2. API anahtarları ve veritabanı parolaları PHP tarafında ortam değişkeninden gelir; depoya ve yayın çıktısına yazılmaz.
 5.3. lockfile sürüm kontrolündedir; kurulum lockfile'a göre yapılır; sürümler pinlidir.
 5.4. CDN veya doğrulanmamış kaynaktan script, stil, font yüklenmez.
 5.5. Yeni bağımlılık gerekçelenir ve denetlenir; bilinen kritik açık varken release yapılmaz.
-5.6. Yayın çıktısında (kök `index.html`, `varlik/`) secret, token ve ortam dosyası izi bulunmaz; release öncesi statik tarama yapılır.
+5.6. Yayın çıktısında (kök `index.html`, `public/`) secret, token ve ortam dosyası izi bulunmaz; release öncesi statik tarama yapılır.
+5.7. Web'den erişilemez yollar: `spa/`, `python_daq/`, `log/`, `deploy/.env`, `.env`, `config.php`, `package.json`, `tsconfig*.json`, `vite.config.*`, `requirements.txt`, `*.sqlite*`, `*.parquet`. Deny kuralı yolu değil dosya türünü de kapsar; yeni çalışma dosyası eklenirse deny listesi aynı değişiklikte güncellenir.
+5.8. PHP çalıştırma beyaz listedir: yalnız `api.php`, `merkez.php`, `deploy/deploy.php`, `seo/sitemap-generator.php` HTTP'den çalışır. `config.php` yalnız include edilir; doğrudan çağrı 403 döner.
+5.9. PHP yönetim paneli ayrı yüzeydir: kendi oturum çerezini ve CSRF belirtecini kullanır; SPA belirteci panele, panel belirteci SPA'ya geçmez.
+5.10. `python_daq/data/` altındaki veri deposu HTTP'ye kapalıdır; dışa açılan veri yalnız API üzerinden ve yetki denetimiyle sunulur.
 
 ## 6. Release başlıkları
 

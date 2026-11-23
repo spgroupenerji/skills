@@ -5,13 +5,13 @@
 ## 1. Model
 
 1.1. Node yalnız geliştirme ve derleme zamanında çalışır; üretimde Node çalışmaz.
-1.2. Çalışma zamanı iki parçadır: LiteSpeed'in kökten sunduğu derlenmiş dosyalar ve PHP API. Başka çalışma zamanı bileşeni eklenmez.
+1.2. Çalışma zamanı üç parçadır: LiteSpeed'in kökten sunduğu derleme çıktısı, PHP API ve Python arka plan veri servisi. Dördüncü bir çalışma zamanı bileşeni eklenmez.
 1.3. Vite geliştirmede HMR verir; üretim çıktısı statik dosyalardır.
 1.4. React istemci yönlendirme kullanır; sunucu tarafı render yoktur.
 
 ## 2. Proje ve bağımlılık
 
-2.1. Kaynak ağacı, package.json ve lockfile sürüm kontrolündedir; node_modules depoda tutulmaz; yayın çıktısı (kök `index.html` + `varlik/`) depoda tutulur.
+2.1. Kaynak ağacı, package.json ve lockfile sürüm kontrolündedir; node_modules depoda tutulmaz; yayın çıktısı (kök `index.html` + `public/`) depoda tutulur; elle konan medya `assets/` git'te izlenir.
 2.2. Kurulum lockfile'a göre yapılır; sürüm aralığı bırakılmaz, sürüm pinlenir; yeni bağımlılık gerekçelenir.
 2.3. CDN'den script, stil veya font yüklenmez; tüm istemci kütüphaneleri npm paketidir.
 2.4. Bağımlılık denetimi release'de çalıştırılır; bilinen kritik açık varken release yapılmaz.
@@ -19,16 +19,18 @@
 
 ## 3. Yayın iskeleti ve build
 
-3.1. Vite kökü `spa/`'dır: giriş `spa/index.html`, kaynak `spa/src/`, sabit dosyalar `spa/public/`.
-3.2. `vite.config` hedefi depo köküdür: `root: 'spa'`, `build.outDir: '..'`, `build.assetsDir: 'varlik'`, `build.emptyOutDir: false`, `base: '/'`.
-3.3. `emptyOutDir` açıkça `false` yazılır: kök dışı hedefte Vite varsayılanı zaten `false`'tur ve uyarı verir; açık değer uyarıyı kapatır ve kökün boşaltılmasını koşulsuz engeller.
-3.4. `varlik/` ayrılmıştır: yalnız build yazar; kaynakta aynı adla dizin bulunmaz ve elle dosya konmaz.
-3.5. Yayın tek komuttur (`npm run yayin`): `varlik/` silinir, build çalışır, kök `index.html` ile `varlik/` stage edilir; elle kopyalama veya ikinci yayın betiği yoktur.
-3.6. Çıktı yeniden üretilebilir: aynı lockfile ve komut aynı sonucu verir; ikinci çalıştırma çalışma ağacında fark bırakmaz.
-3.7. Kökte tek giriş `index.html`'dir; PHP girişi `/api/` altındadır ve kök `index.php` ile çakışmaz.
-3.8. Kaynak haritaları ve dev araçları yayına çıkmaz; çıktıda Node bağımlılığı, test dosyası ve secret bulunmaz; release öncesi statik tarama yapılır.
-3.9. Build ortam değişkenlerini build-time okur; istemciye gömülen değerler yalnız kamuya açık olanlardır.
-3.10. Dağıtım ve rollback aynı commit'i kullanır; ayrı artefakt arşivi tutulmaz.
+3.1. Vite kökü `spa/`'dır ve kaynak düzdür: `spa/index.html` giriş kabuğu, `spa/main.tsx`, `spa/App.tsx`, `spa/ortak.tsx`, `spa/stil.css`, `spa/sayfa/`. `src/` katmanı yoktur; kök `index.html` ile `spa/index.html` iki ayrı dosyadır.
+3.2. `vite.config` hedefi depo köküdür: `root: 'spa'`, `build.outDir: '..'`, `build.assetsDir: 'public'`, `build.emptyOutDir: false`, `base: '/'`.
+3.3. Kök `public/` yalnız build çıktısıdır: hash'li JS/CSS ve içeri alınmış varlıklar buraya yazılır; elle dosya konmaz, kaynak ağacında aynı adda dizin bulunmaz.
+3.4. Vite'ın `publicDir` seçeneği `spa/public/` dizinidir; içeriği dönüştürülmeden `outDir` köküne kopyalanır. Kök `public/` ile aynı dizin değildir ve karıştırılmaz; kullanılmıyorsa `publicDir: false` yazılır.
+3.5. `assets/` elle konan medyadır (görsel, video): build buraya yazmaz, buradan silmez ve dosya adına hash eklemez; içerik git'te izlenir.
+3.6. `emptyOutDir` açıkça `false` yazılır: kök dışı hedefte Vite varsayılanı zaten `false`'tur ve uyarı verir; açık değer uyarıyı kapatır ve kökün boşaltılmasını koşulsuz engeller.
+3.7. Bayat çıktı silme yayın komutunun işidir: `npm run yayin` önce `public/` dizinini siler, sonra build çalıştırır, kök `index.html` ile `public/` dizinini stage eder; elle kopyalama veya ikinci yayın betiği yoktur.
+3.8. Çıktı yeniden üretilebilir: aynı lockfile ve komut aynı sonucu verir; ikinci çalıştırma çalışma ağacında fark bırakmaz.
+3.9. Kökte tek HTML girişi `index.html`'dir; PHP girişleri beyaz listededir (references/litespeed-yonlendirme.md 2.4) ve kökte `index.php` yayınlanmaz.
+3.10. Kaynak haritaları ve dev araçları yayına çıkmaz; çıktıda Node bağımlılığı, test dosyası ve secret bulunmaz; release öncesi statik tarama yapılır.
+3.11. Build ortam değişkenlerini build-time okur; istemciye gömülen değerler yalnız kamuya açık olanlardır.
+3.12. Dağıtım ve rollback aynı commit'i kullanır; ayrı artefakt arşivi tutulmaz.
 
 ## 4. Bütçe
 
@@ -42,6 +44,7 @@
 5.1. Geliştirmede `spa/` kökünde Vite dev sunucusu ve PHP API birlikte çalışır; API çağrıları dev proxy veya aynı origin üzerinden yönlenir.
 5.2. Geliştirmede prod build ve deploy çalıştırılmaz; mikro değişiklikte HMR ve etkilenen test yeterlidir.
 5.3. Dev ve prod davranışı ayrıştırılır; dev'e özgü hata ayıklama kodu üretime giremez.
+5.4. Geliştirmede Python servisi API'den bağımsız ayrı süreçtir; API veri deposundaki son geçerli durumu döner, veri yoksa bunu hata olarak bildirir.
 
 ## 6. Release doğrulaması
 

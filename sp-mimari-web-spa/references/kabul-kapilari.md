@@ -22,7 +22,7 @@
 3.1. Lockfile'a göre kurulum ve `npm run yayin` temizdir: hata ve uyarı yoktur; ikinci çalıştırma çalışma ağacında fark bırakmaz.
 3.2. Kök çıktı Node gerektirmez; statik sunucudan servis edilerek doğrulanır ve commit'te bulunur.
 3.3. Bundle bütçesi ölçülmüş ve aşılmamıştır; sonuç kayıtlıdır.
-3.4. Kök çıktıda (`index.html`, `varlik/`) secret, ortam dosyası izi, kaynak haritası ve dev aracı yoktur; CDN referansı yoktur.
+3.4. Kök çıktıda (`index.html`, `public/`) secret, ortam dosyası izi, kaynak haritası ve dev aracı yoktur; `assets/` medyasında da secret izi bulunmaz; CDN referansı yoktur.
 3.5. lockfile değişmişse gerekçe ve bağımlılık denetimi kaydı vardır.
 
 ## 4. Release — yönlendirme ve güvenlik
@@ -34,6 +34,8 @@
 4.5. Oturum çerezi HttpOnly, Secure ve SameSite taşır; girişte oturum kimliği yenilenir.
 4.6. CSP, HSTS, nosniff ve Referrer-Policy başlıkları doğrulanır; script-src içinde unsafe-inline ve unsafe-eval yoktur.
 4.7. Erişilebilirlik ölçümü yapısal tasarım becerisinin kontrol listesine göre tamamlanmış ve kaydedilmiştir; ihlal varsa release edilmez.
+4.8. Deny probu geçmiştir: `spa/main.tsx`, `python_daq/index.py`, `log/deploy.log`, `package.json`, `config.php` ve `*.sqlite*` HTTP'den 403 döner.
+4.9. PHP beyaz liste probu geçmiştir: `api.php` doğrudan çağrıldığında 403, `/api/*` PHP yanıtı verir, `merkez.php` giriş akışına girer, listede olmayan PHP dosyası çalışmaz.
 
 ## 5. Release — süreklilik ve dağıtım
 
@@ -46,6 +48,7 @@
 5.7. Bilgi/hakkında sayfasındaki sürüm damgası `vYYYYMMDDHHMM` biçimindedir; release kaydı ve aynı adlı tag ile birebir aynıdır.
 5.8. Kanca imzası doğrulanmıştır: ping `pong` döner, push 202 alır ve `log/deploy.log` kaydı düşer; canlı commit push edilen commit'tir.
 5.9. `DEPLOY_WEBHOOK_SECRET` sunucuda tanımlıdır; tanımsızken kanca 503 döner ve dağıtım yapılmaz.
+5.10. Python servisi dağıtım sonrası ayaktadır, sanal ortamından çalışır, logu güncellenir ve veri deposuna yazma zamanı ilerler; aksi halde yayın kapanmaz.
 
 ## 6. Kanıt biçimi
 

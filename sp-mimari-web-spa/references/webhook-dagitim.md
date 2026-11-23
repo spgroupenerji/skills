@@ -14,6 +14,8 @@
 1.8. Kabul edilen push 202 döner, iş isteğin dışında sürer ve sonuç `log/deploy.log` dosyasına yazılır.
 1.9. Birleştirme öncesi `uploads/` dizini web kökü dışında `_yedek` arşivine alınır; eski arşivler saklama sınırına göre temizlenir.
 1.10. Birleştirme sonrası OPcache temizlenir; kanca yanıtı sır, yol veya yığın izi sızdırmaz.
+1.11. Python arka plan servisi birleştirme öncesi durdurulur, birleştirme ve OPcache sonrası yeniden başlatılır; servis ayakta değilse dağıtım başarısız sayılır ve yayın kapanmaz.
+1.12. Bağımlılık kurulumu dağıtımın parçası değildir: `requirements.txt` değiştiyse sunucuda sanal ortam kurulumu ayrı ve kayıtlı adımdır; kanca sürüm kurmaz.
 
 ## 2. Kurulum kapıları
 
@@ -24,12 +26,14 @@
 2.5. Sunucuda `git` çalıştırılabilir olmalıdır (süreç başlatma açık); kapalıysa dağıtım çalışmaz ve barındırıcı politikası düzeltilir.
 2.6. `.git` dizini yazılabilir olmalıdır; salt okunur klonda birleştirme başarısız olur.
 2.7. cPanel `.cpanel.yml` yalnız "dağıtım tanımı var" kontrolünü sağlar; kopyalama yapmaz ve ikinci hat kurmaz.
+2.8. Sunucuda süreç durdurma ve başlatma izni vardır; Python yorumlayıcısı ve sanal ortam yolu kayıtlıdır; bu izin yoksa dağıtım çalışmaz ve barındırıcı politikası düzeltilir.
+2.9. Servis veri dizini (`python_daq/data/`) birleştirmeye girmez; birleştirme öncesi servis durdurulduğu için dosya kilidi oluşmaz.
 
 ## 3. Yayın akışı
 
-3.1. Sıra: `npm run yayin` → kök çıktı diff'i gözden geçir → commit (kaynak + çıktı) → push → kanca → birleştirme → smoke.
+3.1. Sıra: `npm run yayin` → kök çıktı diff'i gözden geçir → commit (kaynak + çıktı) → push → kanca → servis durdur → birleştirme → OPcache → servis başlat → smoke.
 3.2. Commit atomiktir: kaynak ve yayın çıktısı aynı commit'te gider; sunucu ikisini tek birleştirmeyle alır.
-3.3. Canlı doğrulama: sayfa yüklenir, Console hatasızdır, derin bağlantı 200 döner, `/api/*` PHP yanıtı verir.
+3.3. Canlı doğrulama: sayfa yüklenir, Console hatasızdır, derin bağlantı 200 döner, `/api/*` PHP yanıtı verir, Python servisi ayaktadır ve veri deposuna son yazma zamanı ilerlemektedir.
 3.4. Kapanış kanıtı: `log/deploy.log` içindeki son satır başarılıdır ve canlı commit push edilen commit'tir.
 
 ## 4. Hata çözümü
@@ -43,14 +47,18 @@
 | uzakta dal yok | klon başka dala bağlı | `git fetch` + `git switch -c <dal> --track origin/<dal>` |
 | süreç başlatma kapalı | barındırıcı kısıtı | politikayı düzelt; kancayı imzasız açma |
 | .git yazılamıyor | izinler | klon sahibinin izinlerini düzelt |
+| 202 ama servis eski kodda | birleştirme sonrası servis yeniden başlatılmadı | durdur-başlat sırasını düzelt, süreci elle başlat, logu doğrula |
+| servis ayağa kalkmıyor | sanal ortam yolu, eksik bağımlılık veya izin | servis logunu oku, sanal ortamı ve pinleri doğrula; yayını kapat |
+| birleştirme takıldı veya veri kilitli | servis veri deposuna yazarken birleştirme yapıldı | birleştirmeyi yalnız servis durdurulmuşken çalıştır |
 
 ## 5. Sınırlar
 
 5.1. Sunucuda derleme yoktur; Node yalnız geliştirici makinesinde çalışır.
-5.2. Yayın çıktısı commit'e girdiği için `varlik/` her yayında tümüyle yeniden üretilir; eski hash'li dosyalar aynı commit'te silinir, elle düzenlenmez.
+5.2. Yayın çıktısı commit'e girdiği için `public/` her yayında tümüyle yeniden üretilir; eski hash'li dosyalar aynı commit'te silinir, elle düzenlenmez. `assets/` medyası build dışındadır ve yayında silinmez.
 5.3. Yayınlanmış geçmiş yeniden yazılmaz; force-push ve rebase dağıtımı kırar.
 5.4. Geri alma `git revert` + push ile yapılır; sunucuda dosya kopyalama veya elle geri alma yapılmaz.
 5.5. Sır, kanca ucu ve log içeriği istemciye veya depoya yazılmaz.
+5.6. Servis çökerse kanca onu kendiliğinden yeniden başlatmaz; yeniden başlatma yolu ve çökme logu ayrı tanımlıdır.
 
 ## 6. Doğrulama
 
